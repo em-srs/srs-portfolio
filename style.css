@@ -677,8 +677,8 @@
       position: relative;
       z-index: 2;
       width: 380px;
-      margin-top: -45px;
-      margin-left: 20px;
+      margin-top: -140px;
+      margin-left: 100px;
       animation: floatUpDown 5s ease-in-out infinite;
       will-change: transform;
     }
@@ -1016,7 +1016,9 @@
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
       letter-spacing: 2px;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     #lens-lightbox.hiding #lens-lightbox-card {

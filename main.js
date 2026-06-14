@@ -335,20 +335,22 @@
     (function () {
       var lightbox = document.getElementById('lens-lightbox');
       var lbImg = document.getElementById('lens-lightbox-img');
-      var lbLabel = document.getElementById('lens-lightbox-label');
+      var lbCounter = document.getElementById('lens-lightbox-counter');
+      var lbLocation = document.getElementById('lens-lightbox-location');
       var cards = document.querySelectorAll('#masonryGrid .photo-card');
       var total = cards.length;
       var hideTimer = null;
       var hoverTimer = null; // 0.5-second delay before opening
 
-      function openLens(imgSrc, index) {
+      function openLens(imgSrc, index, locationText) {
         if (window.innerWidth < 768) return;
         if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
         lightbox.classList.remove('hiding');
         lbImg.src = imgSrc;
-        lbLabel.textContent =
+        lbCounter.textContent =
           String(index + 1).padStart(2, '0') + ' / ' +
           String(total).padStart(2, '0');
+        lbLocation.textContent = locationText || '';
         lightbox.classList.add('active');
       }
 
@@ -366,12 +368,14 @@
       cards.forEach(function (card, i) {
         var img = card.querySelector('.photo-card-img-wrap img');
         if (!img) return;
+        var exif = card.querySelector('.photo-exif');
+        var locationText = exif ? exif.textContent : '';
         card.addEventListener('mouseenter', function () {
           // Clear any previous pending open
           if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null; }
           // Wait before opening the lightbox
           hoverTimer = setTimeout(function () {
-            openLens(img.src, i);
+            openLens(img.src, i, locationText);
             hoverTimer = null;
           }, 500);
         });
