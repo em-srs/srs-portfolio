@@ -1,7 +1,7 @@
 /* ─────────────────────────────────────────────
        THEME RIPPLE TRANSITION
     ───────────────────────────────────────────── */
-    function triggerRipple(e) {
+    window.triggerRipple = function triggerRipple(e) {
       const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
       const nextTheme = isDark ? 'light' : 'dark';
       const nextBg = isDark ? '#FAFAF8' : '#0F0F0F';
@@ -66,7 +66,7 @@
     /* ─────────────────────────────────────────────
        MOBILE DRAWER
     ───────────────────────────────────────────── */
-    function toggleDrawer() {
+    window.toggleDrawer = function toggleDrawer() {
       const drawer = document.getElementById('nav-drawer');
       drawer.classList.toggle('open');
     }
