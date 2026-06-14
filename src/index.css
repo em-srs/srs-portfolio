@@ -1,0 +1,9 @@
+/*
+ * NOTE: This CSS file is NOT used at runtime.
+ *
+ * All styles are defined inline in index.html within the <style> tag.
+ * The Tailwind directives that were here (@tailwind base/components/utilities)
+ * served no purpose since the portfolio doesn't use the React entry-point.
+ *
+ * This file is retained only for potential future React migration.
+ */
