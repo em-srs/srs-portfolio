@@ -3317,7 +3317,7 @@
       var cards = document.querySelectorAll('#masonryGrid .photo-card');
       var total = cards.length;
       var hideTimer = null;
-      var hoverTimer = null; // 2-second delay before opening
+      var hoverTimer = null; // 0.5-second delay before opening
 
       function openLens(imgSrc, index) {
         if (window.innerWidth < 768) return;
@@ -3347,11 +3347,11 @@
         card.addEventListener('mouseenter', function () {
           // Clear any previous pending open
           if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null; }
-          // Wait 2 seconds before opening the lightbox
+          // Wait before opening the lightbox
           hoverTimer = setTimeout(function () {
             openLens(img.src, i);
             hoverTimer = null;
-          }, 1000);
+          }, 500);
         });
         card.addEventListener('mouseleave', closeLens);
       });
