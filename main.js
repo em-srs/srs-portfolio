@@ -369,7 +369,7 @@
         var img = card.querySelector('.photo-card-img-wrap img');
         if (!img) return;
         var exif = card.querySelector('.photo-exif');
-        var locationText = exif ? exif.textContent : '';
+        var locationText = exif ? exif.textContent.trim() : '';
         card.addEventListener('mouseenter', function () {
           // Clear any previous pending open
           if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null; }

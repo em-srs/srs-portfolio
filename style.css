@@ -1011,6 +1011,7 @@
       left: 0;
       right: 0;
       padding: 14px 20px;
+      z-index: 10;
       background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
       color: rgba(255, 255, 255, 0.85);
       font-family: 'JetBrains Mono', monospace;
