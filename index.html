@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUNNY.KUMAR // BACKEND_ENGINEER</title>
+    <meta name="description"
+        content="Sunny Kumar — Backend & Full-Stack Engineer. B.Tech CSE, FastAPI, Spring Boot, React.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --paper: #F2F0E8;
+            --ink: #0B0B0B;
+            --yellow: #FFD400;
+            --pink: #FF3D6E;
+            --wire: #3B7DFF;
+            --line: 4px;
+            --hairline: rgba(0, 0, 0, .13);
+        }
+
+        :root[data-theme="dark"] {
+            --paper: #111111;
+            --ink: #F2F0E8;
+            --hairline: rgba(255, 255, 255, .16);
+        }
+
+        body {
+            transition: background .25s ease, color .25s ease;
+        }
+
+        * {
+            transition: background-color .45s ease, color .45s ease, border-color .45s ease, box-shadow .45s ease;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'JetBrains Mono', monospace;
+            cursor: none;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: var(--ink);
+            color: var(--yellow);
+        }
+
+        h1,
+        h2,
+        h3,
+        .display {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            line-height: 0.95;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ---------- custom cursor ---------- */
+        #cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 14px;
+            height: 14px;
+            background: var(--pink);
+            border: 2px solid var(--ink);
+            box-shadow: 0 0 0 2px var(--paper);
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width .15s, height .15s, background .15s, border-radius .15s;
+        }
+
+        #cursor.hover {
+            width: 52px;
+            height: 52px;
+            background: rgba(255, 212, 0, 0.4);
+            border-color: rgba(11, 11, 11, 0.6);
+            border-radius: 2px;
+            box-shadow: 0 0 0 2px rgba(242, 240, 232, 0.6);
+            mix-blend-mode: multiply;
+        }
+
+        @media (hover:none) {
+            #cursor {
+                display: none;
+            }
+
+            body {
+                cursor: auto;
+            }
+        }
+
+        /* ---------- utility ---------- */
+        .wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .border-b4 {
+            border-bottom: var(--line) solid var(--ink);
+        }
+
+        .border-t4 {
+            border-top: var(--line) solid var(--ink);
+        }
+
+        .hard-shadow {
+            box-shadow: 8px 8px 0 var(--ink);
+        }
+
+        .hard-shadow:hover {
+            box-shadow: 4px 4px 0 var(--ink);
+            transform: translate(4px, 4px);
+        }
+
+        .tag {
+            display: inline-block;
+            border: 2px solid var(--ink);
+            padding: 2px 10px;
+            font-size: .72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transform: rotate(-2deg);
+        }
+
+        /* ---------- marquee ---------- */
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: scroll 22s linear infinite;
+        }
+
+        .marquee-track span {
+            display: inline-block;
+            padding: 0 2rem;
+            font-family: 'Space Grotesk';
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .marquee-wrap {
+            overflow: hidden;
+            background: #0B0B0B;
+            color: var(--yellow);
+            padding: 14px 0;
+        }
+
+        .marquee-wrap.rev .marquee-track {
+            animation-direction: reverse;
+        }
+
+        .marquee-wrap.alt {
+            background: var(--yellow);
+            color: #0B0B0B;
+        }
+
+        /* ---------- glitch ---------- */
+        .glitch {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch:hover {
+            animation: glitch-shake .28s steps(2) infinite;
+        }
+
+        .glitch:hover::before,
+        .glitch:hover::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--paper);
+            overflow: hidden;
+        }
+
+        .glitch:hover::before {
+            left: 3px;
+            text-shadow: -2px 0 var(--pink);
+            animation: glitch-1 .3s infinite linear alternate-reverse;
+        }
+
+        .glitch:hover::after {
+            left: -3px;
+            text-shadow: 2px 0 var(--wire);
+            animation: glitch-2 .3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-shake {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(-1px, 1px);
+            }
+
+            100% {
+                transform: translate(1px, -1px);
+            }
+        }
+
+        @keyframes glitch-1 {
+            0% {
+                clip-path: inset(0 0 90% 0);
+            }
+
+            50% {
+                clip-path: inset(40% 0 40% 0);
+            }
+
+            100% {
+                clip-path: inset(80% 0 5% 0);
+            }
+        }
+
+        @keyframes glitch-2 {
+            0% {
+                clip-path: inset(60% 0 5% 0);
+            }
+
+            50% {
+                clip-path: inset(10% 0 70% 0);
+            }
+
+            100% {
+                clip-path: inset(30% 0 40% 0);
+            }
+        }
+
+        /* ---------- reveal ---------- */
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+
+        [data-reveal].in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---------- nav ---------- */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--paper);
+        }
+
+        nav a.navlink {
+            font-size: .8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 8px 4px;
+        }
+
+        nav a.navlink:hover {
+            background: var(--ink);
+            color: var(--yellow);
+        }
+
+        section[id],
+        footer[id] {
+            scroll-margin-top: 64px;
+        }
+
+        /* ---------- project card ---------- */
+        .proj-card {
+            border: var(--line) solid var(--ink);
+            background: var(--paper);
+        }
+
+        .proj-card .head {
+            border-bottom: var(--line) solid var(--ink);
+            padding: 14px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-box {
+            border: 2px solid var(--ink);
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* checker strip */
+        .checker {
+            height: 18px;
+            background-image: repeating-linear-gradient(45deg, var(--ink) 0 10px, transparent 10px 20px);
+        }
+
+        /* ---------- terminal boot ---------- */
+        #boot {
+            font-size: .85rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        #boot .cur {
+            display: inline-block;
+            width: 9px;
+            height: 16px;
+            background: var(--ink);
+            animation: blink 1s steps(1) infinite;
+            vertical-align: -2px;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .grid-lines {
+            background-image: linear-gradient(var(--ink) 1px, transparent 1px), linear-gradient(90deg, var(--ink) 1px, transparent 1px);
+            background-size: 42px 42px;
+            opacity: .06;
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        input,
+        textarea {
+            font-family: 'JetBrains Mono';
+            border: 2px solid var(--ink);
+            background: var(--paper);
+            padding: 12px;
+            width: 100%;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            background: var(--yellow);
+            color: #0B0B0B;
+        }
+
+        .btn {
+            display: inline-block;
+            border: var(--line) solid var(--ink);
+            background: var(--ink);
+            color: var(--paper);
+            padding: 14px 26px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .02em;
+        }
+
+        .btn:hover {
+            background: var(--yellow);
+            color: #0B0B0B;
+        }
+
+        .btn.alt {
+            background: var(--paper);
+            color: var(--ink);
+        }
+
+        .btn.alt:hover {
+            background: var(--pink);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="cursor"></div>
+
+    <!-- ============ NAV ============ -->
+    <nav class="border-b4">
+        <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; padding:16px 24px;">
+            <a href="#" class="display" style="font-size:1.1rem;">SK<span style="color:var(--pink);">.</span>EXE</a>
+            <div style="display:flex; gap:6px; align-items:center;">
+                <a href="#work" class="navlink">Work</a>
+                <a href="#stack" class="navlink">Stack</a>
+                <a href="#stats" class="navlink">Stats</a>
+                <a href="#lens" class="navlink">Lens</a>
+                <a href="#contact" class="navlink">Contact</a>
+                <div
+                    style="position:relative; display:flex; width:132px; border:2px solid var(--ink); margin-left:6px; overflow:hidden;">
+                    <div id="theme-highlight"
+                        style="position:absolute; top:0; left:0; width:50%; height:100%; background:var(--ink); transform:translateX(0%); transition:transform .35s cubic-bezier(.65,0,.35,1); z-index:0;">
+                    </div>
+                    <button id="theme-light"
+                        style="position:relative; z-index:1; flex:1; border:none; background:transparent; font-family:'JetBrains Mono'; font-weight:700; font-size:.72rem; padding:6px 12px; cursor:none;">LIGHT</button>
+                    <button id="theme-dark"
+                        style="position:relative; z-index:1; flex:1; border:none; border-left:2px solid var(--ink); background:transparent; font-family:'JetBrains Mono'; font-weight:700; font-size:.72rem; padding:6px 12px; cursor:none;">DARK</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============ HERO ============ -->
+    <header class="border-b4" style="position:relative; overflow:hidden;">
+        <div class="grid-lines"></div>
+        <div class="wrap" style="position:relative; padding:70px 24px 50px;">
+            <span class="tag" style="background:var(--yellow); color:#0B0B0B; border-color:#0B0B0B;">STATUS:
+                OPEN_TO_INTERNSHIPS_/_FULL-TIME_SDE</span>
+            <h1 class="glitch" data-text="SUNNY KUMAR" style="font-size:clamp(2.8rem,9vw,6.2rem); margin:18px 0 6px;">
+                SUNNY KUMAR</h1>
+            <h2 style="font-size:clamp(1.1rem,3vw,1.8rem); margin:0 0 26px; color:var(--pink);">// BACKEND &amp;
+                FULL-STACK ENGINEER</h2>
+
+            <div style="display:grid; grid-template-columns:1.3fr 1fr; gap:24px; align-items:start;" id="hero-grid">
+                <p style="font-size:1.05rem; max-width:52ch; line-height:1.6;">
+                    Final-year B.Tech CSE student building backend systems that don't fall over —
+                    C++, Java, Spring Boot, FastAPI, PostgreSQL. Clean architecture over quick hacks,
+                    padded resumes never. Also shoot portraits and moonshots when the terminal's closed.
+                </p>
+                <div id="boot" class="border-t4" style="padding-top:14px;"></div>
+            </div>
+
+            <div style="margin-top:36px; display:flex; gap:14px; flex-wrap:wrap;">
+                <a href="#work" class="btn">View Work ↓</a>
+                <a href="https://github.com/em-srs" target="_blank" class="btn alt">GitHub</a>
+                <a href="https://linkedin.com/in/srs1717" target="_blank" class="btn alt">LinkedIn</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee-wrap">
+        <div class="marquee-track">
+            <span>FASTAPI</span><span>·</span><span>SPRING
+                BOOT</span><span>·</span><span>POSTGRESQL</span><span>·</span>
+            <span>REACT</span><span>·</span><span>NODE.JS</span><span>·</span><span>TDD</span><span>·</span>
+            <span>FASTAPI</span><span>·</span><span>SPRING
+                BOOT</span><span>·</span><span>POSTGRESQL</span><span>·</span>
+            <span>REACT</span><span>·</span><span>NODE.JS</span><span>·</span><span>TDD</span><span>·</span>
+        </div>
+    </div>
+
+    <!-- ============ MANIFESTO ============ -->
+    <section class="border-b4 wrap" style="padding:60px 24px;" data-reveal>
+        <h2 style="font-size:clamp(1.6rem,4vw,2.6rem); margin-bottom:20px;">// NO PADDED RESUMES</h2>
+        <div
+            style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0; border:2px solid var(--ink);">
+            <div style="padding:20px; border-right:2px solid var(--ink); border-bottom:2px solid var(--ink);">
+                <div class="display" style="font-size:2rem;">93%</div>
+                <div style="font-size:.8rem;">PYTEST COVERAGE — TDD KATA</div>
+            </div>
+            <div style="padding:20px; border-right:2px solid var(--ink); border-bottom:2px solid var(--ink);">
+                <div class="display" style="font-size:2rem;">5</div>
+                <div style="font-size:.8rem;">ROLE ECOSYSTEM — MEDIFLY</div>
+            </div>
+            <div style="padding:20px; border-right:2px solid var(--ink); border-bottom:2px solid var(--ink);">
+                <div class="display" style="font-size:2rem;">&lt;100ms</div>
+                <div style="font-size:.8rem;">API RESPONSE TARGET</div>
+            </div>
+            <div style="padding:20px; border-bottom:2px solid var(--ink);">
+                <div class="display" style="font-size:2rem;">2027</div>
+                <div style="font-size:.8rem;">B.TECH CSE, CEC-CGC</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section id="work" class="border-b4" style="padding:70px 0;">
+        <div class="wrap">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:34px;"
+                data-reveal>
+                <h2 style="font-size:clamp(1.8rem,5vw,3rem);">// PROJECTS</h2>
+                <span class="tag">4 SHIPPED</span>
+            </div>
+
+            <div style="display:grid; gap:28px;">
+
+                <div class="proj-card hard-shadow" data-reveal>
+                    <div class="head">
+                        <span class="display" style="font-size:1.3rem;">01 · DEALERSHIP INVENTORY SYSTEM</span>
+                        <span class="tag"
+                            style="background:var(--yellow); color:#0B0B0B; border-color:#0B0B0B;">LIVE</span>
+                    </div>
+                    <div style="padding:20px 18px;">
+                        <p>Full-stack car dealership inventory system, built strict-TDD from red-green-refactor first.
+                            FastAPI + PostgreSQL backend, React frontend, deployed across Neon, Render and Vercel.</p>
+                        <div style="display:flex; gap:8px; flex-wrap:wrap; margin:14px 0;">
+                            <span class="tag">FASTAPI</span><span class="tag">POSTGRESQL</span><span
+                                class="tag">REACT</span><span class="tag">TDD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="proj-card hard-shadow" data-reveal>
+                    <div class="head">
+                        <span class="display" style="font-size:1.3rem;">02 · MEDIFLY</span>
+                        <span class="tag"
+                            style="background:var(--yellow); color:#0B0B0B; border-color:#0B0B0B;">LIVE</span>
+                    </div>
+                    <div style="padding:20px 18px;">
+                        <p>Five-role pharmacy delivery ecosystem — User, Pharmacy, Pharmacist, Rider, Admin — built on
+                            Java &amp; Spring Boot with sub-100ms API targets. Sixth-semester major project.</p>
+                        <div style="display:flex; gap:8px; flex-wrap:wrap; margin:14px 0;">
+                            <span class="tag">JAVA</span><span class="tag">SPRING BOOT</span><span class="tag">5-ROLE
+                                AUTH</span>
+                        </div>
+                        <a href="https://medifly-zeta.vercel.app" target="_blank" class="btn"
+                            style="padding:8px 18px; font-size:.8rem;">Visit ↗</a>
+                    </div>
+                </div>
+
+                <div class="proj-card hard-shadow" data-reveal>
+                    <div class="head">
+                        <span class="display" style="font-size:1.3rem;">03 · CUSTOMBIX</span>
+                        <span class="tag">DONE</span>
+                    </div>
+                    <div style="padding:20px 18px;">
+                        <p>Node.js/Express test-generator scraper with Cheerio, worker_threads-based PDF parsing,
+                            SQLite in WAL mode, OTP passwordless auth, and a circuit-breaker resilience pattern.</p>
+                        <div style="display:flex; gap:8px; flex-wrap:wrap; margin:14px 0;">
+                            <span class="tag">NODE.JS</span><span class="tag">EXPRESS</span><span class="tag">SQLITE
+                                WAL</span><span class="tag">CIRCUIT BREAKER</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="proj-card hard-shadow" data-reveal>
+                    <div class="head">
+                        <span class="display" style="font-size:1.3rem;">04 · VISION-HUB</span>
+                        <span class="tag">DONE</span>
+                    </div>
+                    <div style="padding:20px 18px;">
+                        <p>MERN-stack video streaming platform covering upload, playback, and full-stack state
+                            management
+                            across the MongoDB/Express/React/Node pipeline.</p>
+                        <div style="display:flex; gap:8px; flex-wrap:wrap; margin:14px 0;">
+                            <span class="tag">MONGODB</span><span class="tag">EXPRESS</span><span
+                                class="tag">REACT</span><span class="tag">NODE.JS</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ STACK ============ -->
+    <section id="stack" class="border-b4 wrap" style="padding:70px 24px;" data-reveal>
+        <h2 style="font-size:clamp(1.8rem,5vw,3rem); margin-bottom:30px;">// TECH_STACK</h2>
+        <div style="border:2px solid var(--ink); overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; font-size:.9rem;">
+                <thead>
+                    <tr style="background:var(--ink); color:var(--paper);">
+                        <th style="text-align:left; padding:12px;">LAYER</th>
+                        <th style="text-align:left; padding:12px;">TECHNOLOGY</th>
+                        <th style="text-align:left; padding:12px;">STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b4" style="border-color:var(--hairline);">
+                        <td style="padding:12px; border-top:1px solid var(--hairline);">BACKEND</td>
+                        <td style="padding:12px; border-top:1px solid var(--hairline);">FastAPI · Spring Boot · Express
+                        </td>
+                        <td style="padding:12px; border-top:1px solid var(--hairline);">[ACTIVE]</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:12px; border-top:1px solid var(--hairline);">DATA</td>
+                        <td style="padding:12px; border-top:1px solid var(--hairline);">PostgreSQL · SQLite (WAL)</td>
+                        <td style="padding:12px; border-top:1px solid var(--hairline);">[ACTIVE]</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:12px; border-top:1px solid var(--hairline);">FRONTEND</td>
+                        <td style="padding:12px; border-top:1px solid var(--hairline);">React · HTML/CSS/JS</td>
+                        <td style="padding:12px; border-top:1px solid var(--hairline);">[ACTIVE]</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:12px; border-top:1px solid var(--hairline);">METHOD</td>
+                        <td style="padding:12px; border-top:1px solid var(--hairline);">Test-Driven Development</td>
+                        <td style="padding:12px; border-top:1px solid var(--hairline);">[ENFORCED]</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:12px; border-top:1px solid var(--hairline);">DEPLOY</td>
+                        <td style="padding:12px; border-top:1px solid var(--hairline);">Vercel · Render · Neon</td>
+                        <td style="padding:12px; border-top:1px solid var(--hairline);">[SHIPPED]</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ============ MARQUEE 2 ============ -->
+    <div class="marquee-wrap alt rev">
+        <div class="marquee-track">
+            <span>CEC-CGC MOHALI</span><span>·</span><span>IKGPTU</span><span>·</span><span>B.TECH CSE
+                2023–2027</span><span>·</span>
+            <span>CEC-CGC MOHALI</span><span>·</span><span>IKGPTU</span><span>·</span><span>B.TECH CSE
+                2023–2027</span><span>·</span>
+        </div>
+    </div>
+
+    <!-- ============ STATS ============ -->
+    <section id="stats" class="border-b4" style="padding:50px 0;">
+        <div class="wrap">
+            <h2 style="font-size:clamp(1.8rem,5vw,3rem); margin-bottom:30px;" data-reveal>// LIVE_STATS</h2>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;" id="stats-grid">
+                <div class="proj-card" data-reveal>
+                    <div class="head"><span class="display" style="font-size:1.1rem;">GITHUB</span><span
+                            class="tag">@em-srs</span></div>
+                    <div style="padding:20px; display:grid; grid-template-columns:repeat(3,1fr); gap:10px;"
+                        id="gh-stats">
+                        <div class="stat-box">
+                            <div class="display" style="font-size:1.5rem;">…</div>
+                            <div style="font-size:.7rem;">REPOS</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="display" style="font-size:1.5rem;">…</div>
+                            <div style="font-size:.7rem;">FOLLOWERS</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="display" style="font-size:1.5rem;">…</div>
+                            <div style="font-size:.7rem;">FOLLOWING</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="proj-card" data-reveal>
+                    <div class="head"><span class="display" style="font-size:1.1rem;">LEETCODE</span><span
+                            class="tag">@me_srs</span></div>
+                    <div style="padding:20px;">
+                        <img id="lc-card"
+                            src="https://leetcard.jacoblin.cool/me_srs?theme=light&font=JetBrains%20Mono&ext=heatmap"
+                            style="width:100%; max-width:560px; height:auto; border:2px solid var(--ink); display:block; margin:0 auto;"
+                            alt="LeetCode stats"
+                            onerror="this.style.display='none'; document.getElementById('lc-fallback').style.display='block';">
+                        <p id="lc-fallback" style="display:none; font-size:.8rem;">Set your real LeetCode username in
+                            the &lt;img id="lc-card"&gt; src above to activate this card.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="checker" style="margin-top:36px;"></div>
+        </div>
+    </section>
+
+    <!-- ============ LENS (photography) ============ -->
+    <section id="lens" class="border-b4" style="padding:50px 0; position:relative; overflow:hidden;">
+        <div class="wrap" style="display:grid; grid-template-columns:1.1fr .9fr; gap:36px; align-items:center;"
+            id="lens-grid">
+            <div data-reveal>
+                <h2 style="font-size:clamp(1.8rem,5vw,3rem); margin-bottom:16px;">// THROUGH_THE_LENS</h2>
+                <p style="max-width:48ch; line-height:1.6;">
+                    Portraits, objects, scenery, and the occasional moonshot. Same eye for detail
+                    that goes into a circuit-breaker pattern — just pointed at a viewfinder instead of a terminal.
+                </p>
+                <a href="https://em-srs.vercel.app" target="_blank" class="btn"
+                    style="margin-top:20px; display:inline-block;">Open Photography Portfolio ↗</a>
+            </div>
+            <div class="border-t4"
+                style="border:var(--line) solid var(--ink); max-width:460px; width:100%; aspect-ratio:3/2; margin:0 auto; display:flex; align-items:center; justify-content:center; background:repeating-conic-gradient(var(--ink) 0% 25%, transparent 0% 50%) 50%/16px 16px; position:relative;"
+                data-reveal>
+                <div style="background:var(--paper); border:2px solid var(--ink); padding:14px 22px; transform:rotate(-3deg);"
+                    class="display">APERTURE<br>f/1.8</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <footer id="contact" style="padding:70px 0 40px;">
+        <div class="wrap">
+            <h2 style="font-size:clamp(1.8rem,5vw,3rem); margin-bottom:26px;" data-reveal>// TRANSMIT</h2>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:30px;" id="contact-grid" data-reveal>
+                <form id="contact-form" style="display:grid; gap:14px;" onsubmit="return false;">
+                    <input type="text" placeholder="NAME" required>
+                    <input type="email" placeholder="EMAIL" required>
+                    <textarea rows="4" placeholder="MESSAGE" required></textarea>
+                    <button type="submit" class="btn" style="cursor:none;">Send →</button>
+                </form>
+                <div style="border:2px solid var(--ink); padding:22px;">
+                    <p style="font-size:.85rem; margin:0 0 14px;">DIRECT_COORDINATES:</p>
+                    <p style="margin:6px 0;"><a href="https://github.com/em-srs" target="_blank" class="glitch"
+                            data-text="GITHUB / em-srs">GITHUB / em-srs</a></p>
+                    <p style="margin:6px 0;"><a href="https://linkedin.com/in/srs1717" target="_blank" class="glitch"
+                            data-text="LINKEDIN / srs1717">LINKEDIN / srs1717</a></p>
+                    <p style="margin:6px 0;"><a href="https://em-srs.vercel.app" target="_blank" class="glitch"
+                            data-text="PHOTOGRAPHY / em-srs.vercel.app">PHOTOGRAPHY / em-srs.vercel.app</a></p>
+                    <p style="margin:14px 0 0; font-size:.75rem; opacity:.7;">LOCATION: Mohali, Punjab, IN</p>
+                </div>
+            </div>
+            <div class="border-t4"
+                style="margin-top:50px; padding-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:.75rem;">
+                <span>© 2026 SUNNY KUMAR // SYSTEM_END</span>
+                <span>BUILT WITH HTML · CSS · VANILLA JS</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ---- dark mode ----
+        const root = document.documentElement;
+        const lightBtn = document.getElementById('theme-light');
+        const darkBtn = document.getElementById('theme-dark');
+        const highlight = document.getElementById('theme-highlight');
+        const lcCard = document.getElementById('lc-card');
+
+        function applyTheme(mode) {
+            if (mode === 'dark') {
+                root.setAttribute('data-theme', 'dark');
+                highlight.style.transform = 'translateX(100%)';
+                darkBtn.style.color = 'var(--paper)';
+                lightBtn.style.color = 'var(--ink)';
+                if (lcCard) lcCard.src = 'https://leetcard.jacoblin.cool/me_srs?theme=dark&font=JetBrains%20Mono&ext=heatmap';
+            } else {
+                root.removeAttribute('data-theme');
+                highlight.style.transform = 'translateX(0%)';
+                lightBtn.style.color = 'var(--paper)';
+                darkBtn.style.color = 'var(--ink)';
+                if (lcCard) lcCard.src = 'https://leetcard.jacoblin.cool/me_srs?theme=light&font=JetBrains%20Mono&ext=heatmap';
+            }
+        }
+
+        let savedTheme = null;
+        try { savedTheme = localStorage.getItem('sk-theme'); } catch (e) { }
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+
+        lightBtn.addEventListener('click', () => {
+            applyTheme('light');
+            try { localStorage.setItem('sk-theme', 'light'); } catch (e) { }
+        });
+        darkBtn.addEventListener('click', () => {
+            applyTheme('dark');
+            try { localStorage.setItem('sk-theme', 'dark'); } catch (e) { }
+        });
+
+        // ---- custom cursor ----
+        const cursor = document.getElementById('cursor');
+        window.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        document.querySelectorAll('a, button, input, textarea').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // ---- reveal on scroll ----
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+        }, { threshold: .15 });
+        document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+        // ---- boot log ----
+        const bootLines = [
+            '> booting profile.exe ...',
+            '> year       : final-year, b.tech cse',
+            '> languages  : c++, java',
+            '> stack      : spring boot, fastapi, postgresql',
+            '> discipline : clean architecture, no padding',
+            '> status     : SEEKING INTERNSHIP / FULL-TIME SDE',
+            '> _'
+        ];
+        const bootEl = document.getElementById('boot');
+        let li = 0, ci = 0;
+        function typeBoot() {
+            if (li >= bootLines.length) { bootEl.innerHTML += '<span class="cur"></span>'; return; }
+            const line = bootLines[li];
+            if (ci <= line.length) {
+                bootEl.innerHTML = bootLines.slice(0, li).join('\n') + (li > 0 ? '\n' : '') + line.slice(0, ci) + '<span class="cur"></span>';
+                ci++;
+                setTimeout(typeBoot, 16);
+            } else {
+                li++; ci = 0;
+                setTimeout(typeBoot, 200);
+            }
+        }
+        typeBoot();
+
+        // ---- github live stats ----
+        fetch('https://api.github.com/users/em-srs')
+            .then(r => r.ok ? r.json() : Promise.reject())
+            .then(d => {
+                const boxes = document.querySelectorAll('#gh-stats .stat-box .display');
+                boxes[0].textContent = d.public_repos ?? '—';
+                boxes[1].textContent = d.followers ?? '—';
+                boxes[2].textContent = d.following ?? '—';
+            })
+            .catch(() => {
+                document.querySelectorAll('#gh-stats .stat-box .display').forEach(b => b.textContent = '—');
+            });
+
+        // ---- mobile-friendly grid stacking ----
+        function stackForMobile() {
+            const isMobile = window.innerWidth < 720;
+            ['hero-grid', 'stats-grid', 'lens-grid', 'contact-grid'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.gridTemplateColumns = isMobile ? '1fr' : '';
+            });
+        }
+        stackForMobile();
+        window.addEventListener('resize', stackForMobile);
+    </script>
+</body>
+
+</html>
