@@ -666,6 +666,9 @@ textarea:focus {
     .lc-diff-grid {
         grid-template-columns: 1fr;
     }
+    .gh-top-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
 }
 
 

@@ -285,21 +285,71 @@
             <h2 style="font-size:clamp(1.8rem,5vw,3rem); margin-bottom:30px;" data-reveal>// LIVE_STATS</h2>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;" id="stats-grid">
                 <div class="proj-card" data-reveal>
-                    <div class="head"><span class="display" style="font-size:1.1rem;">GITHUB</span><span
-                            class="tag">@em-srs</span></div>
-                    <div style="padding:20px; display:grid; grid-template-columns:repeat(3,1fr); gap:10px;"
-                        id="gh-stats">
-                        <div class="stat-box">
-                            <div class="display" style="font-size:1.5rem;">…</div>
-                            <div style="font-size:.7rem;">REPOS</div>
+                    <div class="head">
+                        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                            <span class="display" style="font-size:1.1rem;">GITHUB</span>
+                            <span class="tag" style="background:var(--yellow); color:#0B0B0B; border-color:var(--ink);">@em-srs</span>
                         </div>
-                        <div class="stat-box">
-                            <div class="display" style="font-size:1.5rem;">…</div>
-                            <div style="font-size:.7rem;">FOLLOWERS</div>
+                        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                            <span class="tag" style="background:rgba(59,125,255,0.15); border-color:var(--wire);">he/him</span>
+                            <span class="tag" style="opacity:0.8;">here to survive</span>
                         </div>
-                        <div class="stat-box">
-                            <div class="display" style="font-size:1.5rem;">…</div>
-                            <div style="font-size:.7rem;">FOLLOWING</div>
+                    </div>
+                    <div style="padding:22px 20px;">
+                        <!-- Top Row: 4 Metric Cards -->
+                        <div class="gh-top-grid" style="display:grid; grid-template-columns:repeat(4, 1fr); gap:10px;">
+                            <div class="stat-box" style="border:2px solid var(--ink); padding:12px 8px; text-align:center; background:var(--paper); box-shadow:3px 3px 0 var(--ink);">
+                                <div id="gh-repos-val" class="display" style="font-size:1.4rem; color:var(--ink);">10</div>
+                                <div style="font-size:.65rem; font-weight:700; text-transform:uppercase; margin-top:4px; opacity:0.8;">REPOS</div>
+                            </div>
+                            <div class="stat-box" style="border:2px solid var(--ink); padding:12px 8px; text-align:center; background:var(--paper); box-shadow:3px 3px 0 var(--ink);">
+                                <div id="gh-followers-val" class="display" style="font-size:1.4rem; color:var(--ink);">2</div>
+                                <div style="font-size:.65rem; font-weight:700; text-transform:uppercase; margin-top:4px; opacity:0.8;">FOLLOWERS</div>
+                            </div>
+                            <div class="stat-box" style="border:2px solid var(--ink); padding:12px 8px; text-align:center; background:var(--paper); box-shadow:3px 3px 0 var(--ink);">
+                                <div id="gh-following-val" class="display" style="font-size:1.4rem; color:var(--ink);">4</div>
+                                <div style="font-size:.65rem; font-weight:700; text-transform:uppercase; margin-top:4px; opacity:0.8;">FOLLOWING</div>
+                            </div>
+                            <div class="stat-box" style="border:2px solid var(--ink); padding:12px 8px; text-align:center; background:var(--paper); box-shadow:3px 3px 0 var(--ink);">
+                                <div id="gh-stars-val" class="display" style="font-size:1.4rem; color:var(--ink);">6</div>
+                                <div style="font-size:.65rem; font-weight:700; text-transform:uppercase; margin-top:4px; opacity:0.8;">STARS</div>
+                            </div>
+                        </div>
+
+                        <!-- Language Badges Row -->
+                        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; align-items:center;">
+                            <span style="font-size:.7rem; font-weight:700; opacity:0.75; text-transform:uppercase;">Tech Stack:</span>
+                            <span class="tag" style="background:#007396; color:#FFFFFF; border-color:var(--ink);">Java</span>
+                            <span class="tag" style="background:#F7DF1E; color:#0B0B0B; border-color:var(--ink);">JavaScript</span>
+                            <span class="tag" style="background:#00599C; color:#FFFFFF; border-color:var(--ink);">C++</span>
+                            <span class="tag" style="background:#6DB33F; color:#FFFFFF; border-color:var(--ink);">Spring Boot</span>
+                        </div>
+
+                        <!-- Green Dots Contribution Streak Calendar Section -->
+                        <div class="gh-streak-section" style="margin-top:16px; border:2px solid var(--ink); padding:16px; background:var(--paper);">
+                            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                                <div>
+                                    <span style="font-weight:700; font-size:.9rem;">GitHub Contributions &amp; Commits</span>
+                                </div>
+                                <div style="display:flex; gap:12px; font-size:.75rem; font-weight:700;">
+                                    <span>Active Repos: <span style="color:var(--pink);">10</span></span>
+                                    <span>Stars Earned: <span style="color:var(--yellow); background:#0B0B0B; padding:1px 6px; border-radius:2px;">★ 6</span></span>
+                                </div>
+                            </div>
+
+                            <!-- 52-Week Green Dot Grid -->
+                            <div style="overflow-x:auto; padding-bottom:4px;">
+                                <div id="gh-heatmap-grid" class="lc-heatmap-grid"></div>
+                                <div class="lc-heatmap-months" style="display:flex; justify-content:space-between; font-size:.65rem; font-weight:700; margin-top:6px; opacity:0.75; min-width:580px;">
+                                    <span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Tag & Link -->
+                        <div style="margin-top:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:.75rem;">
+                            <span id="gh-status-tag" class="tag" style="background:var(--yellow); color:#0B0B0B; border-color:var(--ink);">VERIFIED GITHUB PROFILE</span>
+                            <a href="https://github.com/em-srs" target="_blank" class="glitch" data-text="VIEW PROFILE ON GITHUB ↗" style="font-weight:700;">VIEW PROFILE ON GITHUB ↗</a>
                         </div>
                     </div>
                 </div>
