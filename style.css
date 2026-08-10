@@ -95,11 +95,11 @@ a {
 #cursor.hover {
     width: 52px;
     height: 52px;
-    background: rgba(255, 212, 0, 0.4);
-    border-color: rgba(11, 11, 11, 0.6);
+    background: rgba(255, 212, 0, 0.35);
+    border-color: var(--ink);
+    box-shadow: 0 0 0 2px var(--paper);
     border-radius: 2px;
-    box-shadow: 0 0 0 2px rgba(242, 240, 232, 0.6);
-    mix-blend-mode: multiply;
+    mix-blend-mode: normal;
 }
 
 @media (hover:none) {
@@ -378,8 +378,13 @@ nav a.navlink {
 }
 
 nav a.navlink:hover {
-    background: var(--ink);
+    background: #0B0B0B;
     color: var(--yellow);
+}
+
+:root[data-theme="dark"] nav a.navlink:hover {
+    background: var(--yellow);
+    color: #0B0B0B;
 }
 
 section[id],
