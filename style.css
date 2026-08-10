@@ -84,12 +84,6 @@ a {
     text-decoration: none;
 }
 
-.site-logo {
-    height: 34px;
-    width: auto;
-    display: block;
-}
-
 /* ---------- custom cursor ---------- */
 #cursor {
     position: fixed;
