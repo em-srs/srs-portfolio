@@ -168,6 +168,9 @@ a {
 .hero-name-wrap {
     position: relative;
     display: inline-block;
+    width: fit-content;
+    max-width: 100%;
+    align-self: flex-start;
     margin: 4px 0 18px 0;
     z-index: 1;
 }
@@ -195,6 +198,9 @@ a {
 .hero-subtitle-wrap {
     position: relative;
     display: inline-block;
+    width: fit-content;
+    max-width: 100%;
+    align-self: flex-start;
     margin: 0 0 28px 0;
     z-index: 1;
 }
@@ -219,6 +225,17 @@ a {
     z-index: 1;
 }
 
+.hero-avatar-video {
+    width: 100%;
+    max-width: 240px;
+    border: var(--line) solid var(--ink);
+    display: block;
+    background: var(--yellow);
+    aspect-ratio: 1464 / 1080;
+    object-fit: cover;
+    margin-top: 16px;
+}
+
 @media (max-width: 600px) {
     .hero-ribbon-svg {
         width: 104%;
@@ -229,6 +246,9 @@ a {
         width: 102%;
         height: 118%;
         transform: translate(-50%, -50%) rotate(-1deg);
+    }
+    .hero-avatar-video {
+        max-width: 100%;
     }
 }
 
