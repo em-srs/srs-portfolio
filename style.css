@@ -6,12 +6,22 @@
     --wire: #3B7DFF;
     --line: 4px;
     --hairline: rgba(0, 0, 0, .13);
+
+    --ribbon-yellow: #FFD400;
+    --ribbon-text: #0B0B0B;
+    --marker-red: #FF3D6E;
+    --marker-text: #FFFFFF;
 }
 
 :root[data-theme="dark"] {
     --paper: #111111;
     --ink: #F2F0E8;
     --hairline: rgba(255, 255, 255, .16);
+
+    --ribbon-yellow: #FFD400;
+    --ribbon-text: #0B0B0B;
+    --marker-red: #FF3D6E;
+    --marker-text: #FFFFFF;
 }
 
 body {
@@ -134,6 +144,92 @@ a {
     font-weight: 700;
     text-transform: uppercase;
     transform: rotate(-2deg);
+}
+
+/* ---------- hero styling ---------- */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.hero-status-tag {
+    margin-bottom: 14px;
+}
+
+.hero-status-tag .tag {
+    transform: none;
+    background: var(--yellow);
+    color: #0B0B0B;
+    border-color: #0B0B0B;
+}
+
+.hero-name-wrap {
+    position: relative;
+    display: inline-block;
+    margin: 4px 0 18px 0;
+    z-index: 1;
+}
+
+.hero-ribbon-svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 106%;
+    height: 125%;
+    transform: translate(-50%, -50%) rotate(-3.5deg);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.hero-name {
+    font-size: clamp(2.8rem, 9vw, 6.2rem);
+    margin: 0;
+    padding: 6px 16px 6px 8px;
+    color: var(--ribbon-text) !important;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-subtitle-wrap {
+    position: relative;
+    display: inline-block;
+    margin: 0 0 28px 0;
+    z-index: 1;
+}
+
+.hero-marker-svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 104%;
+    height: 130%;
+    transform: translate(-50%, -50%) rotate(-1.5deg);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.1rem, 3vw, 1.8rem);
+    margin: 0;
+    padding: 4px 14px 4px 8px;
+    color: var(--marker-text) !important;
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 600px) {
+    .hero-ribbon-svg {
+        width: 104%;
+        height: 112%;
+        transform: translate(-50%, -50%) rotate(-2deg);
+    }
+    .hero-marker-svg {
+        width: 102%;
+        height: 118%;
+        transform: translate(-50%, -50%) rotate(-1deg);
+    }
 }
 
 /* ---------- marquee ---------- */
