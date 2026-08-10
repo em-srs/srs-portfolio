@@ -41,7 +41,7 @@ window.addEventListener('mousemove', e => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
 });
-document.querySelectorAll('a, button, input, textarea').forEach(el => {
+document.querySelectorAll('a, button, input, textarea, #lens-slideshow').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
 });
@@ -104,3 +104,50 @@ function stackForMobile() {
 }
 stackForMobile();
 window.addEventListener('resize', stackForMobile);
+
+// ---- lens slideshow ----
+const lensImages = [
+    'assets/imgs/01-scenery-shimla.jpg',
+    'assets/imgs/05-portrait-shojha.jpg',
+    'assets/imgs/07-scenery-jibhi.jpg',
+    'assets/imgs/12-scenery-jibhi.jpg',
+    'assets/imgs/a-moonshot-chandigarh.jpg',
+    'assets/imgs/c-scenery-shimla.jpg',
+    'assets/imgs/d-concert-cgc-landran.jpg',
+    'assets/imgs/e-scenery-parasnath-jharkhand.jpg'
+];
+
+// Preload images into memory for smooth zero-lag transitions
+lensImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+});
+
+const lensImg = document.getElementById('lens-img');
+const lensSlideshow = document.getElementById('lens-slideshow');
+let lensIndex = 0;
+let lensTimer = null;
+
+function nextLensSlide() {
+    if (!lensImg) return;
+    lensImg.classList.add('fade-out');
+    setTimeout(() => {
+        lensIndex = (lensIndex + 1) % lensImages.length;
+        lensImg.src = lensImages[lensIndex];
+        lensImg.classList.remove('fade-out');
+    }, 600);
+}
+
+if (lensImg && lensSlideshow) {
+    lensTimer = setInterval(nextLensSlide, 3800);
+
+    lensSlideshow.addEventListener('mouseenter', () => {
+        if (lensTimer) clearInterval(lensTimer);
+    });
+
+    lensSlideshow.addEventListener('mouseleave', () => {
+        if (lensTimer) clearInterval(lensTimer);
+        lensTimer = setInterval(nextLensSlide, 3800);
+    });
+}
+
