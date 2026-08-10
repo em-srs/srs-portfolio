@@ -22,9 +22,9 @@
 
     <!-- ============ NAV ============ -->
     <nav class="border-b4">
-        <div class="wrap nav-inner">
-            <a href="#" class="display" style="font-size:1.1rem;">SK<span style="color:var(--pink);">.</span>EXE</a>
-            <div class="nav-links-wrap">
+        <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; padding:16px 24px;">
+            <a href="#" class="display" style="font-size:1.1rem;">sRs<span style="color:var(--pink);">.</span>exe</a>
+            <div style="display:flex; gap:6px; align-items:center;">
                 <a href="#work" class="navlink">Work</a>
                 <a href="#stack" class="navlink">Stack</a>
                 <a href="#stats" class="navlink">Stats</a>
@@ -33,14 +33,14 @@
                 <a href="assets/portfolio%20resume.pdf" target="_blank" class="navlink"
                     style="color:var(--pink); font-weight:700;">Resume ↗</a>
                 <div
-                    style="position:relative; display:flex; width:120px; flex-shrink:0; border:2px solid var(--ink); margin-left:4px; overflow:hidden;">
+                    style="position:relative; display:flex; width:132px; border:2px solid var(--ink); margin-left:6px; overflow:hidden;">
                     <div id="theme-highlight"
                         style="position:absolute; top:0; left:0; width:50%; height:100%; background:var(--ink); transform:translateX(0%); transition:transform .35s cubic-bezier(.65,0,.35,1); z-index:0;">
                     </div>
                     <button id="theme-light"
-                        style="position:relative; z-index:1; flex:1; border:none; background:transparent; font-family:'JetBrains Mono'; font-weight:700; font-size:.68rem; padding:5px 8px; cursor:none;">LIGHT</button>
+                        style="position:relative; z-index:1; flex:1; border:none; background:transparent; font-family:'JetBrains Mono'; font-weight:700; font-size:.72rem; padding:6px 12px; cursor:none;">LIGHT</button>
                     <button id="theme-dark"
-                        style="position:relative; z-index:1; flex:1; border:none; border-left:2px solid var(--ink); background:transparent; font-family:'JetBrains Mono'; font-weight:700; font-size:.68rem; padding:5px 8px; cursor:none;">DARK</button>
+                        style="position:relative; z-index:1; flex:1; border:none; border-left:2px solid var(--ink); background:transparent; font-family:'JetBrains Mono'; font-weight:700; font-size:.72rem; padding:6px 12px; cursor:none;">DARK</button>
                 </div>
             </div>
         </div>
@@ -49,9 +49,10 @@
     <!-- ============ HERO ============ -->
     <header class="border-b4" style="position:relative; overflow:hidden;">
         <div class="grid-lines"></div>
-        <div class="wrap hero-wrap">
+        <div class="wrap hero-wrap"
+            style="position:relative; padding:70px 24px 50px; display:flex; gap:40px; align-items:start; flex-wrap:wrap;">
             <!-- Left Column: Headline, Bio, Divider Line, Boot Terminal & Buttons -->
-            <div class="hero-content">
+            <div class="hero-content" style="flex:1 1 540px; min-width:0;">
                 <div class="hero-status-tag">
                     <span class="tag">STATUS: OPEN_TO_INTERNSHIPS_/_FULL-TIME_SDE</span>
                 </div>
@@ -74,34 +75,40 @@
                     <h2 class="hero-subtitle">// BACKEND &amp; FULL-STACK ENGINEER</h2>
                 </div>
 
-                <p style="max-width:54ch; line-height:1.6; margin:0 0 24px;">
+                <p style="font-size:1.05rem; max-width:54ch; line-height:1.6; margin:0 0 24px;">
                     Final-year B.Tech CSE student building backend systems that don't fall over —
                     C++, Java, Spring Boot, FastAPI, PostgreSQL. Clean architecture over quick hacks,
                     padded resumes never. Also shoot portraits and moonshots when the terminal's closed.
                 </p>
 
                 <!-- Divider Line -->
-                <div class="border-t4" style="padding-top:14px; width:100%;"></div>
+                <div class="border-t4" style="padding-top:14px;"></div>
 
                 <!-- Bottom Row: Boot Terminal + CTA Buttons Inline -->
-                <div class="hero-bottom-row">
-                    <div id="boot" style="flex:1; min-width:220px;"></div>
-                    <div class="hero-cta-btns">
-                        <div style="display:flex; gap:8px;">
-                            <a href="#work" class="btn" style="padding:10px 16px;">View Work ↓</a>
-                            <a href="assets/portfolio%20resume.pdf" target="_blank" class="btn alt" style="background:var(--yellow); color:#0B0B0B; padding:10px 16px;">Resume ↗</a>
+                <div class="hero-bottom-row"
+                    style="display:flex; gap:24px; align-items:start; flex-wrap:wrap; margin-top:8px;">
+                    <div id="boot" style="flex:1; min-width:240px;"></div>
+                    <div class="hero-cta-btns" style="display:flex; flex-direction:column; gap:10px; flex-shrink:0;">
+                        <div style="display:flex; gap:10px;">
+                            <a href="#work" class="btn" style="padding:10px 18px; font-size:.85rem;">View Work ↓</a>
+                            <a href="assets/portfolio%20resume.pdf" target="_blank" class="btn alt"
+                                style="background:var(--yellow); color:#0B0B0B; padding:10px 18px; font-size:.85rem;">Resume
+                                ↗</a>
                         </div>
-                        <div style="display:flex; gap:8px;">
-                            <a href="https://github.com/em-srs" target="_blank" class="btn alt" style="padding:8px 14px; flex:1; text-align:center;">GitHub</a>
-                            <a href="https://linkedin.com/in/srs1717" target="_blank" class="btn alt" style="padding:8px 14px; flex:1; text-align:center;">LinkedIn</a>
+                        <div style="display:flex; gap:10px;">
+                            <a href="https://github.com/em-srs" target="_blank" class="btn alt"
+                                style="padding:8px 16px; font-size:.8rem; flex:1; text-align:center;">GitHub</a>
+                            <a href="https://linkedin.com/in/srs1717" target="_blank" class="btn alt"
+                                style="padding:8px 16px; font-size:.8rem; flex:1; text-align:center;">LinkedIn</a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Right Column: Vertical Portrait Animated Video Frame -->
-            <div class="hero-avatar-frame">
-                <video class="hero-avatar-video" autoplay muted loop playsinline poster="assets/hero/sunny-idle-poster.jpg">
+            <div class="hero-avatar-frame" style="flex:0 0 320px; max-width:320px; align-self:start; margin-top:4px;">
+                <video class="hero-avatar-video" autoplay muted loop playsinline
+                    poster="assets/hero/sunny-idle-poster.jpg">
                     <source src="assets/hero/sunny-idle.webm" type="video/webm">
                     <source src="assets/hero/sunny-idle.mp4" type="video/mp4">
                 </video>
@@ -122,9 +129,10 @@
     </div>
 
     <!-- ============ MANIFESTO ============ -->
-    <section class="border-b4 wrap" style="padding:50px 24px;" data-reveal>
-        <h2 style="margin-bottom:20px;">// NO PADDED RESUMES</h2>
-        <div class="manifesto-grid">
+    <section class="border-b4 wrap" style="padding:60px 24px;" data-reveal>
+        <h2 style="font-size:clamp(1.6rem,4vw,2.6rem); margin-bottom:20px;">// NO PADDED RESUMES</h2>
+        <div
+            style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0; border:2px solid var(--ink);">
             <div style="padding:20px; border-right:2px solid var(--ink); border-bottom:2px solid var(--ink);">
                 <div class="display" style="font-size:2rem;">93%</div>
                 <div style="font-size:.8rem;">PYTEST COVERAGE — TDD KATA</div>
@@ -281,156 +289,38 @@
     <!-- ============ STATS ============ -->
     <section id="stats" class="border-b4" style="padding:50px 0;">
         <div class="wrap">
-            <h2 style="margin-bottom:30px;" data-reveal>// LIVE_STATS</h2>
-            <div id="stats-grid">
-                <!-- GITHUB CARD -->
+            <h2 style="font-size:clamp(1.8rem,5vw,3rem); margin-bottom:30px;" data-reveal>// LIVE_STATS</h2>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;" id="stats-grid">
                 <div class="proj-card" data-reveal>
-                    <div class="head" style="padding:8px 12px;">
-                        <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
-                            <span class="display" style="font-size:.9rem;">GITHUB</span>
-                            <span class="tag" style="background:var(--yellow); color:#0B0B0B; border-color:var(--ink); padding:1px 6px; font-size:.65rem;">@em-srs</span>
+                    <div class="head"><span class="display" style="font-size:1.1rem;">GITHUB</span><span
+                            class="tag">@em-srs</span></div>
+                    <div style="padding:20px; display:grid; grid-template-columns:repeat(3,1fr); gap:10px;"
+                        id="gh-stats">
+                        <div class="stat-box">
+                            <div class="display" style="font-size:1.5rem;">…</div>
+                            <div style="font-size:.7rem;">REPOS</div>
                         </div>
-                        <div style="display:flex; gap:4px; align-items:center; flex-wrap:wrap;">
-                            <span class="tag" style="background:rgba(59,125,255,0.15); border-color:var(--wire); padding:1px 6px; font-size:.65rem;">he/him</span>
-                            <span class="tag" style="opacity:0.8; padding:1px 6px; font-size:.65rem;">here to survive</span>
+                        <div class="stat-box">
+                            <div class="display" style="font-size:1.5rem;">…</div>
+                            <div style="font-size:.7rem;">FOLLOWERS</div>
                         </div>
-                    </div>
-                    <div style="padding:10px 12px;">
-                        <!-- Top Row: 4 Compact Metric Cards -->
-                        <div class="gh-top-grid" style="display:grid; grid-template-columns:repeat(4, 1fr); gap:6px;">
-                            <div class="stat-box" style="border:1.5px solid var(--ink); padding:4px 2px; text-align:center; background:var(--paper); box-shadow:2px 2px 0 var(--ink);">
-                                <div id="gh-repos-val" class="display" style="font-size:.95rem; color:var(--ink);">10</div>
-                                <div style="font-size:.55rem; font-weight:700; text-transform:uppercase; opacity:0.8;">REPOS</div>
-                            </div>
-                            <div class="stat-box" style="border:1.5px solid var(--ink); padding:4px 2px; text-align:center; background:var(--paper); box-shadow:2px 2px 0 var(--ink);">
-                                <div id="gh-followers-val" class="display" style="font-size:.95rem; color:var(--ink);">2</div>
-                                <div style="font-size:.55rem; font-weight:700; text-transform:uppercase; opacity:0.8;">FOLLOWERS</div>
-                            </div>
-                            <div class="stat-box" style="border:1.5px solid var(--ink); padding:4px 2px; text-align:center; background:var(--paper); box-shadow:2px 2px 0 var(--ink);">
-                                <div id="gh-following-val" class="display" style="font-size:.95rem; color:var(--ink);">4</div>
-                                <div style="font-size:.55rem; font-weight:700; text-transform:uppercase; opacity:0.8;">FOLLOWING</div>
-                            </div>
-                            <div class="stat-box" style="border:1.5px solid var(--ink); padding:4px 2px; text-align:center; background:var(--paper); box-shadow:2px 2px 0 var(--ink);">
-                                <div id="gh-stars-val" class="display" style="font-size:.95rem; color:var(--ink);">6</div>
-                                <div style="font-size:.55rem; font-weight:700; text-transform:uppercase; opacity:0.8;">STARS</div>
-                            </div>
-                        </div>
-
-                        <!-- Language Badges Row -->
-                        <div style="display:flex; gap:4px; flex-wrap:wrap; margin-top:8px; align-items:center;">
-                            <span style="font-size:.6rem; font-weight:700; opacity:0.75; text-transform:uppercase;">Stack:</span>
-                            <span class="tag" style="background:#007396; color:#FFFFFF; border-color:var(--ink); padding:1px 5px; font-size:.6rem;">Java</span>
-                            <span class="tag" style="background:#F7DF1E; color:#0B0B0B; border-color:var(--ink); padding:1px 5px; font-size:.6rem;">JS</span>
-                            <span class="tag" style="background:#00599C; color:#FFFFFF; border-color:var(--ink); padding:1px 5px; font-size:.6rem;">C++</span>
-                            <span class="tag" style="background:#6DB33F; color:#FFFFFF; border-color:var(--ink); padding:1px 5px; font-size:.6rem;">Spring</span>
-                        </div>
-
-                        <!-- Green Dots Contribution Streak Calendar Section -->
-                        <div class="gh-streak-section" style="margin-top:8px; border:1.5px solid var(--ink); padding:8px 10px; background:var(--paper);">
-                            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:6px;">
-                                <span style="font-weight:700; font-size:.75rem;">GitHub Contributions</span>
-                                <div style="display:flex; gap:8px; font-size:.65rem; font-weight:700;">
-                                    <span>Repos: <span style="color:var(--pink);">10</span></span>
-                                    <span>Stars: <span style="color:var(--yellow); background:#0B0B0B; padding:1px 4px; border-radius:2px;">★ 6</span></span>
-                                </div>
-                            </div>
-
-                            <!-- 52-Week Green Dot Grid -->
-                            <div style="overflow-x:auto; padding-bottom:2px;">
-                                <div id="gh-heatmap-grid" class="lc-heatmap-grid"></div>
-                                <div class="lc-heatmap-months" style="display:flex; justify-content:space-between; font-size:.55rem; font-weight:700; margin-top:3px; opacity:0.75; min-width:400px;">
-                                    <span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Bottom Tag & Link -->
-                        <div style="margin-top:8px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; font-size:.65rem;">
-                            <span id="gh-status-tag" class="tag" style="background:var(--yellow); color:#0B0B0B; border-color:var(--ink); padding:1px 5px;">VERIFIED GITHUB</span>
-                            <a href="https://github.com/em-srs" target="_blank" class="glitch" data-text="VIEW ON GITHUB ↗" style="font-weight:700;">VIEW ON GITHUB ↗</a>
+                        <div class="stat-box">
+                            <div class="display" style="font-size:1.5rem;">…</div>
+                            <div style="font-size:.7rem;">FOLLOWING</div>
                         </div>
                     </div>
                 </div>
-
-                <!-- LEETCODE CARD -->
                 <div class="proj-card" data-reveal>
-                    <div class="head" style="padding:8px 12px;">
-                        <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
-                            <span class="display" style="font-size:.9rem;">LEETCODE</span>
-                            <span class="tag" style="background:var(--yellow); color:#0B0B0B; border-color:var(--ink); padding:1px 6px; font-size:.65rem;">#1,706,111</span>
-                        </div>
-                        <div style="display:flex; gap:4px; align-items:center; flex-wrap:wrap;">
-                            <span class="tag" style="background:rgba(0,184,163,0.15); border-color:#00B8A3; padding:1px 6px; font-size:.65rem;">50 DAYS BADGE 🏅</span>
-                            <a href="https://leetcode.com/u/me_srs/" target="_blank" class="tag" style="text-decoration:none; padding:1px 6px; font-size:.65rem;">@me_srs ↗</a>
-                        </div>
-                    </div>
-                    <div style="padding:10px 12px;">
-                        <!-- Top Row: Donut Gauge + Difficulty Breakdown Inline Strip -->
-                        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; border:1.5px solid var(--ink); padding:6px 8px; background:var(--paper); box-shadow:2px 2px 0 var(--ink);">
-                            <!-- Small Donut Ring -->
-                            <div style="display:flex; align-items:center; gap:8px;">
-                                <div style="position:relative; width:52px; height:52px; flex-shrink:0;">
-                                    <svg viewBox="0 0 100 100" style="width:100%; height:100%; transform:rotate(-90deg);">
-                                        <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="10" />
-                                        <circle id="lc-easy-arc" cx="50" cy="50" r="40" fill="none" stroke="#00B8A3" stroke-width="10" stroke-dasharray="163 251.3" stroke-dashoffset="0" stroke-linecap="round" />
-                                        <circle id="lc-med-arc" cx="50" cy="50" r="40" fill="none" stroke="#FFC01E" stroke-width="10" stroke-dasharray="75 251.3" stroke-dashoffset="-167" stroke-linecap="round" />
-                                        <circle id="lc-hard-arc" cx="50" cy="50" r="40" fill="none" stroke="#FF375F" stroke-width="10" stroke-dasharray="13 251.3" stroke-dashoffset="-244" stroke-linecap="round" />
-                                    </svg>
-                                    <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
-                                        <span id="lc-total" class="display" style="font-size:.9rem; line-height:1; color:var(--ink);">94</span>
-                                        <span style="font-size:.38rem; font-weight:700; color:#00B8A3; letter-spacing:0.02em;">✓ SOLVED</span>
-                                    </div>
-                                </div>
-                                <div style="font-size:.62rem; font-weight:700;">
-                                    <div>94 <span style="opacity:0.6; font-size:.54rem;">/ 4017</span></div>
-                                    <div style="font-size:.54rem; opacity:0.75; color:var(--pink);">2 Attempting</div>
-                                </div>
-                            </div>
-
-                            <!-- Difficulty Boxes Inline -->
-                            <div style="display:flex; gap:6px; flex-wrap:wrap; flex:1; justify-content:flex-end;">
-                                <div style="border:1.5px solid var(--ink); border-left:3px solid #00B8A3; padding:4px 6px; background:var(--paper); min-width:62px;">
-                                    <div style="font-size:.52rem; font-weight:700; color:#00B8A3;">EASY</div>
-                                    <div id="lc-easy-val" class="display" style="font-size:.85rem;">61<span style="font-size:.56rem; opacity:0.6;">/958</span></div>
-                                </div>
-                                <div style="border:1.5px solid var(--ink); border-left:3px solid #FFC01E; padding:4px 6px; background:var(--paper); min-width:62px;">
-                                    <div style="font-size:.52rem; font-weight:700; color:#FFC01E;">MED.</div>
-                                    <div id="lc-med-val" class="display" style="font-size:.85rem;">28<span style="font-size:.56rem; opacity:0.6;">/2098</span></div>
-                                </div>
-                                <div style="border:1.5px solid var(--ink); border-left:3px solid #FF375F; padding:4px 6px; background:var(--paper); min-width:62px;">
-                                    <div style="font-size:.52rem; font-weight:700; color:#FF375F;">HARD</div>
-                                    <div id="lc-hard-val" class="display" style="font-size:.85rem;">5<span style="font-size:.56rem; opacity:0.6;">/961</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Green Dots Streak Calendar Section -->
-                        <div class="lc-streak-section" style="margin-top:8px; border:1.5px solid var(--ink); padding:8px 10px; background:var(--paper);">
-                            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:6px;">
-                                <div>
-                                    <span id="lc-submissions-count" style="font-weight:700; font-size:.78rem;">312</span>
-                                    <span style="font-size:.65rem; opacity:0.85;"> submissions in past year</span>
-                                </div>
-                                <div style="display:flex; gap:8px; font-size:.65rem; font-weight:700;">
-                                    <span>Active: <span id="lc-active-days" style="color:var(--pink);">68d</span></span>
-                                    <span>Max: <span id="lc-max-streak" style="color:#00B8A3;">14d</span></span>
-                                </div>
-                            </div>
-
-                            <!-- 52-Week Green Dot Grid -->
-                            <div style="overflow-x:auto; padding-bottom:2px;">
-                                <div id="lc-heatmap-grid" class="lc-heatmap-grid"></div>
-                                <div class="lc-heatmap-months" style="display:flex; justify-content:space-between; font-size:.55rem; font-weight:700; margin-top:3px; opacity:0.75; min-width:400px;">
-                                    <span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Bottom Tag & Link -->
-                        <div style="margin-top:8px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; font-size:.65rem;">
-                            <span id="lc-status-tag" class="tag" style="background:var(--yellow); color:#0B0B0B; border-color:var(--ink); padding:1px 5px;">VERIFIED STATS</span>
-                            <a href="https://leetcode.com/u/me_srs/" target="_blank" class="glitch" data-text="VIEW ON LEETCODE ↗" style="font-weight:700;">VIEW ON LEETCODE ↗</a>
-                        </div>
+                    <div class="head"><span class="display" style="font-size:1.1rem;">LEETCODE</span><span
+                            class="tag">@me_srs</span></div>
+                    <div style="padding:20px;">
+                        <img id="lc-card"
+                            src="https://leetcard.jacoblin.cool/me_srs?theme=light&font=JetBrains%20Mono&ext=heatmap"
+                            style="width:100%; max-width:560px; height:auto; border:2px solid var(--ink); display:block; margin:0 auto;"
+                            alt="LeetCode stats"
+                            onerror="this.style.display='none'; document.getElementById('lc-fallback').style.display='block';">
+                        <p id="lc-fallback" style="display:none; font-size:.8rem;">Set your real LeetCode username in
+                            the &lt;img id="lc-card"&gt; src above to activate this card.</p>
                     </div>
                 </div>
             </div>
@@ -438,11 +328,12 @@
         </div>
     </section>
 
-    <!-- ============ LENS (photography) ============ -->
+    <!-- ============ THROUGH THE LENS (photography) ============ -->
     <section id="lens" class="border-b4" style="padding:50px 0 90px; position:relative; overflow:hidden;">
-        <div class="wrap" id="lens-grid">
+        <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; column-gap:60px; align-items:center;"
+            id="lens-grid">
             <div data-reveal style="align-self:center;">
-                <h2 style="margin-bottom:16px;">// THROUGH_THE_LENS</h2>
+                <h2 style="font-size:clamp(1.8rem,5vw,3rem); margin-bottom:16px;">// THROUGH_THE_LENS</h2>
                 <p style="max-width:48ch; line-height:1.6; margin:0 0 20px;">
                     Portraits, objects, scenery, and the occasional moonshot. Same eye for detail
                     that goes into a circuit-breaker pattern — just pointed at a viewfinder instead of a terminal.
@@ -451,17 +342,17 @@
                     Photography Portfolio ↗</a>
             </div>
             <div id="lens-slideshow" class="hard-shadow" data-reveal style="align-self:center;">
-                <img id="lens-img" src="assets/imgs/07-scenery-jibhi.jpg" alt="Photography by Sunny Kumar">
+                <img id="lens-img" src="assets/imgs/01-scenery-shimla.jpg" alt="Photography by Sunny Kumar">
                 <div class="lens-tag display">APERTURE<br>f/1.8</div>
             </div>
         </div>
     </section>
 
     <!-- ============ CONTACT ============ -->
-    <footer id="contact" style="padding:60px 0 40px;">
+    <footer id="contact" style="padding:70px 0 40px;">
         <div class="wrap">
-            <h2 style="margin-bottom:26px;" data-reveal>// TRANSMIT</h2>
-            <div id="contact-grid" data-reveal>
+            <h2 style="font-size:clamp(1.8rem,5vw,3rem); margin-bottom:26px;" data-reveal>// TRANSMIT</h2>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:30px;" id="contact-grid" data-reveal>
                 <form id="contact-form" style="display:grid; gap:14px;" onsubmit="return false;">
                     <input type="text" placeholder="NAME" required>
                     <input type="email" placeholder="EMAIL" required>
