@@ -3,7 +3,6 @@ const root = document.documentElement;
 const lightBtn = document.getElementById('theme-light');
 const darkBtn = document.getElementById('theme-dark');
 const highlight = document.getElementById('theme-highlight');
-const lcCard = document.getElementById('lc-card');
 
 function applyTheme(mode) {
     if (mode === 'dark') {
@@ -11,13 +10,11 @@ function applyTheme(mode) {
         highlight.style.transform = 'translateX(100%)';
         darkBtn.style.color = 'var(--paper)';
         lightBtn.style.color = 'var(--ink)';
-        if (lcCard) lcCard.src = 'https://leetcard.jacoblin.cool/me_srs?theme=dark&font=JetBrains%20Mono&ext=heatmap';
     } else {
         root.removeAttribute('data-theme');
         highlight.style.transform = 'translateX(0%)';
         lightBtn.style.color = 'var(--paper)';
         darkBtn.style.color = 'var(--ink)';
-        if (lcCard) lcCard.src = 'https://leetcard.jacoblin.cool/me_srs?theme=light&font=JetBrains%20Mono&ext=heatmap';
     }
 }
 
@@ -93,6 +90,63 @@ fetch('https://api.github.com/users/em-srs')
     .catch(() => {
         document.querySelectorAll('#gh-stats .stat-box .display').forEach(b => b.textContent = '—');
     });
+
+// ---- leetcode live stats ----
+async function fetchLeetCodeStats() {
+    const totalEl = document.getElementById('lc-total');
+    const easyCountEl = document.getElementById('lc-easy-count');
+    const easyBarEl = document.getElementById('lc-easy-bar');
+    const mediumCountEl = document.getElementById('lc-medium-count');
+    const mediumBarEl = document.getElementById('lc-medium-bar');
+    const hardCountEl = document.getElementById('lc-hard-count');
+    const hardBarEl = document.getElementById('lc-hard-bar');
+
+    if (!totalEl) return;
+
+    const endpoints = [
+        'https://alfa-leetcode-api.onrender.com/userProfile/me_srs',
+        'https://leetcode-api-faisalshohag.vercel.app/me_srs'
+    ];
+
+    for (const url of endpoints) {
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 3500);
+            const res = await fetch(url, { signal: controller.signal });
+            clearTimeout(timeoutId);
+            if (!res.ok) continue;
+            const data = await res.json();
+            
+            let easy = null, medium = null, hard = null, total = null;
+            if (data.totalSolved !== undefined) {
+                total = data.totalSolved;
+                easy = data.easySolved;
+                medium = data.mediumSolved;
+                hard = data.hardSolved;
+            } else if (data.matchedUser && data.matchedUser.submitStats) {
+                const ac = data.matchedUser.submitStats.acSubmissionNum;
+                easy = ac.find(x => x.difficulty === 'Easy')?.count;
+                medium = ac.find(x => x.difficulty === 'Medium')?.count;
+                hard = ac.find(x => x.difficulty === 'Hard')?.count;
+                total = ac.find(x => x.difficulty === 'All')?.count;
+            }
+
+            if (total && easy !== undefined) {
+                totalEl.textContent = total;
+                easyCountEl.textContent = `${easy} / 608`;
+                easyBarEl.style.width = Math.min(100, Math.round((easy / 608) * 100)) + '%';
+                mediumCountEl.textContent = `${medium} / 765`;
+                mediumBarEl.style.width = Math.min(100, Math.round((medium / 765) * 100)) + '%';
+                hardCountEl.textContent = `${hard} / 527`;
+                hardBarEl.style.width = Math.min(100, Math.round((hard / 527) * 100)) + '%';
+                break;
+            }
+        } catch (e) {
+            // Baseline verified stats stay intact cleanly
+        }
+    }
+}
+fetchLeetCodeStats();
 
 // ---- mobile-friendly grid stacking ----
 function stackForMobile() {

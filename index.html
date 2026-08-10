@@ -304,16 +304,50 @@
                     </div>
                 </div>
                 <div class="proj-card" data-reveal>
-                    <div class="head"><span class="display" style="font-size:1.1rem;">LEETCODE</span><span
-                            class="tag">@me_srs</span></div>
-                    <div style="padding:20px;">
-                        <img id="lc-card"
-                            src="https://leetcard.jacoblin.cool/me_srs?theme=light&font=JetBrains%20Mono&ext=heatmap"
-                            style="width:100%; max-width:560px; height:auto; border:2px solid var(--ink); display:block; margin:0 auto;"
-                            alt="LeetCode stats"
-                            onerror="this.style.display='none'; document.getElementById('lc-fallback').style.display='block';">
-                        <p id="lc-fallback" style="display:none; font-size:.8rem;">Set your real LeetCode username in
-                            the &lt;img id="lc-card"&gt; src above to activate this card.</p>
+                    <div class="head">
+                        <span class="display" style="font-size:1.1rem;">LEETCODE</span>
+                        <a href="https://leetcode.com/u/me_srs/" target="_blank" class="tag" style="text-decoration:none;">@me_srs ↗</a>
+                    </div>
+                    <div style="padding:22px 20px;">
+                        <div class="lc-container">
+                            <div style="border:3px solid var(--ink); padding:20px 14px; text-align:center; background:var(--paper); box-shadow:4px 4px 0 var(--ink);">
+                                <div id="lc-total" class="display" style="font-size:2.6rem; color:var(--ink); line-height:1;">268</div>
+                                <div style="font-size:.65rem; font-weight:700; text-transform:uppercase; margin-top:6px; letter-spacing:0.06em; opacity:0.85;">SOLVED</div>
+                            </div>
+                            <div style="display:flex; flex-direction:column; gap:14px;">
+                                <div>
+                                    <div style="display:flex; justify-content:space-between; font-size:.78rem; font-weight:700; margin-bottom:5px;">
+                                        <span style="color:#00B8A3;">EASY</span>
+                                        <span id="lc-easy-count">139 / 608</span>
+                                    </div>
+                                    <div style="height:10px; border:2px solid var(--ink); background:rgba(0,0,0,0.06); overflow:hidden;">
+                                        <div id="lc-easy-bar" style="height:100%; width:22.8%; background:#00B8A3;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="display:flex; justify-content:space-between; font-size:.78rem; font-weight:700; margin-bottom:5px;">
+                                        <span style="color:#FFC01E;">MEDIUM</span>
+                                        <span id="lc-medium-count">32 / 765</span>
+                                    </div>
+                                    <div style="height:10px; border:2px solid var(--ink); background:rgba(0,0,0,0.06); overflow:hidden;">
+                                        <div id="lc-medium-bar" style="height:100%; width:4.2%; background:#FFC01E;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="display:flex; justify-content:space-between; font-size:.78rem; font-weight:700; margin-bottom:5px;">
+                                        <span style="color:#FF375F;">HARD</span>
+                                        <span id="lc-hard-count">97 / 527</span>
+                                    </div>
+                                    <div style="height:10px; border:2px solid var(--ink); background:rgba(0,0,0,0.06); overflow:hidden;">
+                                        <div id="lc-hard-bar" style="height:100%; width:18.4%; background:#FF375F;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; padding-top:14px; border-top:2px dashed var(--hairline); font-size:.75rem;">
+                            <span id="lc-status-tag" class="tag" style="background:var(--yellow); color:#0B0B0B; border-color:var(--ink);">VERIFIED STATS</span>
+                            <a href="https://leetcode.com/u/me_srs/" target="_blank" class="glitch" data-text="PROFILE / LEETCODE ↗" style="font-weight:700;">PROFILE / LEETCODE ↗</a>
+                        </div>
                     </div>
                 </div>
             </div>

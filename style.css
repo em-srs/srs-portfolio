@@ -602,4 +602,20 @@ textarea:focus {
     }
 }
 
+/* ---------- leetcode card ---------- */
+.lc-container {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+    align-items: center;
+}
+
+@media (max-width: 540px) {
+    .lc-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+
 
