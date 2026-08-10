@@ -22,9 +22,9 @@
 
     <!-- ============ NAV ============ -->
     <nav class="border-b4">
-        <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; padding:16px 24px;">
-            <a href="#" class="display" style="font-size:1.1rem;">sRs<span style="color:var(--pink);">.</span>exe</a>
-            <div style="display:flex; gap:6px; align-items:center;">
+        <div class="wrap nav-inner">
+            <a href="#" class="display nav-logo" style="font-size:1.1rem;">sRs<span style="color:var(--pink);">.</span>exe</a>
+            <div class="nav-links-wrap">
                 <a href="#work" class="navlink">Work</a>
                 <a href="#stack" class="navlink">Stack</a>
                 <a href="#stats" class="navlink">Stats</a>
@@ -32,15 +32,10 @@
                 <a href="#contact" class="navlink">Contact</a>
                 <a href="assets/portfolio%20resume.pdf" target="_blank" class="navlink"
                     style="color:var(--pink); font-weight:700;">Resume ↗</a>
-                <div
-                    style="position:relative; display:flex; width:132px; border:2px solid var(--ink); margin-left:6px; overflow:hidden;">
-                    <div id="theme-highlight"
-                        style="position:absolute; top:0; left:0; width:50%; height:100%; background:var(--ink); transform:translateX(0%); transition:transform .35s cubic-bezier(.65,0,.35,1); z-index:0;">
-                    </div>
-                    <button id="theme-light"
-                        style="position:relative; z-index:1; flex:1; border:none; background:transparent; font-family:'JetBrains Mono'; font-weight:700; font-size:.72rem; padding:6px 12px; cursor:none;">LIGHT</button>
-                    <button id="theme-dark"
-                        style="position:relative; z-index:1; flex:1; border:none; border-left:2px solid var(--ink); background:transparent; font-family:'JetBrains Mono'; font-weight:700; font-size:.72rem; padding:6px 12px; cursor:none;">DARK</button>
+                <div class="theme-toggle-box">
+                    <div id="theme-highlight" class="theme-highlight-bg"></div>
+                    <button id="theme-light" class="theme-btn">LIGHT</button>
+                    <button id="theme-dark" class="theme-btn theme-btn-dark">DARK</button>
                 </div>
             </div>
         </div>
@@ -49,10 +44,9 @@
     <!-- ============ HERO ============ -->
     <header class="border-b4" style="position:relative; overflow:hidden;">
         <div class="grid-lines"></div>
-        <div class="wrap hero-wrap"
-            style="position:relative; padding:70px 24px 50px; display:flex; gap:40px; align-items:start; flex-wrap:wrap;">
+        <div class="wrap hero-wrap">
             <!-- Left Column: Headline, Bio, Divider Line, Boot Terminal & Buttons -->
-            <div class="hero-content" style="flex:1 1 540px; min-width:0;">
+            <div class="hero-content">
                 <div class="hero-status-tag">
                     <span class="tag">STATUS: OPEN_TO_INTERNSHIPS_/_FULL-TIME_SDE</span>
                 </div>
@@ -75,25 +69,23 @@
                     <h2 class="hero-subtitle">// BACKEND &amp; FULL-STACK ENGINEER</h2>
                 </div>
 
-                <p style="font-size:1.05rem; max-width:54ch; line-height:1.6; margin:0 0 24px;">
+                <p style="font-size:clamp(0.9rem,1.8vw,1.05rem); max-width:54ch; line-height:1.6; margin:0 0 24px;">
                     Final-year B.Tech CSE student building backend systems that don't fall over —
                     C++, Java, Spring Boot, FastAPI, PostgreSQL. Clean architecture over quick hacks,
                     padded resumes never. Also shoot portraits and moonshots when the terminal's closed.
                 </p>
 
                 <!-- Divider Line -->
-                <div class="border-t4" style="padding-top:14px;"></div>
+                <div class="border-t4" style="padding-top:14px; width:100%;"></div>
 
                 <!-- Bottom Row: Boot Terminal + CTA Buttons Inline -->
-                <div class="hero-bottom-row"
-                    style="display:flex; gap:24px; align-items:start; flex-wrap:wrap; margin-top:8px;">
-                    <div id="boot" style="flex:1; min-width:240px;"></div>
-                    <div class="hero-cta-btns" style="display:flex; flex-direction:column; gap:10px; flex-shrink:0;">
-                        <div style="display:flex; gap:10px;">
-                            <a href="#work" class="btn" style="padding:10px 18px; font-size:.85rem;">View Work ↓</a>
+                <div class="hero-bottom-row">
+                    <div id="boot" style="flex:1; min-width:220px;"></div>
+                    <div class="hero-cta-btns">
+                        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                            <a href="#work" class="btn" style="padding:10px 18px; font-size:.85rem; flex:1; text-align:center;">View Work ↓</a>
                             <a href="assets/portfolio%20resume.pdf" target="_blank" class="btn alt"
-                                style="background:var(--yellow); color:#0B0B0B; padding:10px 18px; font-size:.85rem;">Resume
-                                ↗</a>
+                                style="background:var(--yellow); color:#0B0B0B; padding:10px 18px; font-size:.85rem; flex:1; text-align:center;">Resume ↗</a>
                         </div>
                         <div style="display:flex; gap:10px;">
                             <a href="https://github.com/em-srs" target="_blank" class="btn alt"
@@ -106,7 +98,7 @@
             </div>
 
             <!-- Right Column: Vertical Portrait Animated Video Frame -->
-            <div class="hero-avatar-frame" style="flex:0 0 320px; max-width:320px; align-self:start; margin-top:4px;">
+            <div class="hero-avatar-frame">
                 <video class="hero-avatar-video" autoplay muted loop playsinline
                     poster="assets/hero/sunny-idle-poster.jpg">
                     <source src="assets/hero/sunny-idle.webm" type="video/webm">
@@ -119,33 +111,30 @@
     <!-- ============ MARQUEE ============ -->
     <div class="marquee-wrap">
         <div class="marquee-track">
-            <span>FASTAPI</span><span>·</span><span>SPRING
-                BOOT</span><span>·</span><span>POSTGRESQL</span><span>·</span>
+            <span>FASTAPI</span><span>·</span><span>SPRING BOOT</span><span>·</span><span>POSTGRESQL</span><span>·</span>
             <span>REACT</span><span>·</span><span>NODE.JS</span><span>·</span><span>TDD</span><span>·</span>
-            <span>FASTAPI</span><span>·</span><span>SPRING
-                BOOT</span><span>·</span><span>POSTGRESQL</span><span>·</span>
+            <span>FASTAPI</span><span>·</span><span>SPRING BOOT</span><span>·</span><span>POSTGRESQL</span><span>·</span>
             <span>REACT</span><span>·</span><span>NODE.JS</span><span>·</span><span>TDD</span><span>·</span>
         </div>
     </div>
 
     <!-- ============ MANIFESTO ============ -->
     <section class="border-b4 wrap" style="padding:60px 24px;" data-reveal>
-        <h2 style="font-size:clamp(1.6rem,4vw,2.6rem); margin-bottom:20px;">// NO PADDED RESUMES</h2>
-        <div
-            style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0; border:2px solid var(--ink);">
-            <div style="padding:20px; border-right:2px solid var(--ink); border-bottom:2px solid var(--ink);">
+        <h2 style="margin-bottom:20px;">// NO PADDED RESUMES</h2>
+        <div class="manifesto-grid">
+            <div class="manifesto-box">
                 <div class="display" style="font-size:2rem;">93%</div>
                 <div style="font-size:.8rem;">PYTEST COVERAGE — TDD KATA</div>
             </div>
-            <div style="padding:20px; border-right:2px solid var(--ink); border-bottom:2px solid var(--ink);">
+            <div class="manifesto-box">
                 <div class="display" style="font-size:2rem;">5</div>
                 <div style="font-size:.8rem;">ROLE ECOSYSTEM — MEDIFLY</div>
             </div>
-            <div style="padding:20px; border-right:2px solid var(--ink); border-bottom:2px solid var(--ink);">
+            <div class="manifesto-box">
                 <div class="display" style="font-size:2rem;">&lt;100ms</div>
                 <div style="font-size:.8rem;">API RESPONSE TARGET</div>
             </div>
-            <div style="padding:20px; border-bottom:2px solid var(--ink);">
+            <div class="manifesto-box manifesto-box-last">
                 <div class="display" style="font-size:2rem;">2027</div>
                 <div style="font-size:.8rem;">B.TECH CSE, CEC-CGC</div>
             </div>
@@ -155,7 +144,7 @@
     <!-- ============ WORK ============ -->
     <section id="work" class="border-b4" style="padding:70px 0;">
         <div class="wrap">
-            <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:34px;"
+            <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:34px; flex-wrap:wrap; gap:12px;"
                 data-reveal>
                 <h2 style="font-size:clamp(1.8rem,5vw,3rem);">// PROJECTS</h2>
                 <span class="tag">4 SHIPPED</span>
@@ -165,7 +154,7 @@
 
                 <div class="proj-card hard-shadow" data-reveal>
                     <div class="head">
-                        <span class="display" style="font-size:1.3rem;">01 · DEALERSHIP INVENTORY SYSTEM</span>
+                        <span class="display" style="font-size:1.2rem;">01 · DEALERSHIP INVENTORY SYSTEM</span>
                         <span class="tag"
                             style="background:var(--yellow); color:#0B0B0B; border-color:#0B0B0B;">LIVE</span>
                     </div>
@@ -181,7 +170,7 @@
 
                 <div class="proj-card hard-shadow" data-reveal>
                     <div class="head">
-                        <span class="display" style="font-size:1.3rem;">02 · MEDIFLY</span>
+                        <span class="display" style="font-size:1.2rem;">02 · MEDIFLY</span>
                         <span class="tag"
                             style="background:var(--yellow); color:#0B0B0B; border-color:#0B0B0B;">LIVE</span>
                     </div>
@@ -199,7 +188,7 @@
 
                 <div class="proj-card hard-shadow" data-reveal>
                     <div class="head">
-                        <span class="display" style="font-size:1.3rem;">03 · CUSTOMBIX</span>
+                        <span class="display" style="font-size:1.2rem;">03 · CUSTOMBIX</span>
                         <span class="tag">DONE</span>
                     </div>
                     <div style="padding:20px 18px;">
@@ -214,13 +203,12 @@
 
                 <div class="proj-card hard-shadow" data-reveal>
                     <div class="head">
-                        <span class="display" style="font-size:1.3rem;">04 · VISION-HUB</span>
+                        <span class="display" style="font-size:1.2rem;">04 · VISION-HUB</span>
                         <span class="tag">DONE</span>
                     </div>
                     <div style="padding:20px 18px;">
                         <p>MERN-stack video streaming platform covering upload, playback, and full-stack state
-                            management
-                            across the MongoDB/Express/React/Node pipeline.</p>
+                            management across the MongoDB/Express/React/Node pipeline.</p>
                         <div style="display:flex; gap:8px; flex-wrap:wrap; margin:14px 0;">
                             <span class="tag">MONGODB</span><span class="tag">EXPRESS</span><span
                                 class="tag">REACT</span><span class="tag">NODE.JS</span>
@@ -234,9 +222,9 @@
 
     <!-- ============ STACK ============ -->
     <section id="stack" class="border-b4 wrap" style="padding:70px 24px;" data-reveal>
-        <h2 style="font-size:clamp(1.8rem,5vw,3rem); margin-bottom:30px;">// TECH_STACK</h2>
-        <div style="border:2px solid var(--ink); overflow-x:auto;">
-            <table style="width:100%; border-collapse:collapse; font-size:.9rem;">
+        <h2 style="margin-bottom:30px;">// TECH_STACK</h2>
+        <div class="tech-stack-table-wrap" style="border:2px solid var(--ink); overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; font-size:.9rem; min-width:480px;">
                 <thead>
                     <tr style="background:var(--ink); color:var(--paper);">
                         <th style="text-align:left; padding:12px;">LAYER</th>
@@ -289,38 +277,139 @@
     <!-- ============ STATS ============ -->
     <section id="stats" class="border-b4" style="padding:50px 0;">
         <div class="wrap">
-            <h2 style="font-size:clamp(1.8rem,5vw,3rem); margin-bottom:30px;" data-reveal>// LIVE_STATS</h2>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;" id="stats-grid">
-                <div class="proj-card" data-reveal>
-                    <div class="head"><span class="display" style="font-size:1.1rem;">GITHUB</span><span
-                            class="tag">@em-srs</span></div>
-                    <div style="padding:20px; display:grid; grid-template-columns:repeat(3,1fr); gap:10px;"
-                        id="gh-stats">
-                        <div class="stat-box">
-                            <div class="display" style="font-size:1.5rem;">…</div>
-                            <div style="font-size:.7rem;">REPOS</div>
+            <h2 style="margin-bottom:30px;" data-reveal>// LIVE_STATS</h2>
+            <div id="stats-grid">
+                <!-- GITHUB CARD -->
+                <div class="proj-card hard-shadow" data-reveal>
+                    <div class="head" style="padding:10px 14px;">
+                        <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                            <span class="display" style="font-size:1rem;">GITHUB</span>
+                            <span class="tag" style="background:var(--yellow); color:#0B0B0B; border-color:var(--ink); padding:1px 6px; font-size:.65rem;">@em-srs</span>
                         </div>
-                        <div class="stat-box">
-                            <div class="display" style="font-size:1.5rem;">…</div>
-                            <div style="font-size:.7rem;">FOLLOWERS</div>
+                        <div style="display:flex; gap:4px; align-items:center; flex-wrap:wrap;">
+                            <span class="tag" style="background:rgba(59,125,255,0.15); border-color:var(--wire); padding:1px 6px; font-size:.65rem;">he/him</span>
+                            <span class="tag" style="opacity:0.8; padding:1px 6px; font-size:.65rem;">here to survive</span>
                         </div>
-                        <div class="stat-box">
-                            <div class="display" style="font-size:1.5rem;">…</div>
-                            <div style="font-size:.7rem;">FOLLOWING</div>
+                    </div>
+                    <div style="padding:14px;">
+                        <!-- Top Row: 4 Compact Metric Cards -->
+                        <div class="gh-top-grid">
+                            <div class="stat-box" style="border:1.5px solid var(--ink); padding:6px 2px; text-align:center; background:var(--paper); box-shadow:2px 2px 0 var(--ink);">
+                                <div id="gh-repos-val" class="display" style="font-size:1.1rem; color:var(--ink);">8</div>
+                                <div style="font-size:.58rem; font-weight:700; text-transform:uppercase; opacity:0.8;">REPOS</div>
+                            </div>
+                            <div class="stat-box" style="border:1.5px solid var(--ink); padding:6px 2px; text-align:center; background:var(--paper); box-shadow:2px 2px 0 var(--ink);">
+                                <div id="gh-followers-val" class="display" style="font-size:1.1rem; color:var(--ink);">2</div>
+                                <div style="font-size:.58rem; font-weight:700; text-transform:uppercase; opacity:0.8;">FOLLOWERS</div>
+                            </div>
+                            <div class="stat-box" style="border:1.5px solid var(--ink); padding:6px 2px; text-align:center; background:var(--paper); box-shadow:2px 2px 0 var(--ink);">
+                                <div id="gh-following-val" class="display" style="font-size:1.1rem; color:var(--ink);">4</div>
+                                <div style="font-size:.58rem; font-weight:700; text-transform:uppercase; opacity:0.8;">FOLLOWING</div>
+                            </div>
+                            <div class="stat-box" style="border:1.5px solid var(--ink); padding:6px 2px; text-align:center; background:var(--paper); box-shadow:2px 2px 0 var(--ink);">
+                                <div id="gh-stars-val" class="display" style="font-size:1.1rem; color:var(--ink);">0</div>
+                                <div style="font-size:.58rem; font-weight:700; text-transform:uppercase; opacity:0.8;">STARS</div>
+                            </div>
+                        </div>
+
+                        <!-- Language Badges Row -->
+                        <div style="display:flex; gap:4px; flex-wrap:wrap; margin-top:10px; align-items:center;">
+                            <span style="font-size:.65rem; font-weight:700; opacity:0.75; text-transform:uppercase;">Stack:</span>
+                            <span class="tag" style="background:#007396; color:#FFFFFF; border-color:var(--ink); padding:1px 5px; font-size:.6rem;">Java</span>
+                            <span class="tag" style="background:#F7DF1E; color:#0B0B0B; border-color:var(--ink); padding:1px 5px; font-size:.6rem;">JS</span>
+                            <span class="tag" style="background:#00599C; color:#FFFFFF; border-color:var(--ink); padding:1px 5px; font-size:.6rem;">C++</span>
+                            <span class="tag" style="background:#6DB33F; color:#FFFFFF; border-color:var(--ink); padding:1px 5px; font-size:.6rem;">Spring</span>
+                            <span class="tag" style="background:#009688; color:#FFFFFF; border-color:var(--ink); padding:1px 5px; font-size:.6rem;">FastAPI</span>
+                        </div>
+
+                        <!-- Green Dots Contribution Streak Calendar Section -->
+                        <div class="gh-streak-section" style="margin-top:10px; border:1.5px solid var(--ink); padding:8px 10px; background:var(--paper);">
+                            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:6px;">
+                                <span style="font-weight:700; font-size:.75rem;">GitHub Contributions</span>
+                                <div style="display:flex; gap:8px; font-size:.65rem; font-weight:700;">
+                                    <span>Repos: <span style="color:var(--pink);">8</span></span>
+                                    <span>Stars: <span style="color:var(--yellow); background:#0B0B0B; padding:1px 4px; border-radius:2px;">★ 0</span></span>
+                                </div>
+                            </div>
+
+                            <!-- 52-Week Green Dot Grid -->
+                            <div style="overflow-x:auto; padding-bottom:2px;">
+                                <div id="gh-heatmap-grid" class="lc-heatmap-grid"></div>
+                                <div class="lc-heatmap-months" style="display:flex; justify-content:space-between; font-size:.55rem; font-weight:700; margin-top:3px; opacity:0.75; min-width:360px;">
+                                    <span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Tag & Link -->
+                        <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; font-size:.68rem;">
+                            <span id="gh-status-tag" class="tag" style="background:var(--yellow); color:#0B0B0B; border-color:var(--ink); padding:1px 5px;">VERIFIED GITHUB</span>
+                            <a href="https://github.com/em-srs" target="_blank" class="glitch" data-text="VIEW ON GITHUB ↗" style="font-weight:700;">VIEW ON GITHUB ↗</a>
                         </div>
                     </div>
                 </div>
-                <div class="proj-card" data-reveal>
-                    <div class="head"><span class="display" style="font-size:1.1rem;">LEETCODE</span><span
-                            class="tag">@me_srs</span></div>
-                    <div style="padding:20px;">
-                        <img id="lc-card"
-                            src="https://leetcard.jacoblin.cool/me_srs?theme=light&font=JetBrains%20Mono&ext=heatmap"
-                            style="width:100%; max-width:560px; height:auto; border:2px solid var(--ink); display:block; margin:0 auto;"
-                            alt="LeetCode stats"
-                            onerror="this.style.display='none'; document.getElementById('lc-fallback').style.display='block';">
-                        <p id="lc-fallback" style="display:none; font-size:.8rem;">Set your real LeetCode username in
-                            the &lt;img id="lc-card"&gt; src above to activate this card.</p>
+
+                <!-- LEETCODE CARD -->
+                <div class="proj-card hard-shadow" data-reveal>
+                    <div class="head" style="padding:10px 14px;">
+                        <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                            <span class="display" style="font-size:1rem;">LEETCODE</span>
+                            <span class="tag" style="background:var(--yellow); color:#0B0B0B; border-color:var(--ink); padding:1px 6px; font-size:.65rem;">@me_srs</span>
+                        </div>
+                        <span class="tag" style="background:#FFA116; color:#0B0B0B; border-color:var(--ink); padding:1px 6px; font-size:.65rem;">PROTOWARRIOR</span>
+                    </div>
+                    <div style="padding:14px;">
+                        <!-- Top Grid: Solved Gauge Box + Difficulty Cards -->
+                        <div class="lc-top-grid">
+                            <div class="lc-gauge-box">
+                                <div style="font-size:.58rem; font-weight:700; text-transform:uppercase; opacity:0.8;">ALL SOLVED</div>
+                                <div id="lc-total" class="display" style="font-size:1.6rem; color:var(--ink);">94</div>
+                                <div style="font-size:.58rem; font-weight:700; color:#00B8A3;">✓ VERIFIED</div>
+                            </div>
+
+                            <div class="lc-diff-grid">
+                                <div class="lc-diff-card">
+                                    <div style="font-size:.55rem; font-weight:700; color:#00B8A3;">EASY</div>
+                                    <div id="lc-easy-val" class="display" style="font-size:.95rem;">62<span style="font-size:.56rem; opacity:0.6;">/958</span></div>
+                                </div>
+                                <div class="lc-diff-card">
+                                    <div style="font-size:.55rem; font-weight:700; color:#FFC01E;">MED.</div>
+                                    <div id="lc-med-val" class="display" style="font-size:.95rem;">28<span style="font-size:.56rem; opacity:0.6;">/2098</span></div>
+                                </div>
+                                <div class="lc-diff-card">
+                                    <div style="font-size:.55rem; font-weight:700; color:#FF375F;">HARD</div>
+                                    <div id="lc-hard-val" class="display" style="font-size:.95rem;">5<span style="font-size:.56rem; opacity:0.6;">/961</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Green Dots Submission Calendar Section -->
+                        <div class="lc-streak-section" style="margin-top:10px; border:1.5px solid var(--ink); padding:8px 10px; background:var(--paper);">
+                            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:6px;">
+                                <div>
+                                    <span id="lc-submissions-count" style="font-weight:700; font-size:.75rem;">313</span>
+                                    <span style="font-size:.65rem; opacity:0.85;"> submissions past year</span>
+                                </div>
+                                <div style="display:flex; gap:8px; font-size:.65rem; font-weight:700;">
+                                    <span>Active: <span id="lc-active-days" style="color:var(--pink);">68d</span></span>
+                                    <span>Streak: <span id="lc-max-streak" style="color:#00B8A3;">14d</span></span>
+                                </div>
+                            </div>
+
+                            <!-- 52-Week Green Dot Grid -->
+                            <div style="overflow-x:auto; padding-bottom:2px;">
+                                <div id="lc-heatmap-grid" class="lc-heatmap-grid"></div>
+                                <div class="lc-heatmap-months" style="display:flex; justify-content:space-between; font-size:.55rem; font-weight:700; margin-top:3px; opacity:0.75; min-width:360px;">
+                                    <span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Tag & Link -->
+                        <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; font-size:.68rem;">
+                            <span id="lc-status-tag" class="tag" style="background:var(--yellow); color:#0B0B0B; border-color:var(--ink); padding:1px 5px;">VERIFIED STATS</span>
+                            <a href="https://leetcode.com/u/me_srs/" target="_blank" class="glitch" data-text="VIEW ON LEETCODE ↗" style="font-weight:700;">VIEW ON LEETCODE ↗</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -330,10 +419,9 @@
 
     <!-- ============ THROUGH THE LENS (photography) ============ -->
     <section id="lens" class="border-b4" style="padding:50px 0 90px; position:relative; overflow:hidden;">
-        <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; column-gap:60px; align-items:center;"
-            id="lens-grid">
+        <div class="wrap" id="lens-grid">
             <div data-reveal style="align-self:center;">
-                <h2 style="font-size:clamp(1.8rem,5vw,3rem); margin-bottom:16px;">// THROUGH_THE_LENS</h2>
+                <h2 style="margin-bottom:16px;">// THROUGH_THE_LENS</h2>
                 <p style="max-width:48ch; line-height:1.6; margin:0 0 20px;">
                     Portraits, objects, scenery, and the occasional moonshot. Same eye for detail
                     that goes into a circuit-breaker pattern — just pointed at a viewfinder instead of a terminal.
@@ -351,16 +439,16 @@
     <!-- ============ CONTACT ============ -->
     <footer id="contact" style="padding:70px 0 40px;">
         <div class="wrap">
-            <h2 style="font-size:clamp(1.8rem,5vw,3rem); margin-bottom:26px;" data-reveal>// TRANSMIT</h2>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:30px;" id="contact-grid" data-reveal>
+            <h2 style="margin-bottom:26px;" data-reveal>// TRANSMIT</h2>
+            <div id="contact-grid" data-reveal>
                 <form id="contact-form" style="display:grid; gap:14px;" onsubmit="return false;">
                     <input type="text" placeholder="NAME" required>
                     <input type="email" placeholder="EMAIL" required>
                     <textarea rows="4" placeholder="MESSAGE" required></textarea>
                     <button type="submit" class="btn" style="cursor:none;">Send →</button>
                 </form>
-                <div style="border:2px solid var(--ink); padding:22px;">
-                    <p style="font-size:.85rem; margin:0 0 14px;">DIRECT_COORDINATES:</p>
+                <div style="border:2px solid var(--ink); padding:22px; background:var(--paper);">
+                    <p style="font-size:.85rem; margin:0 0 14px; font-weight:700;">DIRECT_COORDINATES:</p>
                     <p style="margin:6px 0;"><a href="assets/portfolio%20resume.pdf" target="_blank" class="glitch"
                             data-text="RESUME / VIEW &amp; DOWNLOAD">RESUME / VIEW &amp; DOWNLOAD ↗</a></p>
                     <p style="margin:6px 0;"><a href="https://github.com/em-srs" target="_blank" class="glitch"

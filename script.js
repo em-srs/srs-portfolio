@@ -7,14 +7,14 @@ const highlight = document.getElementById('theme-highlight');
 function applyTheme(mode) {
     if (mode === 'dark') {
         root.setAttribute('data-theme', 'dark');
-        highlight.style.transform = 'translateX(100%)';
-        darkBtn.style.color = 'var(--paper)';
-        lightBtn.style.color = 'var(--ink)';
+        if (highlight) highlight.style.transform = 'translateX(100%)';
+        if (darkBtn) darkBtn.style.color = 'var(--paper)';
+        if (lightBtn) lightBtn.style.color = 'var(--ink)';
     } else {
         root.removeAttribute('data-theme');
-        highlight.style.transform = 'translateX(0%)';
-        lightBtn.style.color = 'var(--paper)';
-        darkBtn.style.color = 'var(--ink)';
+        if (highlight) highlight.style.transform = 'translateX(0%)';
+        if (lightBtn) lightBtn.style.color = 'var(--paper)';
+        if (darkBtn) darkBtn.style.color = 'var(--ink)';
     }
 }
 
@@ -23,40 +23,46 @@ try { savedTheme = localStorage.getItem('sk-theme'); } catch (e) { }
 const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
 
-lightBtn.addEventListener('click', () => {
-    applyTheme('light');
-    try { localStorage.setItem('sk-theme', 'light'); } catch (e) { }
-});
-darkBtn.addEventListener('click', () => {
-    applyTheme('dark');
-    try { localStorage.setItem('sk-theme', 'dark'); } catch (e) { }
-});
+if (lightBtn) {
+    lightBtn.addEventListener('click', () => {
+        applyTheme('light');
+        try { localStorage.setItem('sk-theme', 'light'); } catch (e) { }
+    });
+}
+if (darkBtn) {
+    darkBtn.addEventListener('click', () => {
+        applyTheme('dark');
+        try { localStorage.setItem('sk-theme', 'dark'); } catch (e) { }
+    });
+}
 
 // ---- custom cursor ----
 const cursor = document.getElementById('cursor');
-window.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-});
-document.querySelectorAll('a, button, input, textarea, #lens-slideshow').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-});
+if (cursor && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    window.addEventListener('mousemove', e => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button, input, textarea, #lens-slideshow').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+}
 
 // ---- reveal on scroll ----
 const io = new IntersectionObserver((entries) => {
     entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-}, { threshold: .15 });
+}, { threshold: .1 });
 document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
 
 // ---- boot log ----
 const bootLines = [
     '> booting profile.exe ...',
     '> year       : B.Tech final-year',
-    '> languages  : C++, Java, Python',
+    '> languages  : C++, Java, Python, JS',
     '> stack      : spring boot, fastapi, postgresql',
     '> discipline : clean architecture, no padding',
-    '> status     : SEEKING INTERNSHIP / FULL-TIME SDE',
+    '> status     : OPEN TO INTERNSHIPS / FULL-TIME SDE',
     '> _'
 ];
 const bootEl = document.getElementById('boot');
@@ -71,7 +77,7 @@ function typeBoot() {
         setTimeout(typeBoot, 16);
     } else {
         li++; ci = 0;
-        setTimeout(typeBoot, 200);
+        setTimeout(typeBoot, 180);
     }
 }
 typeBoot();
@@ -83,14 +89,13 @@ function renderGitHubHeatmap() {
     grid.innerHTML = '';
 
     // 52 weeks x 7 days = 364 dots grid
-    // Replicates active commit pattern matching user's profile
     for (let col = 0; col < 52; col++) {
         for (let row = 0; row < 7; row++) {
             const dot = document.createElement('div');
             dot.className = 'lc-dot';
             let level = 0;
 
-            if (col >= 10 && col <= 18 && (row === 2 || row === 5)) level = 1;
+            if (col >= 8 && col <= 18 && (row === 2 || row === 5)) level = 1;
             else if (col >= 19 && col <= 32 && (row % 2 === 0)) level = (row % 3) + 1;
             else if (col >= 33 && col <= 51) {
                 const val = (col * 3 + row) % 7;
@@ -107,43 +112,80 @@ function renderGitHubHeatmap() {
 }
 renderGitHubHeatmap();
 
-fetch('https://api.github.com/users/em-srs')
-    .then(r => r.ok ? r.json() : Promise.reject())
-    .then(d => {
-        const reposEl = document.getElementById('gh-repos-val');
-        const followersEl = document.getElementById('gh-followers-val');
-        const followingEl = document.getElementById('gh-following-val');
-        if (reposEl) reposEl.textContent = d.public_repos ?? '10';
-        if (followersEl) followersEl.textContent = d.followers ?? '2';
-        if (followingEl) followingEl.textContent = d.following ?? '4';
-    })
-    .catch(() => { });
+async function fetchGitHubStats() {
+    const reposEl = document.getElementById('gh-repos-val');
+    const followersEl = document.getElementById('gh-followers-val');
+    const followingEl = document.getElementById('gh-following-val');
+    const starsEl = document.getElementById('gh-stars-val');
+
+    try {
+        const res = await fetch('https://api.github.com/users/em-srs');
+        if (res.ok) {
+            const d = await res.json();
+            if (reposEl) reposEl.textContent = d.public_repos ?? '8';
+            if (followersEl) followersEl.textContent = d.followers ?? '2';
+            if (followingEl) followingEl.textContent = d.following ?? '4';
+        }
+    } catch (e) { }
+
+    try {
+        const reposRes = await fetch('https://api.github.com/users/em-srs/repos?per_page=100');
+        if (reposRes.ok) {
+            const repos = await reposRes.json();
+            if (Array.isArray(repos)) {
+                const totalStars = repos.reduce((acc, r) => acc + (r.stargazers_count || 0), 0);
+                if (starsEl) starsEl.textContent = totalStars;
+            }
+        }
+    } catch (e) { }
+}
+fetchGitHubStats();
 
 // ---- leetcode heatmap & stats ----
-function renderLeetCodeHeatmap() {
+function renderLeetCodeHeatmap(submissionCalendar = null) {
     const grid = document.getElementById('lc-heatmap-grid');
     if (!grid) return;
     grid.innerHTML = '';
 
-    // 52 weeks x 7 days = 364 dots grid
-    // Matches activity pattern from user's profile screenshot
+    const daysCount = 52 * 7;
+    const now = Math.floor(Date.now() / 1000);
+    const daySeconds = 86400;
+
     for (let col = 0; col < 52; col++) {
         for (let row = 0; row < 7; row++) {
             const dot = document.createElement('div');
             dot.className = 'lc-dot';
             let level = 0;
 
-            // Replicate realistic submission distribution
-            if (col === 8 && row === 5) level = 2; // Oct
-            else if (col >= 22 && col <= 26 && (row === 1 || row === 4)) level = (row % 2) + 1; // Feb-Mar
-            else if (col >= 27 && col <= 34 && (row % 2 === 0 || row === 3)) level = ((col + row) % 3) + 1; // Apr-May
-            else if (col >= 35 && col <= 51) {
-                // Jun - Jul - Aug heavy active streak
-                const val = (col * 7 + row) % 11;
-                if (val < 3) level = 3;
-                else if (val < 6) level = 4;
-                else if (val < 9) level = 2;
-                else level = 1;
+            const dayOffset = (51 - col) * 7 + (6 - row);
+            const targetTimestamp = now - dayOffset * daySeconds;
+
+            if (submissionCalendar) {
+                // Find matching date in submissionCalendar
+                let matchedCount = 0;
+                for (const [tsStr, count] of Object.entries(submissionCalendar)) {
+                    const ts = parseInt(tsStr, 10);
+                    if (Math.abs(ts - targetTimestamp) < daySeconds / 2) {
+                        matchedCount += count;
+                    }
+                }
+                if (matchedCount > 0) {
+                    if (matchedCount >= 10) level = 4;
+                    else if (matchedCount >= 5) level = 3;
+                    else if (matchedCount >= 2) level = 2;
+                    else level = 1;
+                }
+            }
+
+            // Fallback pattern if no live submission match
+            if (level === 0 && !submissionCalendar) {
+                if (col >= 20 && col <= 51) {
+                    const val = (col * 7 + row) % 9;
+                    if (val < 2) level = 3;
+                    else if (val < 5) level = 4;
+                    else if (val < 7) level = 2;
+                    else level = 1;
+                }
             }
 
             if (level > 0) dot.classList.add('l' + level);
@@ -158,18 +200,17 @@ async function fetchLeetCodeStats() {
     const easyValEl = document.getElementById('lc-easy-val');
     const medValEl = document.getElementById('lc-med-val');
     const hardValEl = document.getElementById('lc-hard-val');
-
-    if (!totalEl) return;
+    const subsCountEl = document.getElementById('lc-submissions-count');
 
     const endpoints = [
-        'https://alfa-leetcode-api.onrender.com/userProfile/me_srs',
-        'https://leetcode-api-faisalshohag.vercel.app/me_srs'
+        'https://leetcode-api-faisalshohag.vercel.app/me_srs',
+        'https://alfa-leetcode-api.onrender.com/userProfile/me_srs'
     ];
 
     for (const url of endpoints) {
         try {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 3500);
+            const timeoutId = setTimeout(() => controller.abort(), 4000);
             const res = await fetch(url, { signal: controller.signal });
             clearTimeout(timeoutId);
             if (!res.ok) continue;
@@ -190,35 +231,43 @@ async function fetchLeetCodeStats() {
             }
 
             if (total && easy !== undefined) {
-                totalEl.textContent = total;
-                if (easyValEl) easyValEl.innerHTML = `${easy}<span style="font-size:.56rem; opacity:0.6;">/958</span>`;
-                if (medValEl) medValEl.innerHTML = `${medium}<span style="font-size:.56rem; opacity:0.6;">/2098</span>`;
-                if (hardValEl) hardValEl.innerHTML = `${hard}<span style="font-size:.56rem; opacity:0.6;">/961</span>`;
+                if (totalEl) totalEl.textContent = total;
+                if (easyValEl) easyValEl.innerHTML = `${easy}<span style="font-size:.56rem; opacity:0.6;">/${data.totalEasy || 958}</span>`;
+                if (medValEl) medValEl.innerHTML = `${medium}<span style="font-size:.56rem; opacity:0.6;">/${data.totalMedium || 2098}</span>`;
+                if (hardValEl) hardValEl.innerHTML = `${hard}<span style="font-size:.56rem; opacity:0.6;">/${data.totalHard || 962}</span>`;
+
+                if (data.totalSubmissions && Array.isArray(data.totalSubmissions)) {
+                    const allSub = data.totalSubmissions.find(s => s.difficulty === 'All');
+                    if (allSub && allSub.submissions && subsCountEl) {
+                        subsCountEl.textContent = allSub.submissions;
+                    }
+                }
+
+                if (data.submissionCalendar) {
+                    renderLeetCodeHeatmap(data.submissionCalendar);
+                }
                 break;
             }
         } catch (e) {
-            // Verified baseline stays intact
+            // Keep baseline verified defaults intact
         }
     }
 }
 fetchLeetCodeStats();
 
-// Layouts are handled cleanly via CSS media queries in style.css
-
 // ---- lens slideshow ----
 const lensSources = [
-    'assets/imgs/07-scenery-jibhi.jpg',                 // 1 — portrait
-    'assets/imgs/01-scenery-shimla.jpg',              // 2 — portrait
-    'assets/imgs/a-moonshot-chandigarh.jpg',           // 3 — landscape
-    'assets/imgs/d-concert-cgc-landran.jpg',            // 4 — portrait
-    'assets/imgs/05-portrait-shojha.jpg',              // 5 — portrait
-    'assets/imgs/e-scenery-parasnath-jharkhand.jpg',   // 6 — landscape
-    'assets/imgs/12-scenery-jibhi.jpg',                // 7 — portrait
-    'assets/imgs/11-portrait-swati-jibhi.jpg',         // 8 — landscape
-    'assets/imgs/c-scenery-shimla.jpg'                 // 9 — portrait
+    'assets/imgs/07-scenery-jibhi.jpg',
+    'assets/imgs/01-scenery-shimla.jpg',
+    'assets/imgs/a-moonshot-chandigarh.jpg',
+    'assets/imgs/d-concert-cgc-landran.jpg',
+    'assets/imgs/05-portrait-shojha.jpg',
+    'assets/imgs/e-scenery-parasnath-jharkhand.jpg',
+    'assets/imgs/12-scenery-jibhi.jpg',
+    'assets/imgs/11-portrait-swati-jibhi.jpg',
+    'assets/imgs/c-scenery-shimla.jpg'
 ];
 
-// Preload images and detect orientation
 const lensSlides = [];
 let lensReady = 0;
 
@@ -227,21 +276,6 @@ function getOrientation(w, h) {
     if (h > w) return 'portrait';
     return 'square';
 }
-
-lensSources.forEach(src => {
-    const img = new Image();
-    img.src = src;
-    const entry = { src: src, orientation: 'landscape' }; // default
-    lensSlides.push(entry);
-    img.onload = () => {
-        entry.orientation = getOrientation(img.naturalWidth, img.naturalHeight);
-        lensReady++;
-        // Apply orientation class for the first image once it loads
-        if (lensReady === 1 && lensSlideshow) {
-            applyOrientationClass(entry.orientation);
-        }
-    };
-});
 
 const lensImg = document.getElementById('lens-img');
 const lensSlideshow = document.getElementById('lens-slideshow');
@@ -254,18 +288,30 @@ function applyOrientationClass(orientation) {
     lensSlideshow.classList.add('is-' + orientation);
 }
 
+lensSources.forEach(src => {
+    const img = new Image();
+    img.src = src;
+    const entry = { src: src, orientation: 'landscape' };
+    lensSlides.push(entry);
+    img.onload = () => {
+        entry.orientation = getOrientation(img.naturalWidth, img.naturalHeight);
+        lensReady++;
+        if (lensReady === 1 && lensSlideshow) {
+            applyOrientationClass(entry.orientation);
+        }
+    };
+});
+
 function nextLensSlide() {
     if (!lensImg || lensSlides.length === 0) return;
     lensImg.classList.add('fade-out');
     const nextIndex = (lensIndex + 1) % lensSlides.length;
     const nextSlide = lensSlides[nextIndex];
-    // Apply orientation class during the fade-out so box reshapes in sync
     applyOrientationClass(nextSlide.orientation);
     setTimeout(() => {
         lensIndex = nextIndex;
         lensImg.src = nextSlide.src;
         lensImg.classList.remove('fade-out');
-        // Schedule next slide only after this transition is fully done
         scheduleLensSlide();
     }, 500);
 }
@@ -279,9 +325,7 @@ function scheduleLensSlide() {
 }
 
 if (lensImg && lensSlideshow) {
-    // Set initial orientation class
     applyOrientationClass(lensSlides[0].orientation);
-
     scheduleLensSlide();
 
     lensSlideshow.addEventListener('mouseenter', () => {
