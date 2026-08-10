@@ -107,14 +107,15 @@ window.addEventListener('resize', stackForMobile);
 
 // ---- lens slideshow ----
 const lensSources = [
-    'assets/imgs/01-scenery-shimla.jpg',
-    'assets/imgs/05-portrait-shojha.jpg',
-    'assets/imgs/07-scenery-jibhi.jpg',
-    'assets/imgs/12-scenery-jibhi.jpg',
-    'assets/imgs/a-moonshot-chandigarh.jpg',
-    'assets/imgs/c-scenery-shimla.jpg',
-    'assets/imgs/d-concert-cgc-landran.jpg',
-    'assets/imgs/e-scenery-parasnath-jharkhand.jpg'
+    'assets/imgs/01-scenery-shimla.jpg',              // 1 — portrait
+    'assets/imgs/a-moonshot-chandigarh.jpg',           // 2 — landscape
+    'assets/imgs/d-concert-cgc-landran.jpg',            // 3 — portrait
+    'assets/imgs/05-portrait-shojha.jpg',              // 4 — portrait
+    'assets/imgs/e-scenery-parasnath-jharkhand.jpg',   // 5 — landscape
+    'assets/imgs/12-scenery-jibhi.jpg',                // 6 — portrait
+    'assets/imgs/11-portrait-swati-jibhi.jpg',         // 7 — landscape
+    'assets/imgs/c-scenery-shimla.jpg',                // 8 — portrait
+    'assets/imgs/07-scenery-jibhi.jpg'                 // 9 — portrait
 ];
 
 // Preload images and detect orientation
@@ -166,7 +167,7 @@ function nextLensSlide() {
         lensImg.classList.remove('fade-out');
         // Schedule next slide only after this transition is fully done
         scheduleLensSlide();
-    }, 600);
+    }, 500);
 }
 
 let lensPaused = false;
