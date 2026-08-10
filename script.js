@@ -164,23 +164,33 @@ function nextLensSlide() {
         lensIndex = nextIndex;
         lensImg.src = nextSlide.src;
         lensImg.classList.remove('fade-out');
+        // Schedule next slide only after this transition is fully done
+        scheduleLensSlide();
     }, 600);
+}
+
+let lensPaused = false;
+
+function scheduleLensSlide() {
+    if (lensTimer) clearTimeout(lensTimer);
+    if (lensPaused) return;
+    lensTimer = setTimeout(nextLensSlide, 3800);
 }
 
 if (lensImg && lensSlideshow) {
     // Set initial orientation class
     applyOrientationClass(lensSlides[0].orientation);
 
-    lensTimer = setInterval(nextLensSlide, 3800);
+    scheduleLensSlide();
 
     lensSlideshow.addEventListener('mouseenter', () => {
-        if (lensTimer) clearInterval(lensTimer);
+        lensPaused = true;
+        if (lensTimer) clearTimeout(lensTimer);
+        lensTimer = null;
     });
 
     lensSlideshow.addEventListener('mouseleave', () => {
-        if (lensTimer) clearInterval(lensTimer);
-        lensTimer = setInterval(nextLensSlide, 3800);
+        lensPaused = false;
+        scheduleLensSlide();
     });
 }
-
-
