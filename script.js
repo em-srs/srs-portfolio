@@ -106,7 +106,7 @@ stackForMobile();
 window.addEventListener('resize', stackForMobile);
 
 // ---- lens slideshow ----
-const lensImages = [
+const lensSources = [
     'assets/imgs/01-scenery-shimla.jpg',
     'assets/imgs/05-portrait-shojha.jpg',
     'assets/imgs/07-scenery-jibhi.jpg',
@@ -117,10 +117,29 @@ const lensImages = [
     'assets/imgs/e-scenery-parasnath-jharkhand.jpg'
 ];
 
-// Preload images into memory for smooth zero-lag transitions
-lensImages.forEach(src => {
+// Preload images and detect orientation
+const lensSlides = [];
+let lensReady = 0;
+
+function getOrientation(w, h) {
+    if (w > h) return 'landscape';
+    if (h > w) return 'portrait';
+    return 'square';
+}
+
+lensSources.forEach(src => {
     const img = new Image();
     img.src = src;
+    const entry = { src: src, orientation: 'landscape' }; // default
+    lensSlides.push(entry);
+    img.onload = () => {
+        entry.orientation = getOrientation(img.naturalWidth, img.naturalHeight);
+        lensReady++;
+        // Apply orientation class for the first image once it loads
+        if (lensReady === 1 && lensSlideshow) {
+            applyOrientationClass(entry.orientation);
+        }
+    };
 });
 
 const lensImg = document.getElementById('lens-img');
@@ -128,17 +147,30 @@ const lensSlideshow = document.getElementById('lens-slideshow');
 let lensIndex = 0;
 let lensTimer = null;
 
+function applyOrientationClass(orientation) {
+    if (!lensSlideshow) return;
+    lensSlideshow.classList.remove('is-landscape', 'is-portrait', 'is-square');
+    lensSlideshow.classList.add('is-' + orientation);
+}
+
 function nextLensSlide() {
-    if (!lensImg) return;
+    if (!lensImg || lensSlides.length === 0) return;
     lensImg.classList.add('fade-out');
+    const nextIndex = (lensIndex + 1) % lensSlides.length;
+    const nextSlide = lensSlides[nextIndex];
+    // Apply orientation class during the fade-out so box reshapes in sync
+    applyOrientationClass(nextSlide.orientation);
     setTimeout(() => {
-        lensIndex = (lensIndex + 1) % lensImages.length;
-        lensImg.src = lensImages[lensIndex];
+        lensIndex = nextIndex;
+        lensImg.src = nextSlide.src;
         lensImg.classList.remove('fade-out');
     }, 600);
 }
 
 if (lensImg && lensSlideshow) {
+    // Set initial orientation class
+    applyOrientationClass(lensSlides[0].orientation);
+
     lensTimer = setInterval(nextLensSlide, 3800);
 
     lensSlideshow.addEventListener('mouseenter', () => {
@@ -150,4 +182,5 @@ if (lensImg && lensSlideshow) {
         lensTimer = setInterval(nextLensSlide, 3800);
     });
 }
+
 

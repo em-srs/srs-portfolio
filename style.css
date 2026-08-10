@@ -407,6 +407,19 @@ textarea:focus {
     background: var(--paper);
     overflow: hidden;
     align-self: center;
+    transition: aspect-ratio 0.6s ease;
+}
+
+#lens-slideshow.is-landscape {
+    aspect-ratio: 3/2;
+}
+
+#lens-slideshow.is-portrait {
+    aspect-ratio: 2/3;
+}
+
+#lens-slideshow.is-square {
+    aspect-ratio: 1/1;
 }
 
 #lens-img {
@@ -445,4 +458,5 @@ textarea:focus {
         max-width: 100%;
     }
 }
+
 
