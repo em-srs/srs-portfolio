@@ -390,6 +390,13 @@ textarea:focus {
 }
 
 /* ---------- lens slideshow ---------- */
+#lens-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 60px;
+    align-items: center;
+}
+
 #lens-slideshow {
     position: relative;
     width: 100%;
@@ -399,6 +406,7 @@ textarea:focus {
     border: var(--line) solid var(--ink);
     background: var(--paper);
     overflow: hidden;
+    align-self: center;
 }
 
 #lens-img {
@@ -431,7 +439,7 @@ textarea:focus {
 @media (max-width: 768px) {
     #lens-grid {
         grid-template-columns: 1fr !important;
-        gap: 32px !important;
+        gap: 30px !important;
     }
     #lens-slideshow {
         max-width: 100%;
