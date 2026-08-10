@@ -22,9 +22,9 @@
 
     <!-- ============ NAV ============ -->
     <nav class="border-b4">
-        <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; padding:16px 24px;">
+        <div class="wrap nav-inner">
             <a href="#" class="display" style="font-size:1.1rem;">SK<span style="color:var(--pink);">.</span>EXE</a>
-            <div style="display:flex; gap:6px; align-items:center;">
+            <div class="nav-links-wrap">
                 <a href="#work" class="navlink">Work</a>
                 <a href="#stack" class="navlink">Stack</a>
                 <a href="#stats" class="navlink">Stats</a>
@@ -33,14 +33,14 @@
                 <a href="assets/portfolio%20resume.pdf" target="_blank" class="navlink"
                     style="color:var(--pink); font-weight:700;">Resume ↗</a>
                 <div
-                    style="position:relative; display:flex; width:132px; border:2px solid var(--ink); margin-left:6px; overflow:hidden;">
+                    style="position:relative; display:flex; width:120px; flex-shrink:0; border:2px solid var(--ink); margin-left:4px; overflow:hidden;">
                     <div id="theme-highlight"
                         style="position:absolute; top:0; left:0; width:50%; height:100%; background:var(--ink); transform:translateX(0%); transition:transform .35s cubic-bezier(.65,0,.35,1); z-index:0;">
                     </div>
                     <button id="theme-light"
-                        style="position:relative; z-index:1; flex:1; border:none; background:transparent; font-family:'JetBrains Mono'; font-weight:700; font-size:.72rem; padding:6px 12px; cursor:none;">LIGHT</button>
+                        style="position:relative; z-index:1; flex:1; border:none; background:transparent; font-family:'JetBrains Mono'; font-weight:700; font-size:.68rem; padding:5px 8px; cursor:none;">LIGHT</button>
                     <button id="theme-dark"
-                        style="position:relative; z-index:1; flex:1; border:none; border-left:2px solid var(--ink); background:transparent; font-family:'JetBrains Mono'; font-weight:700; font-size:.72rem; padding:6px 12px; cursor:none;">DARK</button>
+                        style="position:relative; z-index:1; flex:1; border:none; border-left:2px solid var(--ink); background:transparent; font-family:'JetBrains Mono'; font-weight:700; font-size:.68rem; padding:5px 8px; cursor:none;">DARK</button>
                 </div>
             </div>
         </div>
@@ -49,9 +49,9 @@
     <!-- ============ HERO ============ -->
     <header class="border-b4" style="position:relative; overflow:hidden;">
         <div class="grid-lines"></div>
-        <div class="wrap hero-wrap" style="position:relative; padding:70px 24px 50px; display:flex; gap:40px; align-items:start; flex-wrap:wrap;">
+        <div class="wrap hero-wrap">
             <!-- Left Column: Headline, Bio, Divider Line, Boot Terminal & Buttons -->
-            <div class="hero-content" style="flex:1 1 540px; min-width:0;">
+            <div class="hero-content">
                 <div class="hero-status-tag">
                     <span class="tag">STATUS: OPEN_TO_INTERNSHIPS_/_FULL-TIME_SDE</span>
                 </div>
@@ -74,33 +74,33 @@
                     <h2 class="hero-subtitle">// BACKEND &amp; FULL-STACK ENGINEER</h2>
                 </div>
 
-                <p style="font-size:1.05rem; max-width:54ch; line-height:1.6; margin:0 0 24px;">
+                <p style="max-width:54ch; line-height:1.6; margin:0 0 24px;">
                     Final-year B.Tech CSE student building backend systems that don't fall over —
                     C++, Java, Spring Boot, FastAPI, PostgreSQL. Clean architecture over quick hacks,
                     padded resumes never. Also shoot portraits and moonshots when the terminal's closed.
                 </p>
 
                 <!-- Divider Line -->
-                <div class="border-t4" style="padding-top:14px;"></div>
+                <div class="border-t4" style="padding-top:14px; width:100%;"></div>
 
                 <!-- Bottom Row: Boot Terminal + CTA Buttons Inline -->
-                <div class="hero-bottom-row" style="display:flex; gap:24px; align-items:start; flex-wrap:wrap; margin-top:8px;">
-                    <div id="boot" style="flex:1; min-width:240px;"></div>
-                    <div class="hero-cta-btns" style="display:flex; flex-direction:column; gap:10px; flex-shrink:0;">
-                        <div style="display:flex; gap:10px;">
-                            <a href="#work" class="btn" style="padding:10px 18px; font-size:.85rem;">View Work ↓</a>
-                            <a href="assets/portfolio%20resume.pdf" target="_blank" class="btn alt" style="background:var(--yellow); color:#0B0B0B; padding:10px 18px; font-size:.85rem;">Resume ↗</a>
+                <div class="hero-bottom-row">
+                    <div id="boot" style="flex:1; min-width:220px;"></div>
+                    <div class="hero-cta-btns">
+                        <div style="display:flex; gap:8px;">
+                            <a href="#work" class="btn" style="padding:10px 16px;">View Work ↓</a>
+                            <a href="assets/portfolio%20resume.pdf" target="_blank" class="btn alt" style="background:var(--yellow); color:#0B0B0B; padding:10px 16px;">Resume ↗</a>
                         </div>
-                        <div style="display:flex; gap:10px;">
-                            <a href="https://github.com/em-srs" target="_blank" class="btn alt" style="padding:8px 16px; font-size:.8rem; flex:1; text-align:center;">GitHub</a>
-                            <a href="https://linkedin.com/in/srs1717" target="_blank" class="btn alt" style="padding:8px 16px; font-size:.8rem; flex:1; text-align:center;">LinkedIn</a>
+                        <div style="display:flex; gap:8px;">
+                            <a href="https://github.com/em-srs" target="_blank" class="btn alt" style="padding:8px 14px; flex:1; text-align:center;">GitHub</a>
+                            <a href="https://linkedin.com/in/srs1717" target="_blank" class="btn alt" style="padding:8px 14px; flex:1; text-align:center;">LinkedIn</a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Right Column: Vertical Portrait Animated Video Frame -->
-            <div class="hero-avatar-frame" style="flex:0 0 320px; max-width:320px; align-self:start; margin-top:4px;">
+            <div class="hero-avatar-frame">
                 <video class="hero-avatar-video" autoplay muted loop playsinline poster="assets/hero/sunny-idle-poster.jpg">
                     <source src="assets/hero/sunny-idle.webm" type="video/webm">
                     <source src="assets/hero/sunny-idle.mp4" type="video/mp4">
@@ -122,10 +122,9 @@
     </div>
 
     <!-- ============ MANIFESTO ============ -->
-    <section class="border-b4 wrap" style="padding:60px 24px;" data-reveal>
-        <h2 style="font-size:clamp(1.6rem,4vw,2.6rem); margin-bottom:20px;">// NO PADDED RESUMES</h2>
-        <div
-            style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0; border:2px solid var(--ink);">
+    <section class="border-b4 wrap" style="padding:50px 24px;" data-reveal>
+        <h2 style="margin-bottom:20px;">// NO PADDED RESUMES</h2>
+        <div class="manifesto-grid">
             <div style="padding:20px; border-right:2px solid var(--ink); border-bottom:2px solid var(--ink);">
                 <div class="display" style="font-size:2rem;">93%</div>
                 <div style="font-size:.8rem;">PYTEST COVERAGE — TDD KATA</div>
@@ -282,8 +281,8 @@
     <!-- ============ STATS ============ -->
     <section id="stats" class="border-b4" style="padding:50px 0;">
         <div class="wrap">
-            <h2 style="font-size:clamp(1.8rem,5vw,3rem); margin-bottom:30px;" data-reveal>// LIVE_STATS</h2>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;" id="stats-grid">
+            <h2 style="margin-bottom:30px;" data-reveal>// LIVE_STATS</h2>
+            <div id="stats-grid">
                 <!-- GITHUB CARD -->
                 <div class="proj-card" data-reveal>
                     <div class="head" style="padding:8px 12px;">
@@ -441,10 +440,9 @@
 
     <!-- ============ LENS (photography) ============ -->
     <section id="lens" class="border-b4" style="padding:50px 0 90px; position:relative; overflow:hidden;">
-        <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; column-gap:60px; align-items:center;"
-            id="lens-grid">
+        <div class="wrap" id="lens-grid">
             <div data-reveal style="align-self:center;">
-                <h2 style="font-size:clamp(1.8rem,5vw,3rem); margin-bottom:16px;">// THROUGH_THE_LENS</h2>
+                <h2 style="margin-bottom:16px;">// THROUGH_THE_LENS</h2>
                 <p style="max-width:48ch; line-height:1.6; margin:0 0 20px;">
                     Portraits, objects, scenery, and the occasional moonshot. Same eye for detail
                     that goes into a circuit-breaker pattern — just pointed at a viewfinder instead of a terminal.
@@ -460,10 +458,10 @@
     </section>
 
     <!-- ============ CONTACT ============ -->
-    <footer id="contact" style="padding:70px 0 40px;">
+    <footer id="contact" style="padding:60px 0 40px;">
         <div class="wrap">
-            <h2 style="font-size:clamp(1.8rem,5vw,3rem); margin-bottom:26px;" data-reveal>// TRANSMIT</h2>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:30px;" id="contact-grid" data-reveal>
+            <h2 style="margin-bottom:26px;" data-reveal>// TRANSMIT</h2>
+            <div id="contact-grid" data-reveal>
                 <form id="contact-form" style="display:grid; gap:14px;" onsubmit="return false;">
                     <input type="text" placeholder="NAME" required>
                     <input type="email" placeholder="EMAIL" required>

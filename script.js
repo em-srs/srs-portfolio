@@ -203,16 +203,7 @@ async function fetchLeetCodeStats() {
 }
 fetchLeetCodeStats();
 
-// ---- mobile-friendly grid stacking ----
-function stackForMobile() {
-    const isMobile = window.innerWidth < 720;
-    ['hero-grid', 'stats-grid', 'lens-grid', 'contact-grid'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.style.gridTemplateColumns = isMobile ? '1fr' : '';
-    });
-}
-stackForMobile();
-window.addEventListener('resize', stackForMobile);
+// Layouts are handled cleanly via CSS media queries in style.css
 
 // ---- lens slideshow ----
 const lensSources = [
