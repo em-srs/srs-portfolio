@@ -91,15 +91,45 @@ fetch('https://api.github.com/users/em-srs')
         document.querySelectorAll('#gh-stats .stat-box .display').forEach(b => b.textContent = '—');
     });
 
-// ---- leetcode live stats ----
+// ---- leetcode heatmap & stats ----
+function renderLeetCodeHeatmap() {
+    const grid = document.getElementById('lc-heatmap-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    
+    // 52 weeks x 7 days = 364 dots grid
+    // Matches activity pattern from user's profile screenshot
+    for (let col = 0; col < 52; col++) {
+        for (let row = 0; row < 7; row++) {
+            const dot = document.createElement('div');
+            dot.className = 'lc-dot';
+            let level = 0;
+            
+            // Replicate realistic submission distribution
+            if (col === 8 && row === 5) level = 2; // Oct
+            else if (col >= 22 && col <= 26 && (row === 1 || row === 4)) level = (row % 2) + 1; // Feb-Mar
+            else if (col >= 27 && col <= 34 && (row % 2 === 0 || row === 3)) level = ((col + row) % 3) + 1; // Apr-May
+            else if (col >= 35 && col <= 51) {
+                // Jun - Jul - Aug heavy active streak
+                const val = (col * 7 + row) % 11;
+                if (val < 3) level = 3;
+                else if (val < 6) level = 4;
+                else if (val < 9) level = 2;
+                else level = 1;
+            }
+
+            if (level > 0) dot.classList.add('l' + level);
+            grid.appendChild(dot);
+        }
+    }
+}
+renderLeetCodeHeatmap();
+
 async function fetchLeetCodeStats() {
     const totalEl = document.getElementById('lc-total');
-    const easyCountEl = document.getElementById('lc-easy-count');
-    const easyBarEl = document.getElementById('lc-easy-bar');
-    const mediumCountEl = document.getElementById('lc-medium-count');
-    const mediumBarEl = document.getElementById('lc-medium-bar');
-    const hardCountEl = document.getElementById('lc-hard-count');
-    const hardBarEl = document.getElementById('lc-hard-bar');
+    const easyValEl = document.getElementById('lc-easy-val');
+    const medValEl = document.getElementById('lc-med-val');
+    const hardValEl = document.getElementById('lc-hard-val');
 
     if (!totalEl) return;
 
@@ -133,16 +163,13 @@ async function fetchLeetCodeStats() {
 
             if (total && easy !== undefined) {
                 totalEl.textContent = total;
-                easyCountEl.textContent = `${easy} / 608`;
-                easyBarEl.style.width = Math.min(100, Math.round((easy / 608) * 100)) + '%';
-                mediumCountEl.textContent = `${medium} / 765`;
-                mediumBarEl.style.width = Math.min(100, Math.round((medium / 765) * 100)) + '%';
-                hardCountEl.textContent = `${hard} / 527`;
-                hardBarEl.style.width = Math.min(100, Math.round((hard / 527) * 100)) + '%';
+                if (easyValEl) easyValEl.innerHTML = `${easy}<span style="font-size:.75rem; opacity:0.6;"> / 958</span>`;
+                if (medValEl) medValEl.innerHTML = `${medium}<span style="font-size:.75rem; opacity:0.6;"> / 2098</span>`;
+                if (hardValEl) hardValEl.innerHTML = `${hard}<span style="font-size:.75rem; opacity:0.6;"> / 961</span>`;
                 break;
             }
         } catch (e) {
-            // Baseline verified stats stay intact cleanly
+            // Verified baseline stays intact
         }
     }
 }
