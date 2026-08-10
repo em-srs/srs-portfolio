@@ -9,10 +9,10 @@
                                                             
 >> SYSTEM_STATUS: ONLINE
 >> THEME: NEO_BRUTALISM
->> VERSION: 2.0.0
+>> VERSION: 2.1.0
 ```
 
-> **WARNING**: This is NOT a standard portfolio. It is a raw, unfiltered expression of code. No cookies. No trackers. Just pure HTML, CSS, and JS anarchy.
+> **WARNING**: This is NOT a standard portfolio. It is a raw, unfiltered expression of engineering and code. No cookies. No trackers. Just pure HTML5, CSS Grid, and Vanilla JS.
 
 ---
 
@@ -21,11 +21,11 @@
 **Design is dying.** The web has become a sea of identical, sanitized templates. We are here to break the grid.
 This portfolio embraces **Neo-Brutalism**:
 - High Contrast
-- Raw Typography
+- Raw Typography (`Space Grotesk` + `JetBrains Mono`)
 - Asymmetrical Layouts
-- "Ugly" on Purpose
+- High Impact & Functional Aesthetics
 
-It's not about being pretty. It's about being **BOLD**.
+It's not about being pretty. It's about being **BOLD**, **FAST**, and **RELIABLE**.
 
 ---
 
@@ -33,16 +33,16 @@ It's not about being pretty. It's about being **BOLD**.
 
 | COMPONENT | TECHNOLOGY | STATUS |
 | :--- | :--- | :--- |
-| **BACKEND** | `FastAPI` · `Spring Boot` · `Express` | [ACTIVE] |
-| **DATA** | `PostgreSQL` · `SQLite (WAL)` | [ACTIVE] |
-| **FRONTEND** | `React` · `HTML5` / `Vanilla CSS` / `Vanilla JS` | [ACTIVE] |
+| **BACKEND** | `FastAPI` · `Spring Boot` · `Express` · `C++` | [ACTIVE] |
+| **DATA** | `PostgreSQL` · `SQLite (WAL)` · `MongoDB` | [ACTIVE] |
+| **FRONTEND** | `React` · `HTML5` · `Vanilla CSS` · `Vanilla JS` | [ACTIVE] |
+| **METHOD** | `Test-Driven Development (TDD)` | [ENFORCED] |
 | **DEPLOY** | `Vercel` · `Render` · `Neon` | [SHIPPED] |
-| **FONTS** | `Space Grotesk` + `JetBrains Mono` | [IMPORTED] |
-| **THEMING** | `Custom Dual-Mode CSS Variables` (Light/Dark) | [ENFORCED] |
+| **THEMING** | `Dual-Theme Engine` (Light & Dark CSS Variables) | [ENFORCED] |
 
 ---
 
-## /// FEATURED_PROJECTS
+## /// SHIPPED_PROJECTS
 
 ### 01. DEALERSHIP INVENTORY SYSTEM
 > Full-stack car dealership inventory system, built strict-TDD from red-green-refactor first.
@@ -50,44 +50,42 @@ It's not about being pretty. It's about being **BOLD**.
 > - **Deployment**: Neon, Render, and Vercel
 
 ### 02. MEDIFLY
-> Five-role pharmacy delivery ecosystem — User, Pharmacy, Pharmacist, Rider, Admin.
-> - **Stack**: `Express` · `SQLite (WAL)` · `React` · `Leaflet.js`
-> - **Highlights**: Role-based routing, real-time map tracking, WAL-mode SQLite database.
+> Five-role pharmacy delivery ecosystem — User, Pharmacy, Pharmacist, Rider, Admin — targeting sub-100ms API responses.
+> - **Stack**: `Java` · `Spring Boot` · `5-Role Auth`
+
+### 03. CUSTOMBIX
+> Test-generator scraper with Cheerio, worker_threads PDF parsing, SQLite WAL mode, OTP auth, and circuit-breaker resilience.
+> - **Stack**: `Node.js` · `Express` · `SQLite WAL` · `Circuit Breaker`
+
+### 04. VISION-HUB
+> MERN-stack video streaming platform covering upload, playback, and full-stack pipeline state management.
+> - **Stack**: `MongoDB` · `Express` · `React` · `Node.js`
 
 ---
 
-## /// FEATURES_LOG
+## /// FEATURED_MODULES & INTEGRATIONS
 
-### 01. CUSTOM_CURSOR
-> Custom-built crosshair/dot cursor that reacts dynamically to interactive elements.
-> - **Normal State**: Subtle dot/crosshair locator.
-> - **Hover State**: Expands to a Neo-Yellow block with thick black borders.
+### 01. LIVE DEVELOPER STATS DASHBOARD
+> Real-time, dual-card integration visualizing GitHub & LeetCode activity.
+> - **GitHub (`@em-srs`)**: Live repo, follower, star counters, stack badges, and 52-week green contribution streak calendar.
+> - **LeetCode (`@me_srs`)**: Compact donut gauge, solved difficulty stats (Easy/Medium/Hard), 50 Days Badge, and 52-week green submission heatmap.
+> - **Dual Theme Renderer**: Custom CSS rules guaranteeing bright green streak dot visibility in both Light and Dark modes.
 
-### 02. DUAL_THEME_ENGINE
-> Instant Light/Dark mode theme switcher.
-> - **Custom Slider**: Animated sliding highlight badge indicator.
-> - **Dynamic Assets**: Automatically toggles LeetCard theme between light and dark modes.
+### 02. RESPONSIVE CSS GRID ARCHITECTURE
+> Site-wide responsive layout engineered with CSS Grid and fluid `clamp()` typography.
+> - **Desktop (≥1024px)**: Multi-column content vs media grids.
+> - **Tablet (768px–1023px)**: Adaptive 2-column grids with tight gaps.
+> - **Mobile (<768px)**: 1-column vertical stacking, 2x2 CTA button grids, and 16px edge padding.
+> - **Sticky Header**: `position: sticky; top: 0; z-index: 100` with `scroll-margin-top: 75px` on all section anchors.
 
-### 03. GLITCH_EFFECTS
-> CSS-only glitch animations on titles and interactives.
-> - High-contrast `data-text` pseudo-element overlays.
-> - Keyframe jitter for an authentic digital disruption feel.
+### 03. DUAL-THEME ENGINE
+> Instant Light/Dark theme toggle with animated indicator badge and localStorage state persistence.
 
-### 04. MARQUEE_SCROLL
-> Infinite dual-direction scrolling text banners.
-> - Pure CSS marquee animation loops.
-> - **Direction**: Alternating Left-to-Right & Right-to-Left velocity tracks.
+### 04. INTERACTIVE BOOT TERMINAL & HERO VIDEO
+> Real-time typing terminal emulator paired with a portrait video frame in the hero section.
 
-### 05. REVEAL_ANIMATION
-> Elements reveal themselves gracefully as you scroll.
-> - Built with native `IntersectionObserver` API.
-> - Smooth translate-Y transitions with reduced-motion support.
-
-### 06. CODING_STATS_INTEGRATION
-> Real-time data visualization of developer activity.
-> - **Dual-Profile Interface**: Side-by-side GitHub (`em-srs`) and LeetCode (`me_srs`) stats.
-> - **LeetCard Integration**: Real-time problem-solving heatmap card.
-> - **Activity Metrics**: Highlighting repos, commits, and problem counts.
+### 05. THROUGH THE LENS (PHOTOGRAPHY)
+> Dynamic slideshow showcasing personal photography hobby ([srs-shots.vercel.app](https://srs-shots.vercel.app/)) with aspect ratio detection and smooth transitions.
 
 ---
 
@@ -95,8 +93,14 @@ It's not about being pretty. It's about being **BOLD**.
 
 ```bash
 .
-├── index.html           # [FILE] Main Entry Point (Neo-Brutalist Architecture)
-└── README.md            # [FILE] You are here
+├── assets/              # Images, videos, resume PDF, and poster frames
+│   ├── hero/            # Hero section animated video assets
+│   ├── imgs/            # Lens photography collection
+│   └── portfolio resume.pdf # Resume document
+├── index.html           # Main Entry Point (Neo-Brutalist HTML5 Architecture)
+├── style.css            # Core Design System, Variables, Grid Breakpoints, Dark Mode
+├── script.js           # Live API Fetching, Heatmap Rendering, Theme Switcher
+└── README.md            # System Documentation
 ```
 
 ---
@@ -106,11 +110,10 @@ It's not about being pretty. It's about being **BOLD**.
 **TRANSMISSION OPEN:**
 - **GITHUB**: [`em-srs`](https://github.com/em-srs)
 - **LINKEDIN**: [`srs1717`](https://linkedin.com/in/srs1717)
-- **PHOTOGRAPHY**: [`em-srs.vercel.app`](https://em-srs.vercel.app)
+- **LEETCODE**: [`me_srs`](https://leetcode.com/u/me_srs/)
+- **PHOTOGRAPHY**: [`srs-shots.vercel.app`](https://srs-shots.vercel.app/)
 - **LOCATION**: `Mohali, Punjab, IN`
-- **EDUCATION**: `B.Tech CSE (2023–2027) · CEC-CGC Mohali / IKGPTU`
-
-> "I build digital products that refuse to be boring."
+- **STATUS**: `OPEN TO INTERNSHIPS / FULL-TIME SDE`
 
 ---
 **© 2026 SUNNY KUMAR // SYSTEM_END**

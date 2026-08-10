@@ -81,7 +81,7 @@ function renderGitHubHeatmap() {
     const grid = document.getElementById('gh-heatmap-grid');
     if (!grid) return;
     grid.innerHTML = '';
-    
+
     // 52 weeks x 7 days = 364 dots grid
     // Replicates active commit pattern matching user's profile
     for (let col = 0; col < 52; col++) {
@@ -117,14 +117,14 @@ fetch('https://api.github.com/users/em-srs')
         if (followersEl) followersEl.textContent = d.followers ?? '2';
         if (followingEl) followingEl.textContent = d.following ?? '4';
     })
-    .catch(() => {});
+    .catch(() => { });
 
 // ---- leetcode heatmap & stats ----
 function renderLeetCodeHeatmap() {
     const grid = document.getElementById('lc-heatmap-grid');
     if (!grid) return;
     grid.innerHTML = '';
-    
+
     // 52 weeks x 7 days = 364 dots grid
     // Matches activity pattern from user's profile screenshot
     for (let col = 0; col < 52; col++) {
@@ -132,7 +132,7 @@ function renderLeetCodeHeatmap() {
             const dot = document.createElement('div');
             dot.className = 'lc-dot';
             let level = 0;
-            
+
             // Replicate realistic submission distribution
             if (col === 8 && row === 5) level = 2; // Oct
             else if (col >= 22 && col <= 26 && (row === 1 || row === 4)) level = (row % 2) + 1; // Feb-Mar
@@ -174,7 +174,7 @@ async function fetchLeetCodeStats() {
             clearTimeout(timeoutId);
             if (!res.ok) continue;
             const data = await res.json();
-            
+
             let easy = null, medium = null, hard = null, total = null;
             if (data.totalSolved !== undefined) {
                 total = data.totalSolved;
