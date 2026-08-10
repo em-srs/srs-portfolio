@@ -227,7 +227,7 @@ a {
 
 #hero-grid {
     display: grid;
-    grid-template-columns: 1.1fr 1fr 0.8fr;
+    grid-template-columns: 1.3fr 1fr;
     gap: 24px;
     align-items: start;
     width: 100%;
@@ -239,16 +239,26 @@ a {
     box-shadow: 8px 8px 0 var(--ink);
     padding: 6px;
     width: 100%;
-    max-width: 220px;
-    margin: 0 auto;
+    max-width: 260px;
+    height: fit-content;
 }
 
 .hero-avatar-video {
     display: block;
     width: 100%;
     height: auto;
-    max-height: 260px;
+    aspect-ratio: 1464 / 1080;
     object-fit: cover;
+}
+
+@media (max-width: 900px) {
+    .hero-wrap {
+        flex-direction: column;
+    }
+    .hero-avatar-frame {
+        max-width: 220px;
+        margin: 24px auto 0;
+    }
 }
 
 @media (max-width: 600px) {
@@ -261,10 +271,6 @@ a {
         width: 102%;
         height: 118%;
         transform: translate(-50%, -50%) rotate(-1deg);
-    }
-    .hero-avatar-frame {
-        max-width: 200px;
-        margin: 0 auto;
     }
 }
 

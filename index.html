@@ -49,8 +49,8 @@
     <!-- ============ HERO ============ -->
     <header class="border-b4" style="position:relative; overflow:hidden;">
         <div class="grid-lines"></div>
-        <div class="wrap" style="position:relative; padding:70px 24px 50px;">
-            <div class="hero-content">
+        <div class="wrap hero-wrap" style="position:relative; padding:70px 24px 50px; display:flex; gap:48px; align-items:flex-start; flex-wrap:wrap;">
+            <div class="hero-content" style="flex:1 1 520px; min-width:0;">
                 <div class="hero-status-tag">
                     <span class="tag">STATUS: OPEN_TO_INTERNSHIPS_/_FULL-TIME_SDE</span>
                 </div>
@@ -73,7 +73,7 @@
                     <h2 class="hero-subtitle">// BACKEND &amp; FULL-STACK ENGINEER</h2>
                 </div>
 
-                <div style="display:grid; grid-template-columns:1.1fr 1fr 0.8fr; gap:24px; align-items:start; width:100%;"
+                <div style="display:grid; grid-template-columns:1.3fr 1fr; gap:24px; align-items:start; width:100%;"
                     id="hero-grid">
                     <p style="font-size:1.05rem; max-width:52ch; line-height:1.6; margin:0;">
                         Final-year B.Tech CSE student building backend systems that don't fall over —
@@ -81,12 +81,6 @@
                         padded resumes never. Also shoot portraits and moonshots when the terminal's closed.
                     </p>
                     <div id="boot" class="border-t4" style="padding-top:14px; width:100%;"></div>
-                    <div class="hero-avatar-frame">
-                        <video class="hero-avatar-video" autoplay muted loop playsinline poster="assets/hero/sunny-idle-poster.jpg">
-                            <source src="assets/hero/sunny-idle.webm" type="video/webm">
-                            <source src="assets/hero/sunny-idle.mp4" type="video/mp4">
-                        </video>
-                    </div>
                 </div>
 
                 <div style="margin-top:36px; display:flex; gap:14px; flex-wrap:wrap;">
@@ -96,6 +90,13 @@
                     <a href="https://github.com/em-srs" target="_blank" class="btn alt">GitHub</a>
                     <a href="https://linkedin.com/in/srs1717" target="_blank" class="btn alt">LinkedIn</a>
                 </div>
+            </div>
+
+            <div class="hero-avatar-frame" style="flex:0 0 260px; align-self:flex-start; margin-top:8px;">
+                <video class="hero-avatar-video" autoplay muted loop playsinline poster="assets/hero/sunny-idle-poster.jpg">
+                    <source src="assets/hero/sunny-idle.webm" type="video/webm">
+                    <source src="assets/hero/sunny-idle.mp4" type="video/mp4">
+                </video>
             </div>
         </div>
     </header>
