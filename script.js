@@ -191,9 +191,9 @@ async function fetchLeetCodeStats() {
 
             if (total && easy !== undefined) {
                 totalEl.textContent = total;
-                if (easyValEl) easyValEl.innerHTML = `${easy}<span style="font-size:.75rem; opacity:0.6;"> / 958</span>`;
-                if (medValEl) medValEl.innerHTML = `${medium}<span style="font-size:.75rem; opacity:0.6;"> / 2098</span>`;
-                if (hardValEl) hardValEl.innerHTML = `${hard}<span style="font-size:.75rem; opacity:0.6;"> / 961</span>`;
+                if (easyValEl) easyValEl.innerHTML = `${easy}<span style="font-size:.56rem; opacity:0.6;">/958</span>`;
+                if (medValEl) medValEl.innerHTML = `${medium}<span style="font-size:.56rem; opacity:0.6;">/2098</span>`;
+                if (hardValEl) hardValEl.innerHTML = `${hard}<span style="font-size:.56rem; opacity:0.6;">/961</span>`;
                 break;
             }
         } catch (e) {
