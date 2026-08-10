@@ -49,57 +49,62 @@
     <!-- ============ HERO ============ -->
     <header class="border-b4" style="position:relative; overflow:hidden;">
         <div class="grid-lines"></div>
-        <div class="wrap" style="position:relative; padding:70px 24px 50px;">
-            <!-- Upper Section: Name, Subtitle, Bio on Left; Video Frame on Right -->
-            <div style="display:flex; justify-content:space-between; align-items:start; gap:36px; flex-wrap:wrap;">
-                <div class="hero-content" style="flex:1 1 500px; min-width:0;">
-                    <div class="hero-status-tag">
-                        <span class="tag">STATUS: OPEN_TO_INTERNSHIPS_/_FULL-TIME_SDE</span>
-                    </div>
-
-                    <div class="hero-name-wrap">
-                        <svg class="hero-ribbon-svg" viewBox="0 0 800 140" preserveAspectRatio="none" aria-hidden="true">
-                            <path
-                                d="M 8,22 C 180,8 440,32 788,14 C 797,42 793,92 780,122 C 540,136 210,108 14,126 C 4,90 2,48 8,22 Z"
-                                fill="var(--ribbon-yellow)" />
-                        </svg>
-                        <h1 class="glitch hero-name" data-text="SUNNY KUMAR">SUNNY KUMAR</h1>
-                    </div>
-
-                    <div class="hero-subtitle-wrap">
-                        <svg class="hero-marker-svg" viewBox="0 0 600 60" preserveAspectRatio="none" aria-hidden="true">
-                            <path
-                                d="M 6,12 C 140,5 340,18 592,8 C 598,22 595,44 588,52 C 400,56 170,46 8,54 C 2,38 3,22 6,12 Z"
-                                fill="var(--marker-red)" />
-                        </svg>
-                        <h2 class="hero-subtitle">// BACKEND &amp; FULL-STACK ENGINEER</h2>
-                    </div>
-
-                    <p style="font-size:1.05rem; max-width:52ch; line-height:1.6; margin:0;">
-                        Final-year B.Tech CSE student building backend systems that don't fall over —
-                        C++, Java, Spring Boot, FastAPI, PostgreSQL. Clean architecture over quick hacks,
-                        padded resumes never. Also shoot portraits and moonshots when the terminal's closed.
-                    </p>
+        <div class="wrap hero-wrap" style="position:relative; padding:70px 24px 50px; display:flex; gap:40px; align-items:start; flex-wrap:wrap;">
+            <!-- Left Column: Headline, Bio, Divider Line, Boot Terminal & Buttons -->
+            <div class="hero-content" style="flex:1 1 540px; min-width:0;">
+                <div class="hero-status-tag">
+                    <span class="tag">STATUS: OPEN_TO_INTERNSHIPS_/_FULL-TIME_SDE</span>
                 </div>
 
-                <div class="hero-avatar-frame" style="flex:0 0 260px; margin-top:8px;">
-                    <video class="hero-avatar-video" autoplay muted loop playsinline poster="assets/hero/sunny-idle-poster.jpg">
-                        <source src="assets/hero/sunny-idle.webm" type="video/webm">
-                        <source src="assets/hero/sunny-idle.mp4" type="video/mp4">
-                    </video>
+                <div class="hero-name-wrap">
+                    <svg class="hero-ribbon-svg" viewBox="0 0 800 140" preserveAspectRatio="none" aria-hidden="true">
+                        <path
+                            d="M 8,22 C 180,8 440,32 788,14 C 797,42 793,92 780,122 C 540,136 210,108 14,126 C 4,90 2,48 8,22 Z"
+                            fill="var(--ribbon-yellow)" />
+                    </svg>
+                    <h1 class="glitch hero-name" data-text="SUNNY KUMAR">SUNNY KUMAR</h1>
+                </div>
+
+                <div class="hero-subtitle-wrap">
+                    <svg class="hero-marker-svg" viewBox="0 0 600 60" preserveAspectRatio="none" aria-hidden="true">
+                        <path
+                            d="M 6,12 C 140,5 340,18 592,8 C 598,22 595,44 588,52 C 400,56 170,46 8,54 C 2,38 3,22 6,12 Z"
+                            fill="var(--marker-red)" />
+                    </svg>
+                    <h2 class="hero-subtitle">// BACKEND &amp; FULL-STACK ENGINEER</h2>
+                </div>
+
+                <p style="font-size:1.05rem; max-width:54ch; line-height:1.6; margin:0 0 24px;">
+                    Final-year B.Tech CSE student building backend systems that don't fall over —
+                    C++, Java, Spring Boot, FastAPI, PostgreSQL. Clean architecture over quick hacks,
+                    padded resumes never. Also shoot portraits and moonshots when the terminal's closed.
+                </p>
+
+                <!-- Divider Line -->
+                <div class="border-t4" style="padding-top:14px;"></div>
+
+                <!-- Bottom Row: Boot Terminal + CTA Buttons Inline -->
+                <div class="hero-bottom-row" style="display:flex; gap:24px; align-items:start; flex-wrap:wrap; margin-top:8px;">
+                    <div id="boot" style="flex:1; min-width:240px;"></div>
+                    <div class="hero-cta-btns" style="display:flex; flex-direction:column; gap:10px; flex-shrink:0;">
+                        <div style="display:flex; gap:10px;">
+                            <a href="#work" class="btn" style="padding:10px 18px; font-size:.85rem;">View Work ↓</a>
+                            <a href="assets/portfolio%20resume.pdf" target="_blank" class="btn alt" style="background:var(--yellow); color:#0B0B0B; padding:10px 18px; font-size:.85rem;">Resume ↗</a>
+                        </div>
+                        <div style="display:flex; gap:10px;">
+                            <a href="https://github.com/em-srs" target="_blank" class="btn alt" style="padding:8px 16px; font-size:.8rem; flex:1; text-align:center;">GitHub</a>
+                            <a href="https://linkedin.com/in/srs1717" target="_blank" class="btn alt" style="padding:8px 16px; font-size:.8rem; flex:1; text-align:center;">LinkedIn</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Full-width Divider Line & Boot Terminal Section -->
-            <div id="boot" class="border-t4" style="margin-top:32px; padding-top:16px;"></div>
-
-            <!-- Button Row -->
-            <div style="margin-top:32px; display:flex; gap:14px; flex-wrap:wrap;">
-                <a href="#work" class="btn">View Work ↓</a>
-                <a href="assets/portfolio%20resume.pdf" target="_blank" class="btn alt"
-                    style="background:var(--yellow); color:#0B0B0B;">Resume ↗</a>
-                <a href="https://github.com/em-srs" target="_blank" class="btn alt">GitHub</a>
-                <a href="https://linkedin.com/in/srs1717" target="_blank" class="btn alt">LinkedIn</a>
+            <!-- Right Column: Vertical Portrait Animated Video Frame -->
+            <div class="hero-avatar-frame" style="flex:0 0 320px; max-width:320px; align-self:start; margin-top:4px;">
+                <video class="hero-avatar-video" autoplay muted loop playsinline poster="assets/hero/sunny-idle-poster.jpg">
+                    <source src="assets/hero/sunny-idle.webm" type="video/webm">
+                    <source src="assets/hero/sunny-idle.mp4" type="video/mp4">
+                </video>
             </div>
         </div>
     </header>

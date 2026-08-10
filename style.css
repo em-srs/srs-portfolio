@@ -236,10 +236,10 @@ a {
 .hero-avatar-frame {
     background: #0B0B0B;
     border: var(--line) solid var(--ink);
-    box-shadow: 8px 8px 0 var(--ink);
+    box-shadow: 10px 10px 0 var(--ink);
     padding: 6px;
     width: 100%;
-    max-width: 260px;
+    max-width: 320px;
     height: fit-content;
 }
 
@@ -247,16 +247,16 @@ a {
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 1464 / 1080;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 960px) {
     .hero-wrap {
         flex-direction: column;
     }
     .hero-avatar-frame {
-        max-width: 220px;
+        max-width: 280px;
         margin: 24px auto 0;
     }
 }
