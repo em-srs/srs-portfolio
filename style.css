@@ -225,15 +225,30 @@ a {
     z-index: 1;
 }
 
-.hero-avatar-video {
+#hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 0.8fr;
+    gap: 24px;
+    align-items: start;
     width: 100%;
-    max-width: 240px;
+}
+
+.hero-avatar-frame {
+    background: #0B0B0B;
     border: var(--line) solid var(--ink);
+    box-shadow: 8px 8px 0 var(--ink);
+    padding: 6px;
+    width: 100%;
+    max-width: 220px;
+    margin: 0 auto;
+}
+
+.hero-avatar-video {
     display: block;
-    background: var(--yellow);
-    aspect-ratio: 1464 / 1080;
+    width: 100%;
+    height: auto;
+    max-height: 260px;
     object-fit: cover;
-    margin-top: 16px;
 }
 
 @media (max-width: 600px) {
@@ -247,8 +262,9 @@ a {
         height: 118%;
         transform: translate(-50%, -50%) rotate(-1deg);
     }
-    .hero-avatar-video {
-        max-width: 100%;
+    .hero-avatar-frame {
+        max-width: 200px;
+        margin: 0 auto;
     }
 }
 
