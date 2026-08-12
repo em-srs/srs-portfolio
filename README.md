@@ -44,10 +44,11 @@ It's not about being pretty. It's about being **BOLD**, **FAST**, and **RELIABLE
 
 ## /// SHIPPED_PROJECTS
 
-### 01. DEALERSHIP INVENTORY SYSTEM
+### 01. DRIVEHUB DEALERSHIP
 > Full-stack car dealership inventory system, built strict-TDD from red-green-refactor first.
 > - **Stack**: `FastAPI` · `PostgreSQL` · `React` · `TDD`
 > - **Deployment**: Neon, Render, and Vercel
+> - **Live Demo**: [srs-dealership.vercel.app](https://srs-dealership.vercel.app/)
 
 ### 02. MEDIFLY
 > Five-role pharmacy delivery ecosystem — User, Pharmacy, Pharmacist, Rider, Admin — targeting sub-100ms API responses.
