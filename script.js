@@ -354,7 +354,7 @@ function initLiveProjectPreviews() {
         if (liveUrl && img) {
             const version = wrap.dataset.v || wrap.dataset.version || '';
             const targetUrl = version ? (liveUrl.includes('?') ? `${liveUrl}&v=${version}` : `${liveUrl}?v=${version}`) : liveUrl;
-            const screenshotUrl = `https://api.microlink.io/?url=${encodeURIComponent(targetUrl)}&screenshot=true&meta=false&embed=screenshot.url`;
+            const screenshotUrl = `https://api.microlink.io/?url=${encodeURIComponent(targetUrl)}&screenshot=true&meta=false&embed=screenshot.url&prerender=true`;
             img.src = screenshotUrl;
 
             img.onload = () => {
