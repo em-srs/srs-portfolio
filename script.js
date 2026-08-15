@@ -474,3 +474,81 @@ if (document.readyState !== 'loading') {
     initLiveProjectPreviews();
 }
 
+// ---- contact form transmission handler ----
+function initContactFormHandler() {
+    const contactForm = document.getElementById('contact-form');
+    const contactSubmitBtn = document.getElementById('contact-submit-btn');
+    const contactStatusMsg = document.getElementById('contact-status-msg');
+
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const nameInput = contactForm.querySelector('[name="name"]');
+        const emailInput = contactForm.querySelector('[name="email"]');
+        const messageInput = contactForm.querySelector('[name="message"]');
+
+        const name = nameInput ? nameInput.value.trim() : '';
+        const email = emailInput ? emailInput.value.trim() : '';
+        const message = messageInput ? messageInput.value.trim() : '';
+
+        if (!name || !email || !message) return;
+
+        if (contactSubmitBtn) {
+            contactSubmitBtn.disabled = true;
+            contactSubmitBtn.textContent = 'TRANSMITTING...';
+        }
+
+        if (contactStatusMsg) {
+            contactStatusMsg.style.display = 'none';
+        }
+
+        try {
+            const res = await fetch('https://formsubmit.co/ajax/sunnyprfrvr@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    message: message,
+                    _subject: `[Portfolio Transmission] Message from ${name}`
+                })
+            });
+
+            if (res.ok) {
+                if (contactStatusMsg) {
+                    contactStatusMsg.style.display = 'block';
+                    contactStatusMsg.style.background = 'var(--yellow)';
+                    contactStatusMsg.style.color = '#0B0B0B';
+                    contactStatusMsg.textContent = '✓ TRANSMISSION_SENT // RECEIPT_CONFIRMED';
+                }
+                contactForm.reset();
+            } else {
+                throw new Error('Form submit response not ok');
+            }
+        } catch (err) {
+            if (contactStatusMsg) {
+                contactStatusMsg.style.display = 'block';
+                contactStatusMsg.style.background = 'var(--pink)';
+                contactStatusMsg.style.color = '#FFFFFF';
+                contactStatusMsg.textContent = '✖ TRANSMISSION_FAILED // RETRY_LATER';
+            }
+        } finally {
+            if (contactSubmitBtn) {
+                contactSubmitBtn.disabled = false;
+                contactSubmitBtn.textContent = 'Send →';
+            }
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initContactFormHandler);
+if (document.readyState !== 'loading') {
+    initContactFormHandler();
+}
+
+

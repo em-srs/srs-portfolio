@@ -556,11 +556,24 @@
         <div class="wrap">
             <h2 style="margin-bottom:26px;" data-reveal>// TRANSMIT</h2>
             <div id="contact-grid" data-reveal>
-                <form id="contact-form" style="display:grid; gap:14px;" onsubmit="return false;">
-                    <input type="text" placeholder="NAME" required>
-                    <input type="email" placeholder="EMAIL" required>
-                    <textarea rows="4" placeholder="MESSAGE" required></textarea>
-                    <button type="submit" class="btn" style="cursor:none;">Send →</button>
+                <form id="contact-form" action="https://formsubmit.co/sunnyprfrvr@gmail.com" method="POST" style="display:flex; flex-direction:column; gap:14px;">
+                    <div>
+                        <label style="display:block; font-size:.75rem; margin-bottom:4px; font-weight:700;">NAME</label>
+                        <input type="text" name="name" placeholder="YOUR NAME" required
+                            style="width:100%; padding:10px; border:2px solid var(--ink); background:var(--paper); color:var(--ink); font-family:inherit;" />
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:.75rem; margin-bottom:4px; font-weight:700;">EMAIL</label>
+                        <input type="email" name="email" placeholder="YOUR EMAIL" required
+                            style="width:100%; padding:10px; border:2px solid var(--ink); background:var(--paper); color:var(--ink); font-family:inherit;" />
+                    </div>
+                    <div>
+                        <label style="display:block; font-size:.75rem; margin-bottom:4px; font-weight:700;">MESSAGE</label>
+                        <textarea name="message" rows="4" placeholder="ENTER TRANSMISSION..." required
+                            style="width:100%; padding:10px; border:2px solid var(--ink); background:var(--paper); color:var(--ink); font-family:inherit; resize:vertical;"></textarea>
+                    </div>
+                    <div id="contact-status-msg" style="display:none; font-size:.8rem; font-weight:700; padding:10px 12px; border:2px solid var(--ink); box-shadow:2px 2px 0 var(--ink);"></div>
+                    <button id="contact-submit-btn" type="submit" class="btn" style="cursor:none;">Send →</button>
                 </form>
                 <div style="border:2px solid var(--ink); padding:22px; background:var(--paper);">
                     <p style="font-size:.85rem; margin:0 0 14px; font-weight:700;">DIRECT_COORDINATES:</p>
