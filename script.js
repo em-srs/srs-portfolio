@@ -354,8 +354,10 @@ function initLiveProjectPreviews() {
         if (liveUrl && img) {
             const version = wrap.dataset.v || wrap.dataset.version || '';
             const targetUrl = version ? (liveUrl.includes('?') ? `${liveUrl}&v=${version}` : `${liveUrl}?v=${version}`) : liveUrl;
-            const screenshotUrl = `https://api.microlink.io/?url=${encodeURIComponent(targetUrl)}&screenshot=true&meta=false&embed=screenshot.url&prerender=true`;
-            img.src = screenshotUrl;
+            const primaryUrl = `https://api.microlink.io/?url=${encodeURIComponent(targetUrl)}&screenshot=true&meta=false&embed=screenshot.url&prerender=true`;
+            const secondaryUrl = `https://s0.wp.com/mshots/v1/${encodeURIComponent(liveUrl)}?w=1280&h=800`;
+
+            img.src = primaryUrl;
 
             img.onload = () => {
                 img.classList.add('is-loaded');
@@ -363,9 +365,14 @@ function initLiveProjectPreviews() {
             };
 
             img.onerror = () => {
-                if (skeleton) skeleton.style.display = 'none';
-                img.style.display = 'none';
-                if (fallback) fallback.style.display = 'flex';
+                if (!img.dataset.triedFallback) {
+                    img.dataset.triedFallback = 'true';
+                    img.src = secondaryUrl;
+                } else {
+                    if (skeleton) skeleton.style.display = 'none';
+                    img.style.display = 'none';
+                    if (fallback) fallback.style.display = 'flex';
+                }
             };
         }
 
