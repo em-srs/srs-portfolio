@@ -940,3 +940,222 @@ textarea:focus {
         grid-template-columns: repeat(3, 1fr) !important;
     }
 }
+
+/* ---------- live project screenshot previews & interactive modal ---------- */
+.proj-preview-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    cursor: pointer;
+}
+
+.proj-preview-wrap:hover .preview-img {
+    filter: brightness(0.92);
+}
+
+.preview-skeleton {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--paper);
+    color: var(--ink);
+    z-index: 2;
+    animation: skeleton-pulse 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes skeleton-pulse {
+    0% { opacity: 0.65; background: var(--paper); }
+    100% { opacity: 1; background: var(--hairline); }
+}
+
+.preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.4s ease, filter 0.2s ease;
+}
+
+.preview-img.is-loaded {
+    opacity: 1;
+}
+
+.preview-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--paper);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    z-index: 3;
+    padding: 16px;
+    text-align: center;
+}
+
+.preview-overlay-btn-wrap {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 4;
+}
+
+.live-preview-btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    box-shadow: 2px 2px 0 var(--ink);
+}
+
+/* ---------- modal window ---------- */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.modal-backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-browser-window {
+    width: 100%;
+    max-width: 1100px;
+    height: 85vh;
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--ink);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.modal-chrome-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 14px;
+    gap: 12px;
+    border-bottom: 2px solid var(--ink);
+}
+
+.modal-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.modal-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.modal-dot.red { background: #FF5F56; }
+.modal-dot.yellow { background: #FFBD2E; }
+.modal-dot.green { background: #27C93F; }
+
+.modal-url-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 4px 12px;
+    border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    flex: 1;
+    max-width: 480px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.modal-body {
+    flex: 1;
+    position: relative;
+    background: #FFFFFF;
+    overflow: hidden;
+}
+
+.modal-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+.modal-iframe-disabled {
+    pointer-events: none;
+}
+
+.modal-interact-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(11, 11, 11, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    z-index: 5;
+    color: #FFFFFF;
+    cursor: pointer;
+    backdrop-filter: blur(2px);
+    transition: opacity 0.2s ease;
+}
+
+.modal-interact-overlay.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: var(--paper);
+    border-top: 2px solid var(--ink);
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.modal-cold-start-note {
+    font-size: 0.7rem;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+    .modal-browser-window {
+        height: 92vh;
+    }
+    .modal-url-bar {
+        max-width: 180px;
+    }
+}
+

@@ -339,3 +339,130 @@ if (lensImg && lensSlideshow) {
         scheduleLensSlide();
     });
 }
+
+// ---- live project screenshot previews & interactive modal ----
+function initLiveProjectPreviews() {
+    const previewWrappers = document.querySelectorAll('.proj-preview-wrap');
+
+    previewWrappers.forEach(wrap => {
+        const liveUrl = wrap.dataset.liveUrl;
+        const title = wrap.dataset.title || 'Project';
+        const img = wrap.querySelector('.preview-img');
+        const skeleton = wrap.querySelector('.preview-skeleton');
+        const fallback = wrap.querySelector('.preview-fallback');
+
+        if (liveUrl && img) {
+            // Compute Microlink screenshot URL dynamically with encodeURIComponent
+            const screenshotUrl = `https://api.microlink.io/?url=${encodeURIComponent(liveUrl)}&screenshot=true&meta=false&embed=screenshot.url`;
+            img.src = screenshotUrl;
+
+            img.onload = () => {
+                img.classList.add('is-loaded');
+                if (skeleton) skeleton.style.display = 'none';
+            };
+
+            img.onerror = () => {
+                if (skeleton) skeleton.style.display = 'none';
+                img.style.display = 'none';
+                if (fallback) fallback.style.display = 'flex';
+            };
+        }
+
+        // Clicking screenshot image container opens target live URL in a new tab
+        wrap.addEventListener('click', (e) => {
+            // Avoid triggering if user clicked the "LIVE PREVIEW 👁" button inside the container
+            if (e.target.closest('.live-preview-btn')) return;
+            if (liveUrl) {
+                window.open(liveUrl, '_blank', 'noopener,noreferrer');
+            }
+        });
+    });
+
+    // Modal elements
+    const modal = document.getElementById('preview-modal');
+    const modalIframe = document.getElementById('modal-iframe');
+    const modalUrlText = document.getElementById('modal-url-text');
+    const modalFullsiteLink = document.getElementById('modal-fullsite-link');
+    const modalColdNote = document.getElementById('modal-cold-note');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    const modalInteractOverlay = document.getElementById('modal-interact-overlay');
+    const modalUnlockBtn = document.getElementById('modal-unlock-btn');
+
+    function openPreviewModal(url, title, isColdStart = false) {
+        if (!modal || !modalIframe) return;
+
+        if (modalUrlText) modalUrlText.textContent = url;
+        if (modalFullsiteLink) modalFullsiteLink.href = url;
+        if (modalColdNote) {
+            modalColdNote.style.display = isColdStart ? 'inline-block' : 'none';
+        }
+
+        // Reset scroll-hijack overlay state
+        if (modalInteractOverlay) modalInteractOverlay.classList.remove('is-hidden');
+        if (modalIframe) {
+            modalIframe.classList.add('modal-iframe-disabled');
+            modalIframe.src = url; // Mount iframe on modal open
+        }
+
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    function closePreviewModal() {
+        if (!modal || !modalIframe) return;
+
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+
+        // Unmount iframe on close to stop background load/polling
+        modalIframe.src = '';
+        modalIframe.classList.add('modal-iframe-disabled');
+        if (modalInteractOverlay) modalInteractOverlay.classList.remove('is-hidden');
+    }
+
+    // Modal trigger buttons
+    document.querySelectorAll('[data-open-modal]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const url = btn.dataset.openModal;
+            const title = btn.dataset.title;
+            const isColdStart = btn.dataset.coldStart === 'true';
+            if (url) openPreviewModal(url, title, isColdStart);
+        });
+    });
+
+    // Unlock interactive mode overlay
+    if (modalUnlockBtn && modalInteractOverlay && modalIframe) {
+        modalUnlockBtn.addEventListener('click', () => {
+            modalInteractOverlay.classList.add('is-hidden');
+            modalIframe.classList.remove('modal-iframe-disabled');
+        });
+        modalInteractOverlay.addEventListener('click', () => {
+            modalInteractOverlay.classList.add('is-hidden');
+            modalIframe.classList.remove('modal-iframe-disabled');
+        });
+    }
+
+    // Close listeners
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', closePreviewModal);
+    }
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closePreviewModal();
+        });
+    }
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && modal.classList.contains('is-open')) {
+            closePreviewModal();
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initLiveProjectPreviews);
+if (document.readyState !== 'loading') {
+    initLiveProjectPreviews();
+}
+
