@@ -352,8 +352,9 @@ function initLiveProjectPreviews() {
         const fallback = wrap.querySelector('.preview-fallback');
 
         if (liveUrl && img) {
-            // Compute Microlink screenshot URL dynamically with encodeURIComponent
-            const screenshotUrl = `https://api.microlink.io/?url=${encodeURIComponent(liveUrl)}&screenshot=true&meta=false&embed=screenshot.url`;
+            const version = wrap.dataset.v || wrap.dataset.version || '';
+            const targetUrl = version ? (liveUrl.includes('?') ? `${liveUrl}&v=${version}` : `${liveUrl}?v=${version}`) : liveUrl;
+            const screenshotUrl = `https://api.microlink.io/?url=${encodeURIComponent(targetUrl)}&screenshot=true&meta=false&embed=screenshot.url`;
             img.src = screenshotUrl;
 
             img.onload = () => {
