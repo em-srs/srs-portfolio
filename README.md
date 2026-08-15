@@ -110,7 +110,7 @@ It's not about being pretty. It's about being **BOLD**, **FAST**, and **RELIABLE
 
 **TRANSMISSION OPEN:**
 - **GITHUB**: [`em-srs`](https://github.com/em-srs)
-- **LINKEDIN**: [`srs1717`](https://linkedin.com/in/srs1717)
+- **LINKEDIN**: [`em-srs`](https://linkedin.com/in/em-srs)
 - **LEETCODE**: [`me_srs`](https://leetcode.com/u/me_srs/)
 - **PHOTOGRAPHY**: [`srs-shots.vercel.app`](https://srs-shots.vercel.app/)
 - **LOCATION**: `Mohali, Punjab, IN`
