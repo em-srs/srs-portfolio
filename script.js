@@ -43,9 +43,12 @@ if (cursor && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
     });
-    document.querySelectorAll('a, button, input, textarea, #lens-slideshow').forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    document.addEventListener('mouseover', e => {
+        if (e.target.closest('a, button, input, textarea, #lens-slideshow, .modal-interact-overlay, [role="button"]')) {
+            cursor.classList.add('hover');
+        } else {
+            cursor.classList.remove('hover');
+        }
     });
 }
 
