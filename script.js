@@ -354,7 +354,7 @@ function initLiveProjectPreviews() {
         if (liveUrl && img) {
             const version = wrap.dataset.v || wrap.dataset.version || '';
             const targetUrl = version ? (liveUrl.includes('?') ? `${liveUrl}&v=${version}` : `${liveUrl}?v=${version}`) : liveUrl;
-            const primaryUrl = `https://api.microlink.io/?url=${encodeURIComponent(targetUrl)}&screenshot=true&meta=false&embed=screenshot.url&prerender=true`;
+            const primaryUrl = `https://api.microlink.io/?url=${encodeURIComponent(targetUrl)}&screenshot=true&meta=false&embed=screenshot.url&prerender=true&waitForTimeout=3000`;
             const secondaryUrl = `https://s0.wp.com/mshots/v1/${encodeURIComponent(liveUrl)}?w=1280&h=800`;
 
             img.src = primaryUrl;
