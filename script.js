@@ -86,26 +86,34 @@ function typeBoot() {
 typeBoot();
 
 // ---- github heatmap & live stats ----
-function renderGitHubHeatmap() {
+const BASELINE_GITHUB_CONTRIBUTIONS = {"2026-06-14": 2, "2026-07-19": 1, "2026-07-26": 1, "2026-08-16": 4, "2026-06-15": 2, "2026-07-27": 1, "2026-08-03": 1, "2026-08-10": 3, "2026-07-28": 1, "2026-08-04": 1, "2026-08-11": 4, "2026-04-29": 1, "2026-07-29": 4, "2026-08-05": 1, "2026-08-12": 2, "2026-01-29": 1, "2026-07-23": 1, "2026-07-30": 4, "2026-08-13": 2, "2026-05-01": 1, "2026-06-12": 1, "2026-07-31": 1, "2026-08-07": 1, "2026-08-01": 1, "2026-08-15": 1};
+
+function renderGitHubHeatmap(contribData = null) {
     const grid = document.getElementById('gh-heatmap-grid');
     if (!grid) return;
     grid.innerHTML = '';
 
-    // 52 weeks x 7 days = 364 dots grid
+    const data = contribData || BASELINE_GITHUB_CONTRIBUTIONS;
+    const today = new Date();
+    const todayDayOfWeek = today.getDay(); // 0 = Sun, 1 = Mon, ..., 6 = Sat
+    const now = today.getTime();
+    const dayMs = 86400 * 1000;
+
     for (let col = 0; col < 52; col++) {
         for (let row = 0; row < 7; row++) {
             const dot = document.createElement('div');
             dot.className = 'lc-dot';
             let level = 0;
 
-            if (col >= 8 && col <= 18 && (row === 2 || row === 5)) level = 1;
-            else if (col >= 19 && col <= 32 && (row % 2 === 0)) level = (row % 3) + 1;
-            else if (col >= 33 && col <= 51) {
-                const val = (col * 3 + row) % 7;
-                if (val < 2) level = 3;
-                else if (val < 4) level = 4;
-                else if (val < 6) level = 2;
-                else level = 1;
+            const daysAgo = (51 - col) * 7 + (todayDayOfWeek - row);
+            if (daysAgo >= 0) {
+                const dt = new Date(now - daysAgo * dayMs);
+                const yyyy = dt.getFullYear();
+                const mm = String(dt.getMonth() + 1).padStart(2, '0');
+                const dd = String(dt.getDate()).padStart(2, '0');
+                const dateKey = `${yyyy}-${mm}-${dd}`;
+
+                level = data[dateKey] || 0;
             }
 
             if (level > 0) dot.classList.add('l' + level);
@@ -120,14 +128,17 @@ async function fetchGitHubStats() {
     const followersEl = document.getElementById('gh-followers-val');
     const followingEl = document.getElementById('gh-following-val');
     const starsEl = document.getElementById('gh-stars-val');
+    const reposTagEl = document.getElementById('gh-repos-tag');
+    const starsTagEl = document.getElementById('gh-stars-tag');
 
     try {
         const res = await fetch('https://api.github.com/users/em-srs');
         if (res.ok) {
             const d = await res.json();
             if (reposEl) reposEl.textContent = d.public_repos ?? '8';
-            if (followersEl) followersEl.textContent = d.followers ?? '2';
-            if (followingEl) followingEl.textContent = d.following ?? '4';
+            if (followersEl) followersEl.textContent = d.followers ?? '1';
+            if (followingEl) followingEl.textContent = d.following ?? '5';
+            if (reposTagEl) reposTagEl.textContent = d.public_repos ?? '8';
         }
     } catch (e) { }
 
@@ -138,6 +149,7 @@ async function fetchGitHubStats() {
             if (Array.isArray(repos)) {
                 const totalStars = repos.reduce((acc, r) => acc + (r.stargazers_count || 0), 0);
                 if (starsEl) starsEl.textContent = totalStars;
+                if (starsTagEl) starsTagEl.textContent = totalStars;
             }
         }
     } catch (e) { }
@@ -145,13 +157,21 @@ async function fetchGitHubStats() {
 fetchGitHubStats();
 
 // ---- leetcode heatmap & stats ----
+const BASELINE_LEETCODE_CALENDAR = {"1768953600": 1, "1769385600": 1, "1770163200": 1, "1772236800": 11, "1772323200": 6, "1772409600": 8, "1772496000": 2, "1772668800": 2, "1772755200": 5, "1772841600": 9, "1773014400": 2, "1773446400": 2, "1773532800": 1, "1776816000": 1, "1777248000": 23, "1777420800": 9, "1779062400": 5, "1780099200": 3, "1780531200": 5, "1780790400": 42, "1780963200": 5, "1781049600": 1, "1781136000": 5, "1781222400": 3, "1781308800": 2, "1781395200": 1, "1781481600": 1, "1781568000": 2, "1781654400": 2, "1781740800": 1, "1781827200": 1, "1781913600": 1, "1782000000": 1, "1782086400": 1, "1782259200": 1, "1782950400": 4, "1783382400": 4, "1783555200": 2, "1783641600": 10, "1783728000": 5, "1783814400": 5, "1783900800": 5, "1783987200": 5, "1784073600": 12, "1784160000": 7, "1784246400": 1, "1784332800": 3, "1784419200": 1, "1784505600": 1, "1784592000": 8, "1784764800": 1, "1784851200": 4, "1784937600": 4, "1785024000": 5, "1785110400": 1, "1785196800": 1, "1785283200": 2, "1785369600": 1, "1785456000": 3, "1785628800": 1, "1785888000": 1, "1785974400": 7, "1786060800": 6, "1786147200": 5, "1786233600": 8, "1786320000": 1, "1786406400": 1, "1786492800": 1, "1786579200": 1, "1786752000": 3, "1756771200": 2, "1759449600": 3, "1759536000": 17};
+
 function renderLeetCodeHeatmap(submissionCalendar = null) {
     const grid = document.getElementById('lc-heatmap-grid');
     if (!grid) return;
     grid.innerHTML = '';
 
-    const daysCount = 52 * 7;
-    const now = Math.floor(Date.now() / 1000);
+    let calObj = submissionCalendar || BASELINE_LEETCODE_CALENDAR;
+    if (typeof calObj === 'string') {
+        try { calObj = JSON.parse(calObj); } catch (e) { calObj = BASELINE_LEETCODE_CALENDAR; }
+    }
+
+    const today = new Date();
+    const todayDayOfWeek = today.getDay(); // 0 = Sun, 1 = Mon, ..., 6 = Sat
+    const nowSec = Math.floor(today.getTime() / 1000);
     const daySeconds = 86400;
 
     for (let col = 0; col < 52; col++) {
@@ -160,34 +180,24 @@ function renderLeetCodeHeatmap(submissionCalendar = null) {
             dot.className = 'lc-dot';
             let level = 0;
 
-            const dayOffset = (51 - col) * 7 + (6 - row);
-            const targetTimestamp = now - dayOffset * daySeconds;
+            const daysAgo = (51 - col) * 7 + (todayDayOfWeek - row);
+            if (daysAgo >= 0) {
+                const targetTimestamp = nowSec - daysAgo * daySeconds;
 
-            if (submissionCalendar) {
-                // Find matching date in submissionCalendar
-                let matchedCount = 0;
-                for (const [tsStr, count] of Object.entries(submissionCalendar)) {
-                    const ts = parseInt(tsStr, 10);
-                    if (Math.abs(ts - targetTimestamp) < daySeconds / 2) {
-                        matchedCount += count;
+                if (calObj) {
+                    let matchedCount = 0;
+                    for (const [tsStr, count] of Object.entries(calObj)) {
+                        const ts = parseInt(tsStr, 10);
+                        if (Math.abs(ts - targetTimestamp) < daySeconds / 2) {
+                            matchedCount += count;
+                        }
                     }
-                }
-                if (matchedCount > 0) {
-                    if (matchedCount >= 10) level = 4;
-                    else if (matchedCount >= 5) level = 3;
-                    else if (matchedCount >= 2) level = 2;
-                    else level = 1;
-                }
-            }
-
-            // Fallback pattern if no live submission match
-            if (level === 0 && !submissionCalendar) {
-                if (col >= 20 && col <= 51) {
-                    const val = (col * 7 + row) % 9;
-                    if (val < 2) level = 3;
-                    else if (val < 5) level = 4;
-                    else if (val < 7) level = 2;
-                    else level = 1;
+                    if (matchedCount > 0) {
+                        if (matchedCount >= 10) level = 4;
+                        else if (matchedCount >= 5) level = 3;
+                        else if (matchedCount >= 2) level = 2;
+                        else level = 1;
+                    }
                 }
             }
 
@@ -204,10 +214,13 @@ async function fetchLeetCodeStats() {
     const medValEl = document.getElementById('lc-med-val');
     const hardValEl = document.getElementById('lc-hard-val');
     const subsCountEl = document.getElementById('lc-submissions-count');
+    const activeDaysEl = document.getElementById('lc-active-days');
+    const streakEl = document.getElementById('lc-max-streak');
 
     const endpoints = [
-        'https://leetcode-api-faisalshohag.vercel.app/me_srs',
-        'https://alfa-leetcode-api.onrender.com/userProfile/me_srs'
+        'https://alfa-leetcode-api.onrender.com/me_srs',
+        'https://alfa-leetcode-api.onrender.com/userProfile/me_srs',
+        'https://leetcode-stats-api.herokuapp.com/me_srs'
     ];
 
     for (const url of endpoints) {
@@ -220,24 +233,44 @@ async function fetchLeetCodeStats() {
             const data = await res.json();
 
             let easy = null, medium = null, hard = null, total = null;
+            let totalEasyQ = 960, totalMedQ = 2103, totalHardQ = 965;
+            let activeDays = null, streak = null, calendar = null;
+
             if (data.totalSolved !== undefined) {
                 total = data.totalSolved;
                 easy = data.easySolved;
                 medium = data.mediumSolved;
                 hard = data.hardSolved;
-            } else if (data.matchedUser && data.matchedUser.submitStats) {
-                const ac = data.matchedUser.submitStats.acSubmissionNum;
-                easy = ac.find(x => x.difficulty === 'Easy')?.count;
-                medium = ac.find(x => x.difficulty === 'Medium')?.count;
-                hard = ac.find(x => x.difficulty === 'Hard')?.count;
-                total = ac.find(x => x.difficulty === 'All')?.count;
+                if (data.totalEasy) totalEasyQ = data.totalEasy;
+                if (data.totalMedium) totalMedQ = data.totalMedium;
+                if (data.totalHard) totalHardQ = data.totalHard;
+                calendar = data.submissionCalendar;
+            } else if (data.matchedUser) {
+                const stats = data.matchedUser.submitStatsGlobal || data.matchedUser.submitStats;
+                if (stats && stats.acSubmissionNum) {
+                    const ac = stats.acSubmissionNum;
+                    easy = ac.find(x => x.difficulty === 'Easy')?.count;
+                    medium = ac.find(x => x.difficulty === 'Medium')?.count;
+                    hard = ac.find(x => x.difficulty === 'Hard')?.count;
+                    total = ac.find(x => x.difficulty === 'All')?.count;
+                }
+                if (data.matchedUser.userCalendar) {
+                    activeDays = data.matchedUser.userCalendar.totalActiveDays;
+                    streak = data.matchedUser.userCalendar.streak;
+                    calendar = data.matchedUser.userCalendar.submissionCalendar;
+                }
+                if (data.allQuestionsCount && Array.isArray(data.allQuestionsCount)) {
+                    totalEasyQ = data.allQuestionsCount.find(q => q.difficulty === 'Easy')?.count || totalEasyQ;
+                    totalMedQ = data.allQuestionsCount.find(q => q.difficulty === 'Medium')?.count || totalMedQ;
+                    totalHardQ = data.allQuestionsCount.find(q => q.difficulty === 'Hard')?.count || totalHardQ;
+                }
             }
 
-            if (total && easy !== undefined) {
+            if (total !== null && easy !== null && easy !== undefined) {
                 if (totalEl) totalEl.textContent = total;
-                if (easyValEl) easyValEl.innerHTML = `${easy}<span style="font-size:.56rem; opacity:0.6;">/${data.totalEasy || 958}</span>`;
-                if (medValEl) medValEl.innerHTML = `${medium}<span style="font-size:.56rem; opacity:0.6;">/${data.totalMedium || 2098}</span>`;
-                if (hardValEl) hardValEl.innerHTML = `${hard}<span style="font-size:.56rem; opacity:0.6;">/${data.totalHard || 962}</span>`;
+                if (easyValEl) easyValEl.innerHTML = `${easy}<span style="font-size:.56rem; opacity:0.6;">/${totalEasyQ}</span>`;
+                if (medValEl) medValEl.innerHTML = `${medium}<span style="font-size:.56rem; opacity:0.6;">/${totalMedQ}</span>`;
+                if (hardValEl) hardValEl.innerHTML = `${hard}<span style="font-size:.56rem; opacity:0.6;">/${totalHardQ}</span>`;
 
                 if (data.totalSubmissions && Array.isArray(data.totalSubmissions)) {
                     const allSub = data.totalSubmissions.find(s => s.difficulty === 'All');
@@ -246,8 +279,11 @@ async function fetchLeetCodeStats() {
                     }
                 }
 
-                if (data.submissionCalendar) {
-                    renderLeetCodeHeatmap(data.submissionCalendar);
+                if (activeDays !== null && activeDaysEl) activeDaysEl.textContent = `${activeDays}d`;
+                if (streak !== null && streakEl) streakEl.textContent = `${streak}d`;
+
+                if (calendar) {
+                    renderLeetCodeHeatmap(calendar);
                 }
                 break;
             }
