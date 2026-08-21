@@ -45,22 +45,31 @@ It's not about being pretty. It's about being **BOLD**, **FAST**, and **RELIABLE
 ## /// SHIPPED_PROJECTS
 
 ### 01. DRIVEHUB DEALERSHIP
-> Full-stack car dealership inventory system, built strict-TDD from red-green-refactor first.
-> - **Stack**: `FastAPI` · `PostgreSQL` · `React` · `TDD`
-> - **Deployment**: Neon, Render, and Vercel
+> Full-stack car dealership inventory system built strict-TDD from red-green-refactor first. FastAPI backend, PostgreSQL (Neon), React frontend, Pytest suite at 93% coverage, deployed across Render and Vercel.
+> - **Stack**: `FastAPI` · `PostgreSQL (Neon)` · `React` · `TDD`
 > - **Live Demo**: [srs-dealership.vercel.app](https://srs-dealership.vercel.app/)
+> - **Repository**: [github.com/em-srs/srs-dealership](https://github.com/em-srs/srs-dealership)
 
 ### 02. MEDIFLY
-> Five-role pharmacy delivery ecosystem — User, Pharmacy, Pharmacist, Rider, Admin — targeting sub-100ms API responses.
-> - **Stack**: `Java` · `Spring Boot` · `5-Role Auth`
+> Five-role pharmacy delivery ecosystem — User, Pharmacy, Pharmacist, Rider, Admin. Migrated from Java/Spring Boot prototype to React + Node/Express + PostgreSQL (Supabase), Clerk auth, Razorpay, and Socket.io tracking.
+> - **Stack**: `React` · `Node/Express` · `PostgreSQL` · `Clerk Auth` · `Razorpay`
+> - **Live Demo**: [medi-fly.vercel.app](https://medi-fly.vercel.app/)
 
 ### 03. CUSTOMBIX
-> Test-generator scraper with Cheerio, worker_threads PDF parsing, SQLite WAL mode, OTP auth, and circuit-breaker resilience.
-> - **Stack**: `Node.js` · `Express` · `SQLite WAL` · `Circuit Breaker`
+> Aptitude test generator built on IndiaBIX question banks with timed practice and custom exam builder. Node.js/Express scraping pipeline using Cheerio, SQLite in WAL mode, circuit breaker, and worker-thread PDF generation.
+> - **Stack**: `Node.js` · `Express` · `Cheerio` · `Worker Threads` · `SQLite WAL`
+> - **Live Demo**: [custombix.vercel.app](https://custombix.vercel.app/)
 
-### 04. VISION-HUB
-> MERN-stack video streaming platform covering upload, playback, and full-stack pipeline state management.
+### 04. PHOTOGRAPHY PORTFOLIO
+> Portrait and moonshot photography portfolio, shot primarily across Punjab and Himachal Pradesh.
+> - **Stack**: `Photography` · `Portfolio` · `HTML/CSS/JS`
+> - **Live Demo**: [srs-shots.vercel.app](https://srs-shots.vercel.app/)
+> - **Repository**: [github.com/em-srs/srs-shots-portfolio](https://github.com/em-srs/srs-shots-portfolio)
+
+### 05. VISIONHUB
+> MERN-stack video streaming platform covering upload, playback, and full-stack state management across the MongoDB/Express/React/Node pipeline.
 > - **Stack**: `MongoDB` · `Express` · `React` · `Node.js`
+> - **Repository**: [github.com/em-srs/Vision-hub](https://github.com/em-srs/Vision-hub)
 
 ---
 
