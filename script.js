@@ -35,6 +35,79 @@ if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion:
     });
 }
 
+// ---- multilingual neo-brutalist preloader ----
+(function initPreloader() {
+    const preloader = document.getElementById('preloader');
+    const textEl = document.getElementById('preloader-text');
+    const fillEl = document.getElementById('preloader-progress-fill');
+    const langCodeEl = document.getElementById('preloader-lang-code');
+    const percentEl = document.getElementById('preloader-percent');
+
+    if (!preloader || !textEl) return;
+
+    if (lenis) lenis.stop();
+    document.body.style.overflow = 'hidden';
+
+    const greetings = [
+        { text: "HELLO", lang: "EN // ENGLISH", font: "'Space Grotesk', sans-serif", color: "var(--pink)" },
+        { text: "नमस्ते", lang: "HI // HINDI", font: "'Syne', sans-serif", color: "var(--yellow)" },
+        { text: "BONJOUR", lang: "FR // FRENCH", font: "'Playfair Display', serif", color: "var(--wire)" },
+        { text: "HOLA", lang: "ES // SPANISH", font: "'Outfit', sans-serif", color: "#00E5FF" },
+        { text: "こんにちは", lang: "JA // JAPANESE", font: "'Space Grotesk', sans-serif", color: "#00FF66" },
+        { text: "CIAO", lang: "IT // ITALIAN", font: "'Syne', sans-serif", color: "#FF5722" },
+        { text: "HALLO", lang: "DE // GERMAN", font: "'JetBrains Mono', monospace", color: "var(--pink)" },
+        { text: "你好", lang: "ZH // CHINESE", font: "'Outfit', sans-serif", color: "var(--yellow)" },
+        { text: "OLÁ", lang: "PT // PORTUGUESE", font: "'Playfair Display', serif", color: "var(--wire)" },
+        { text: "안녕하세요", lang: "KO // KOREAN", font: "'Space Grotesk', sans-serif", color: "#00E5FF" },
+        { text: "SYSTEM_READY", lang: "SYS // ALL_SYSTEMS_GO", font: "'JetBrains Mono', monospace", color: "var(--yellow)" }
+    ];
+
+    let index = 0;
+    const intervalTime = 160;
+    const totalCount = greetings.length;
+
+    // Apply initial greeting styling
+    const first = greetings[0];
+    textEl.textContent = first.text;
+    textEl.style.fontFamily = first.font;
+    textEl.style.color = first.color;
+
+    const interval = setInterval(() => {
+        index++;
+        const pct = Math.min(100, Math.round((index / totalCount) * 100));
+
+        if (fillEl) fillEl.style.width = pct + '%';
+        if (percentEl) percentEl.textContent = pct + '%';
+
+        if (index < greetings.length) {
+            const current = greetings[index];
+
+            textEl.classList.remove('swap-anim');
+            void textEl.offsetWidth; // Force reflow for pop animation
+            textEl.classList.add('swap-anim');
+
+            textEl.textContent = current.text;
+            textEl.style.fontFamily = current.font;
+            textEl.style.color = current.color;
+
+            if (langCodeEl) langCodeEl.textContent = current.lang;
+        } else {
+            clearInterval(interval);
+            setTimeout(() => {
+                preloader.classList.add('is-done');
+                document.body.style.overflow = '';
+                if (lenis) lenis.start();
+
+                setTimeout(() => {
+                    if (preloader.parentNode) {
+                        preloader.parentNode.removeChild(preloader);
+                    }
+                }, 800);
+            }, 180);
+        }
+    }, intervalTime);
+})();
+
 // ---- dark mode ----
 const root = document.documentElement;
 const lightBtn = document.getElementById('theme-light');

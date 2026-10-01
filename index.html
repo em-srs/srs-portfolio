@@ -10,15 +10,43 @@
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800&family=Outfit:wght@700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
     <link rel="stylesheet" href="style.css">
+    <script>
+        (function() {
+            try {
+                var t = localStorage.getItem('sk-theme');
+                if (t === 'dark' || (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            } catch(e) {}
+        })();
+    </script>
 </head>
 
 <body>
+
+    <!-- ============ PRELOADER ============ -->
+    <div id="preloader" class="preloader-overlay">
+        <div class="preloader-content">
+            <div class="preloader-badge">[ INITIALIZING_SYSTEM ]</div>
+            <div class="preloader-word-wrap">
+                <span id="preloader-text" class="preloader-text">HELLO</span>
+            </div>
+            <div class="preloader-progress-bar">
+                <div id="preloader-progress-fill" class="preloader-progress-fill"></div>
+            </div>
+            <div class="preloader-counter-row">
+                <span id="preloader-lang-code" class="preloader-lang-code">EN // ENGLISH</span>
+                <span id="preloader-percent" class="preloader-percent">0%</span>
+            </div>
+        </div>
+    </div>
 
     <div id="cursor"></div>
 
@@ -116,12 +144,8 @@
     <!-- ============ MARQUEE ============ -->
     <div class="marquee-wrap">
         <div class="marquee-track">
-            <span>FASTAPI</span><span>·</span><span>SPRING
-                BOOT</span><span>·</span><span>POSTGRESQL</span><span>·</span>
-            <span>REACT</span><span>·</span><span>NODE.JS</span><span>·</span><span>TDD</span><span>·</span>
-            <span>FASTAPI</span><span>·</span><span>SPRING
-                BOOT</span><span>·</span><span>POSTGRESQL</span><span>·</span>
-            <span>REACT</span><span>·</span><span>NODE.JS</span><span>·</span><span>TDD</span><span>·</span>
+            <span>C++</span><span>·</span><span>PYTHON</span><span>·</span><span>JAVASCRIPT</span><span>·</span><span>FASTAPI</span><span>·</span><span>NODE.JS</span><span>·</span><span>EXPRESS</span><span>·</span><span>POSTGRESQL</span><span>·</span><span>SUPABASE</span><span>·</span><span>REST APIS</span><span>·</span><span>JWT AUTH</span><span>·</span><span>PYTEST</span><span>·</span><span>REACT</span><span>·</span>
+            <span>C++</span><span>·</span><span>PYTHON</span><span>·</span><span>JAVASCRIPT</span><span>·</span><span>FASTAPI</span><span>·</span><span>NODE.JS</span><span>·</span><span>EXPRESS</span><span>·</span><span>POSTGRESQL</span><span>·</span><span>SUPABASE</span><span>·</span><span>REST APIS</span><span>·</span><span>JWT AUTH</span><span>·</span><span>PYTEST</span><span>·</span><span>REACT</span><span>·</span>
         </div>
     </div>
 
