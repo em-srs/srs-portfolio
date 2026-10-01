@@ -14,6 +14,7 @@
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
         rel="stylesheet">
 
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -32,7 +33,7 @@
                 <a href="#stats" class="navlink">Stats</a>
                 <a href="#lens" class="navlink">Lens</a>
                 <a href="#contact" class="navlink">Contact</a>
-                <a href="assets/portfolio%20resume.pdf" target="_blank" class="navlink"
+                <a href="assets/portfolio%20resume%202projects.pdf" target="_blank" class="navlink"
                     style="color:var(--pink); font-weight:700;">Resume ↗</a>
                 <div class="theme-toggle-box">
                     <div id="theme-highlight" class="theme-highlight-bg"></div>
@@ -73,7 +74,7 @@
 
                 <p style="font-size:clamp(0.9rem,1.8vw,1.05rem); max-width:54ch; line-height:1.6; margin:0 0 24px;">
                     Final-year B.Tech CSE student building backend systems that don't fall over —
-                    C++, Java, Spring Boot, FastAPI, PostgreSQL. Clean architecture over quick hacks,
+                    C++, Python, Node.js, FastAPI, PostgreSQL. Clean architecture over quick hacks,
                     padded resumes never. Also shoot portraits and moonshots when the terminal's closed.
                 </p>
 
@@ -87,7 +88,7 @@
                         <div style="display:flex; gap:10px; flex-wrap:wrap;">
                             <a href="#work" class="btn"
                                 style="padding:10px 18px; font-size:.85rem; flex:1; text-align:center;">View Work ↓</a>
-                            <a href="assets/portfolio%20resume.pdf" target="_blank" class="btn alt"
+                            <a href="assets/portfolio%20resume%202projects.pdf" target="_blank" class="btn alt"
                                 style="background:var(--yellow); color:#0B0B0B; padding:10px 18px; font-size:.85rem; flex:1; text-align:center;">Resume
                                 ↗</a>
                         </div>
@@ -675,7 +676,7 @@
                 </form>
                 <div style="border:2px solid var(--ink); padding:22px; background:var(--paper);">
                     <p style="font-size:.85rem; margin:0 0 14px; font-weight:700;">DIRECT_COORDINATES:</p>
-                    <p style="margin:6px 0;"><a href="assets/portfolio%20resume.pdf" target="_blank" class="glitch"
+                    <p style="margin:6px 0;"><a href="assets/portfolio%20resume%202projects.pdf" target="_blank" class="glitch"
                             data-text="RESUME / VIEW &amp; DOWNLOAD">RESUME / VIEW &amp; DOWNLOAD ↗</a></p>
                     <p style="margin:6px 0;"><a href="https://github.com/em-srs" target="_blank" class="glitch"
                             data-text="GITHUB / em-srs">GITHUB / em-srs</a></p>
@@ -695,8 +696,8 @@
     </footer>
 
     <!-- Live Preview Modal -->
-    <div id="preview-modal" class="modal-backdrop" aria-hidden="true">
-        <div class="modal-browser-window">
+    <div id="preview-modal" class="modal-backdrop" aria-hidden="true" data-lenis-prevent>
+        <div class="modal-browser-window" data-lenis-prevent>
             <div class="modal-chrome-header">
                 <div class="modal-dots">
                     <span class="modal-dot red"></span>
@@ -740,6 +741,7 @@
         </div>
     </div>
 
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
     <script src="script.js"></script>
 </body>
 

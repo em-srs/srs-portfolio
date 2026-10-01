@@ -1,3 +1,40 @@
+// ---- lenis smooth scroll ----
+let lenis = null;
+
+if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        touchMultiplier: 1.5,
+        infinite: false,
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Global smooth anchor navigation
+    document.addEventListener('click', (e) => {
+        const anchor = e.target.closest('a[href^="#"]');
+        if (!anchor) return;
+        const targetId = anchor.getAttribute('href');
+        if (!targetId || targetId === '#') return;
+
+        const targetEl = document.querySelector(targetId);
+        if (targetEl) {
+            e.preventDefault();
+            lenis.scrollTo(targetEl, {
+                offset: -20,
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+            });
+        }
+    });
+}
+
 // ---- dark mode ----
 const root = document.documentElement;
 const lightBtn = document.getElementById('theme-light');
@@ -61,9 +98,9 @@ document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
 // ---- boot log ----
 const bootLines = [
     '> booting profile.exe ...',
-    '> year       : B.Tech final-year',
     '> languages  : C++, Java, Python, JS',
-    '> stack      : spring boot, fastapi, postgresql',
+    '> stack      : fastapi, node/express, postgresql',
+    '> familiar   : react',
     '> discipline : clean architecture, no padding',
     '> status     : OPEN TO INTERNSHIPS / FULL-TIME SDE',
     '> _'
@@ -454,6 +491,7 @@ function initLiveProjectPreviews() {
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        if (lenis) lenis.stop();
     }
 
     function closePreviewModal() {
@@ -462,6 +500,7 @@ function initLiveProjectPreviews() {
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        if (lenis) lenis.start();
 
         // Unmount iframe on close to stop background load/polling
         modalIframe.src = '';

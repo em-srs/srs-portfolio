@@ -106,7 +106,7 @@ It's not about being pretty. It's about being **BOLD**, **FAST**, and **RELIABLE
 ├── assets/              # Images, videos, resume PDF, and poster frames
 │   ├── hero/            # Hero section animated video assets
 │   ├── imgs/            # Lens photography collection
-│   └── portfolio resume.pdf # Resume document
+│   └── portfolio resume 2projects.pdf # Resume document
 ├── index.html           # Main Entry Point (Neo-Brutalist HTML5 Architecture)
 ├── style.css            # Core Design System, Variables, Grid Breakpoints, Dark Mode
 ├── script.js           # Live API Fetching, Heatmap Rendering, Theme Switcher
