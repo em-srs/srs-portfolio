@@ -33,10 +33,11 @@ It's not about being pretty. It's about being **BOLD**, **FAST**, and **RELIABLE
 
 | COMPONENT | TECHNOLOGY | STATUS |
 | :--- | :--- | :--- |
-| **BACKEND** | `FastAPI` · `Spring Boot` · `Express` · `C++` | [ACTIVE] |
-| **DATA** | `PostgreSQL` · `SQLite (WAL)` · `MongoDB` | [ACTIVE] |
-| **FRONTEND** | `React` · `HTML5` · `Vanilla CSS` · `Vanilla JS` | [ACTIVE] |
-| **METHOD** | `Test-Driven Development (TDD)` | [ENFORCED] |
+| **LANGUAGES** | `C++` · `Python` · `JavaScript` · `Java` | [ACTIVE] |
+| **BACKEND** | `FastAPI` · `Node.js` · `Express` | [ACTIVE] |
+| **DATA** | `PostgreSQL` · `Supabase` · `SQLite (WAL)` · `MongoDB` | [ACTIVE] |
+| **FRONTEND** | `HTML5` · `Vanilla CSS` · `Vanilla JS` · `React` | [ACTIVE] |
+| **METHOD** | `Test-Driven Development (TDD)` · `pytest` | [ENFORCED] |
 | **DEPLOY** | `Vercel` · `Render` · `Neon` | [SHIPPED] |
 | **THEMING** | `Dual-Theme Engine` (Light & Dark CSS Variables) | [ENFORCED] |
 
