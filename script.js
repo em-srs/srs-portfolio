@@ -196,7 +196,7 @@ function typeBoot() {
 typeBoot();
 
 // ---- github heatmap & live stats ----
-const BASELINE_GITHUB_CONTRIBUTIONS = {"2026-06-14": 2, "2026-07-19": 1, "2026-07-26": 1, "2026-08-16": 4, "2026-06-15": 2, "2026-07-27": 1, "2026-08-03": 1, "2026-08-10": 3, "2026-07-28": 1, "2026-08-04": 1, "2026-08-11": 4, "2026-04-29": 1, "2026-07-29": 4, "2026-08-05": 1, "2026-08-12": 2, "2026-01-29": 1, "2026-07-23": 1, "2026-07-30": 4, "2026-08-13": 2, "2026-05-01": 1, "2026-06-12": 1, "2026-07-31": 1, "2026-08-07": 1, "2026-08-01": 1, "2026-08-15": 1};
+const BASELINE_GITHUB_CONTRIBUTIONS = {"2026-06-14": 2, "2026-07-19": 1, "2026-07-26": 1, "2026-08-16": 4, "2026-06-15": 2, "2026-07-27": 1, "2026-08-03": 1, "2026-08-10": 3, "2026-08-17": 1, "2026-04-28": 1, "2026-07-28": 1, "2026-08-04": 1, "2026-08-11": 4, "2026-09-01": 1, "2026-04-29": 1, "2026-07-29": 4, "2026-08-05": 2, "2026-08-12": 2, "2026-08-19": 1, "2026-08-26": 1, "2026-10-07": 1, "2026-01-29": 1, "2026-07-23": 1, "2026-07-30": 4, "2026-08-13": 2, "2026-08-27": 1, "2026-10-01": 1, "2026-10-08": 1, "2026-05-01": 2, "2026-06-12": 1, "2026-07-31": 1, "2026-08-07": 1, "2026-08-21": 1, "2026-08-28": 1, "2026-10-02": 1, "2026-08-01": 1, "2026-08-15": 1};
 
 function renderGitHubHeatmap(contribData = null) {
     const grid = document.getElementById('gh-heatmap-grid');
@@ -206,8 +206,6 @@ function renderGitHubHeatmap(contribData = null) {
     const data = contribData || BASELINE_GITHUB_CONTRIBUTIONS;
     const today = new Date();
     const todayDayOfWeek = today.getDay(); // 0 = Sun, 1 = Mon, ..., 6 = Sat
-    const now = today.getTime();
-    const dayMs = 86400 * 1000;
 
     for (let col = 0; col < 52; col++) {
         for (let row = 0; row < 7; row++) {
@@ -217,7 +215,8 @@ function renderGitHubHeatmap(contribData = null) {
 
             const daysAgo = (51 - col) * 7 + (todayDayOfWeek - row);
             if (daysAgo >= 0) {
-                const dt = new Date(now - daysAgo * dayMs);
+                const dt = new Date();
+                dt.setDate(today.getDate() - daysAgo);
                 const yyyy = dt.getFullYear();
                 const mm = String(dt.getMonth() + 1).padStart(2, '0');
                 const dd = String(dt.getDate()).padStart(2, '0');
@@ -226,7 +225,7 @@ function renderGitHubHeatmap(contribData = null) {
                 level = data[dateKey] || 0;
             }
 
-            if (level > 0) dot.classList.add('l' + level);
+            if (level > 0) dot.classList.add('l' + Math.min(level, 4));
             grid.appendChild(dot);
         }
     }
@@ -240,15 +239,16 @@ async function fetchGitHubStats() {
     const starsEl = document.getElementById('gh-stars-val');
     const reposTagEl = document.getElementById('gh-repos-tag');
     const starsTagEl = document.getElementById('gh-stars-tag');
+    const subsCountEl = document.getElementById('gh-submissions-count');
 
     try {
         const res = await fetch('https://api.github.com/users/em-srs');
         if (res.ok) {
             const d = await res.json();
-            if (reposEl) reposEl.textContent = d.public_repos ?? '8';
-            if (followersEl) followersEl.textContent = d.followers ?? '1';
+            if (reposEl) reposEl.textContent = d.public_repos ?? '9';
+            if (followersEl) followersEl.textContent = d.followers ?? '0';
             if (followingEl) followingEl.textContent = d.following ?? '5';
-            if (reposTagEl) reposTagEl.textContent = d.public_repos ?? '8';
+            if (reposTagEl) reposTagEl.textContent = d.public_repos ?? '9';
         }
     } catch (e) { }
 
@@ -263,11 +263,52 @@ async function fetchGitHubStats() {
             }
         }
     } catch (e) { }
+
+    // Fetch live contributions graph HTML via proxy fallback chain
+    const proxyUrls = [
+        'https://api.allorigins.win/raw?url=https://github.com/users/em-srs/contributions',
+        'https://corsproxy.io/?url=https://github.com/users/em-srs/contributions',
+        'https://github.com/users/em-srs/contributions'
+    ];
+
+    for (const pUrl of proxyUrls) {
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 6000);
+            const cRes = await fetch(pUrl, { signal: controller.signal });
+            clearTimeout(timeoutId);
+            if (!cRes.ok) continue;
+
+            const html = await cRes.text();
+            if (!html || !html.includes('ContributionCalendar')) continue;
+
+            // Extract total contributions
+            const totMatch = html.match(/(\d[\d,]*)\s+contributions\s+in the last year/i);
+            if (totMatch && subsCountEl) {
+                subsCountEl.textContent = totMatch[1].replace(/,/g, '');
+            }
+
+            // Extract day data
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const dayEls = doc.querySelectorAll('td.ContributionCalendar-day[data-date]');
+            if (dayEls.length > 0) {
+                const liveMap = {};
+                dayEls.forEach(td => {
+                    const dt = td.getAttribute('data-date');
+                    const lvl = parseInt(td.getAttribute('data-level') || '0', 10);
+                    if (dt && lvl > 0) liveMap[dt] = lvl;
+                });
+                renderGitHubHeatmap(liveMap);
+                break;
+            }
+        } catch (e) { }
+    }
 }
 fetchGitHubStats();
 
 // ---- leetcode heatmap & stats ----
-const BASELINE_LEETCODE_CALENDAR = {"1768953600": 1, "1769385600": 1, "1770163200": 1, "1772236800": 11, "1772323200": 6, "1772409600": 8, "1772496000": 2, "1772668800": 2, "1772755200": 5, "1772841600": 9, "1773014400": 2, "1773446400": 2, "1773532800": 1, "1776816000": 1, "1777248000": 23, "1777420800": 9, "1779062400": 5, "1780099200": 3, "1780531200": 5, "1780790400": 42, "1780963200": 5, "1781049600": 1, "1781136000": 5, "1781222400": 3, "1781308800": 2, "1781395200": 1, "1781481600": 1, "1781568000": 2, "1781654400": 2, "1781740800": 1, "1781827200": 1, "1781913600": 1, "1782000000": 1, "1782086400": 1, "1782259200": 1, "1782950400": 4, "1783382400": 4, "1783555200": 2, "1783641600": 10, "1783728000": 5, "1783814400": 5, "1783900800": 5, "1783987200": 5, "1784073600": 12, "1784160000": 7, "1784246400": 1, "1784332800": 3, "1784419200": 1, "1784505600": 1, "1784592000": 8, "1784764800": 1, "1784851200": 4, "1784937600": 4, "1785024000": 5, "1785110400": 1, "1785196800": 1, "1785283200": 2, "1785369600": 1, "1785456000": 3, "1785628800": 1, "1785888000": 1, "1785974400": 7, "1786060800": 6, "1786147200": 5, "1786233600": 8, "1786320000": 1, "1786406400": 1, "1786492800": 1, "1786579200": 1, "1786752000": 3, "1756771200": 2, "1759449600": 3, "1759536000": 17};
+const BASELINE_LEETCODE_CALENDAR = {"1768953600":1,"1769385600":1,"1770163200":1,"1772236800":11,"1772323200":6,"1772409600":8,"1772496000":2,"1772668800":2,"1772755200":5,"1772841600":9,"1773014400":2,"1773446400":2,"1773532800":1,"1776816000":1,"1777248000":23,"1777420800":9,"1779062400":5,"1780099200":3,"1780531200":5,"1780790400":42,"1780963200":5,"1781049600":1,"1781136000":5,"1781222400":3,"1781308800":2,"1781395200":1,"1781481600":1,"1781568000":2,"1781654400":2,"1781740800":1,"1781827200":1,"1781913600":1,"1782000000":1,"1782086400":1,"1782259200":1,"1782950400":4,"1783382400":4,"1783555200":2,"1783641600":10,"1783728000":5,"1783814400":5,"1783900800":5,"1783987200":5,"1784073600":12,"1784160000":7,"1784246400":1,"1784332800":3,"1784419200":1,"1784505600":1,"1784592000":8,"1784764800":1,"1784851200":4,"1784937600":4,"1785024000":5,"1785110400":1,"1785196800":1,"1785283200":2,"1785369600":1,"1785456000":3,"1785628800":1,"1785888000":1,"1785974400":7,"1786060800":6,"1786147200":5,"1786233600":8,"1786320000":1,"1786406400":1,"1786492800":1,"1786579200":1,"1786752000":3,"1787011200":3,"1787184000":1,"1787356800":2,"1787443200":1,"1787529600":3,"1788134400":1,"1788307200":2,"1788393600":2,"1788566400":3,"1788652800":3,"1790035200":1,"1790380800":2,"1790467200":3,"1790726400":4,"1790812800":14,"1790899200":10,"1790985600":1,"1791072000":2,"1791158400":1,"1791244800":1,"1791331200":1};
 
 function renderLeetCodeHeatmap(submissionCalendar = null) {
     const grid = document.getElementById('lc-heatmap-grid');
@@ -279,10 +320,22 @@ function renderLeetCodeHeatmap(submissionCalendar = null) {
         try { calObj = JSON.parse(calObj); } catch (e) { calObj = BASELINE_LEETCODE_CALENDAR; }
     }
 
+    const calMap = {};
+    if (calObj) {
+        for (const [tsStr, count] of Object.entries(calObj)) {
+            const ts = parseInt(tsStr, 10);
+            if (!isNaN(ts)) {
+                const d = new Date(ts * 1000);
+                const yyyy = d.getUTCFullYear();
+                const mm = String(d.getUTCMonth() + 1).padStart(2, '0');
+                const dd = String(d.getUTCDate()).padStart(2, '0');
+                calMap[`${yyyy}-${mm}-${dd}`] = (calMap[`${yyyy}-${mm}-${dd}`] || 0) + count;
+            }
+        }
+    }
+
     const today = new Date();
     const todayDayOfWeek = today.getDay(); // 0 = Sun, 1 = Mon, ..., 6 = Sat
-    const nowSec = Math.floor(today.getTime() / 1000);
-    const daySeconds = 86400;
 
     for (let col = 0; col < 52; col++) {
         for (let row = 0; row < 7; row++) {
@@ -292,23 +345,18 @@ function renderLeetCodeHeatmap(submissionCalendar = null) {
 
             const daysAgo = (51 - col) * 7 + (todayDayOfWeek - row);
             if (daysAgo >= 0) {
-                const targetTimestamp = nowSec - daysAgo * daySeconds;
+                const dt = new Date();
+                dt.setDate(today.getDate() - daysAgo);
+                const yyyy = dt.getFullYear();
+                const mm = String(dt.getMonth() + 1).padStart(2, '0');
+                const dd = String(dt.getDate()).padStart(2, '0');
+                const dateKey = `${yyyy}-${mm}-${dd}`;
 
-                if (calObj) {
-                    let matchedCount = 0;
-                    for (const [tsStr, count] of Object.entries(calObj)) {
-                        const ts = parseInt(tsStr, 10);
-                        if (Math.abs(ts - targetTimestamp) < daySeconds / 2) {
-                            matchedCount += count;
-                        }
-                    }
-                    if (matchedCount > 0) {
-                        if (matchedCount >= 10) level = 4;
-                        else if (matchedCount >= 5) level = 3;
-                        else if (matchedCount >= 2) level = 2;
-                        else level = 1;
-                    }
-                }
+                const count = calMap[dateKey] || 0;
+                if (count >= 10) level = 4;
+                else if (count >= 5) level = 3;
+                else if (count >= 2) level = 2;
+                else if (count >= 1) level = 1;
             }
 
             if (level > 0) dot.classList.add('l' + level);
@@ -317,6 +365,37 @@ function renderLeetCodeHeatmap(submissionCalendar = null) {
     }
 }
 renderLeetCodeHeatmap();
+
+function calcLeetCodeStreak(calendar) {
+    if (!calendar) return { activeDays: 73, maxStreak: 14 };
+    let calObj = calendar;
+    if (typeof calObj === 'string') {
+        try { calObj = JSON.parse(calObj); } catch (e) { calObj = BASELINE_LEETCODE_CALENDAR; }
+    }
+    const activeDays = Object.keys(calObj).length;
+    const sortedTs = Object.keys(calObj).map(t => parseInt(t, 10)).sort((a,b) => a - b);
+    let maxStreak = 0;
+    let tempStreak = 0;
+    let prevDate = null;
+
+    for (const ts of sortedTs) {
+        const d = new Date(ts * 1000);
+        d.setUTCHours(0,0,0,0);
+        if (!prevDate) {
+            tempStreak = 1;
+        } else {
+            const diffDays = Math.round((d.getTime() - prevDate.getTime()) / 86400000);
+            if (diffDays === 1) {
+                tempStreak++;
+            } else if (diffDays > 1) {
+                tempStreak = 1;
+            }
+        }
+        if (tempStreak > maxStreak) maxStreak = tempStreak;
+        prevDate = d;
+    }
+    return { activeDays, maxStreak: maxStreak || 14 };
+}
 
 async function fetchLeetCodeStats() {
     const totalEl = document.getElementById('lc-total');
@@ -328,26 +407,27 @@ async function fetchLeetCodeStats() {
     const streakEl = document.getElementById('lc-max-streak');
 
     const endpoints = [
-        'https://alfa-leetcode-api.onrender.com/me_srs',
         'https://alfa-leetcode-api.onrender.com/userProfile/me_srs',
-        'https://leetcode-stats-api.herokuapp.com/me_srs'
+        'https://alfa-leetcode-api.onrender.com/me_srs/solved',
+        'https://leetcode-api-f5df51b17b72.herokuapp.com/me_srs'
     ];
 
     for (const url of endpoints) {
         try {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 4000);
+            const timeoutId = setTimeout(() => controller.abort(), 12000);
             const res = await fetch(url, { signal: controller.signal });
             clearTimeout(timeoutId);
             if (!res.ok) continue;
             const data = await res.json();
 
             let easy = null, medium = null, hard = null, total = null;
-            let totalEasyQ = 960, totalMedQ = 2103, totalHardQ = 965;
+            let totalEasyQ = 969, totalMedQ = 2124, totalHardQ = 980;
             let activeDays = null, streak = null, calendar = null;
+            let totalSubsCount = null;
 
-            if (data.totalSolved !== undefined) {
-                total = data.totalSolved;
+            if (data.totalSolved !== undefined || data.solvedProblem !== undefined) {
+                total = data.totalSolved ?? data.solvedProblem;
                 easy = data.easySolved;
                 medium = data.mediumSolved;
                 hard = data.hardSolved;
@@ -355,6 +435,11 @@ async function fetchLeetCodeStats() {
                 if (data.totalMedium) totalMedQ = data.totalMedium;
                 if (data.totalHard) totalHardQ = data.totalHard;
                 calendar = data.submissionCalendar;
+
+                if (data.totalSubmissions && Array.isArray(data.totalSubmissions)) {
+                    const allSub = data.totalSubmissions.find(s => s.difficulty === 'All');
+                    if (allSub && allSub.submissions) totalSubsCount = allSub.submissions;
+                }
             } else if (data.matchedUser) {
                 const stats = data.matchedUser.submitStatsGlobal || data.matchedUser.submitStats;
                 if (stats && stats.acSubmissionNum) {
@@ -376,25 +461,26 @@ async function fetchLeetCodeStats() {
                 }
             }
 
-            if (total !== null && easy !== null && easy !== undefined) {
+            if (total !== null && total !== undefined && easy !== null && easy !== undefined) {
                 if (totalEl) totalEl.textContent = total;
                 if (easyValEl) easyValEl.innerHTML = `${easy}<span style="font-size:.56rem; opacity:0.6;">/${totalEasyQ}</span>`;
                 if (medValEl) medValEl.innerHTML = `${medium}<span style="font-size:.56rem; opacity:0.6;">/${totalMedQ}</span>`;
                 if (hardValEl) hardValEl.innerHTML = `${hard}<span style="font-size:.56rem; opacity:0.6;">/${totalHardQ}</span>`;
 
-                if (data.totalSubmissions && Array.isArray(data.totalSubmissions)) {
-                    const allSub = data.totalSubmissions.find(s => s.difficulty === 'All');
-                    if (allSub && allSub.submissions && subsCountEl) {
-                        subsCountEl.textContent = allSub.submissions;
-                    }
+                if (totalSubsCount !== null && subsCountEl) {
+                    subsCountEl.textContent = totalSubsCount;
+                }
+
+                if (calendar) {
+                    const calc = calcLeetCodeStreak(calendar);
+                    if (activeDays === null) activeDays = calc.activeDays;
+                    if (streak === null) streak = calc.maxStreak;
+                    renderLeetCodeHeatmap(calendar);
                 }
 
                 if (activeDays !== null && activeDaysEl) activeDaysEl.textContent = `${activeDays}d`;
                 if (streak !== null && streakEl) streakEl.textContent = `${streak}d`;
 
-                if (calendar) {
-                    renderLeetCodeHeatmap(calendar);
-                }
                 break;
             }
         } catch (e) {
