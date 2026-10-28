@@ -171,10 +171,9 @@ document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
 // ---- boot log ----
 const bootLines = [
     '> booting profile.exe ...',
-    '> languages  : C++, Java, Python, JS',
-    '> stack      : fastapi, node/express, postgresql',
-    '> familiar   : react',
-    '> discipline : clean architecture, no padding',
+    '> languages  : C++, Python, JavaScript, Java',
+    '> stack      : scikit-learn, fastapi, node/express, postgresql',
+    '> discipline : clean architecture, pipeline integrity, no padding',
     '> status     : OPEN TO INTERNSHIPS / FULL-TIME SDE',
     '> _'
 ];
@@ -786,6 +785,62 @@ function initContactFormHandler() {
 document.addEventListener('DOMContentLoaded', initContactFormHandler);
 if (document.readyState !== 'loading') {
     initContactFormHandler();
+}
+
+// ---- ML Case Study Modal Handler ----
+function initMLCaseStudyModal() {
+    const caseStudyModal = document.getElementById('ml-case-study-modal');
+    const openBtn = document.getElementById('open-ml-case-study');
+    const closeBtns = document.querySelectorAll('.case-study-close-btn');
+
+    if (!caseStudyModal) return;
+
+    function openCaseStudy() {
+        caseStudyModal.classList.add('is-open');
+        caseStudyModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        if (lenis) lenis.stop();
+    }
+
+    function closeCaseStudy() {
+        caseStudyModal.classList.remove('is-open');
+        caseStudyModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (lenis) lenis.start();
+    }
+
+    if (openBtn) {
+        openBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openCaseStudy();
+        });
+    }
+
+    document.querySelectorAll('[data-open-case-study]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openCaseStudy();
+        });
+    });
+
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', closeCaseStudy);
+    });
+
+    caseStudyModal.addEventListener('click', (e) => {
+        if (e.target === caseStudyModal) closeCaseStudy();
+    });
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && caseStudyModal.classList.contains('is-open')) {
+            closeCaseStudy();
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initMLCaseStudyModal);
+if (document.readyState !== 'loading') {
+    initMLCaseStudyModal();
 }
 
 

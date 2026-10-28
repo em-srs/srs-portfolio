@@ -1224,6 +1224,135 @@ textarea:focus {
     opacity: 0.8;
 }
 
+
+/* ---------- case study modal styling ---------- */
+.case-study-body {
+    background: var(--paper) !important;
+    color: var(--ink);
+    overflow-y: auto !important;
+    padding: clamp(16px, 3vw, 32px);
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.case-study-hero {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 18px;
+}
+
+.case-study-hero h2 {
+    margin: 8px 0 6px 0;
+    font-size: clamp(1.3rem, 3.2vw, 2rem);
+    color: var(--ink);
+}
+
+.case-study-hero p {
+    margin: 0 0 14px 0;
+    font-size: clamp(0.82rem, 1.5vw, 0.92rem);
+    opacity: 0.85;
+    max-width: 75ch;
+    line-height: 1.6;
+}
+
+.case-study-links-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.case-study-section {
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    box-shadow: 4px 4px 0 var(--ink);
+    padding: clamp(14px, 2.5vw, 20px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.case-study-section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(0.95rem, 2vw, 1.2rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--hairline);
+    color: var(--ink);
+}
+
+.case-study-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+}
+
+.case-study-card {
+    border: 1.5px solid var(--ink);
+    padding: 12px 14px;
+    background: var(--paper);
+    box-shadow: 2px 2px 0 var(--ink);
+}
+
+.case-study-card h4 {
+    margin: 0 0 6px 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.92rem;
+    text-transform: uppercase;
+    color: var(--ink);
+}
+
+.case-study-card p {
+    margin: 0;
+    font-size: 0.8rem;
+    line-height: 1.55;
+    opacity: 0.9;
+}
+
+.case-study-table-wrap {
+    overflow-x: auto;
+    border: 1.5px solid var(--ink);
+}
+
+.case-study-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    text-align: left;
+    min-width: 520px;
+}
+
+.case-study-table th {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 8px 10px;
+    font-weight: 700;
+}
+
+.case-study-table td {
+    padding: 8px 10px;
+    border-top: 1px solid var(--hairline);
+    color: var(--ink);
+}
+
+.case-study-code-snippet {
+    background: #0B0B0B;
+    color: #39d353;
+    padding: 12px;
+    font-size: 0.74rem;
+    border: 2px solid var(--ink);
+    overflow-x: auto;
+    white-space: pre;
+    font-family: 'JetBrains Mono', monospace;
+    border-radius: 2px;
+    line-height: 1.5;
+}
+
 @media (max-width: 600px) {
     .modal-browser-window {
         height: 92vh;

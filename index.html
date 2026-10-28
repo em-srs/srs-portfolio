@@ -144,8 +144,8 @@
     <!-- ============ MARQUEE ============ -->
     <div class="marquee-wrap">
         <div class="marquee-track">
-            <span>C++</span><span>·</span><span>PYTHON</span><span>·</span><span>JAVASCRIPT</span><span>·</span><span>FASTAPI</span><span>·</span><span>NODE.JS</span><span>·</span><span>EXPRESS</span><span>·</span><span>POSTGRESQL</span><span>·</span><span>SUPABASE</span><span>·</span><span>REST APIS</span><span>·</span><span>JWT AUTH</span><span>·</span><span>PYTEST</span><span>·</span><span>REACT</span><span>·</span>
-            <span>C++</span><span>·</span><span>PYTHON</span><span>·</span><span>JAVASCRIPT</span><span>·</span><span>FASTAPI</span><span>·</span><span>NODE.JS</span><span>·</span><span>EXPRESS</span><span>·</span><span>POSTGRESQL</span><span>·</span><span>SUPABASE</span><span>·</span><span>REST APIS</span><span>·</span><span>JWT AUTH</span><span>·</span><span>PYTEST</span><span>·</span><span>REACT</span><span>·</span>
+            <span>C++</span><span>·</span><span>PYTHON</span><span>·</span><span>SCIKIT-LEARN</span><span>·</span><span>FASTAPI</span><span>·</span><span>PANDAS</span><span>·</span><span>NODE.JS</span><span>·</span><span>EXPRESS</span><span>·</span><span>POSTGRESQL</span><span>·</span><span>SUPABASE</span><span>·</span><span>REST APIS</span><span>·</span><span>PYTEST</span><span>·</span><span>REACT</span><span>·</span>
+            <span>C++</span><span>·</span><span>PYTHON</span><span>·</span><span>SCIKIT-LEARN</span><span>·</span><span>FASTAPI</span><span>·</span><span>PANDAS</span><span>·</span><span>NODE.JS</span><span>·</span><span>EXPRESS</span><span>·</span><span>POSTGRESQL</span><span>·</span><span>SUPABASE</span><span>·</span><span>REST APIS</span><span>·</span><span>PYTEST</span><span>·</span><span>REACT</span><span>·</span>
         </div>
     </div>
 
@@ -178,15 +178,77 @@
             <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:34px; flex-wrap:wrap; gap:12px;"
                 data-reveal>
                 <h2 style="font-size:clamp(1.8rem,5vw,3rem);">// PROJECTS</h2>
-                <span class="tag">5 SHIPPED</span>
+                <span class="tag">6 SHIPPED</span>
             </div>
 
             <div style="display:grid; gap:28px;">
 
-                <!-- 01 · CUSTOMBIX -->
+                <!-- 01 · USED CAR PRICE PREDICTOR (END-TO-END ML WEB APP) -->
                 <div class="proj-card hard-shadow" data-reveal>
                     <div class="head">
-                        <span class="display" style="font-size:1.2rem;">01 · CUSTOMBIX</span>
+                        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                            <span class="display" style="font-size:1.2rem;">01 · USED CAR PRICE PREDICTOR</span>
+                            <span class="tag" style="background:var(--pink); color:#FFFFFF; font-size:.65rem; border:2px solid var(--ink);">FEATURED · ML</span>
+                        </div>
+                        <div class="head-actions">
+                            <a href="https://github.com/em-srs/car_price_predictor" target="_blank" class="head-gh-btn"
+                                aria-label="GitHub Repository" title="GitHub Repository">
+                                <svg viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                                </svg>
+                            </a>
+                            <a href="https://car-price-predictor-hkae.onrender.com/docs" target="_blank" class="tag live-link"
+                                style="background:var(--wire); color:#FFFFFF; border-color:var(--ink);">DOCS ↗</a>
+                            <a href="https://car-price-predictor-hkae.onrender.com/" target="_blank" class="tag live-link">LIVE ↗</a>
+                        </div>
+                    </div>
+                    <div class="proj-card-body">
+                        <div class="proj-info-col">
+                            <p>End-to-end continuous regression service estimating used automobile valuations in Indian Rupees (₹) across 8 vehicle parameters. Chained Scikit-Learn ColumnTransformer pipeline (median numerical imputation, mode categorical imputation, One-Hot Encoding) strictly preventing data leakage. Linear Regression selected over Random Forest for superior test generalization (MAE: ₹84,198 vs ₹91,965, R²: 0.8079). Served with FastAPI, Pydantic gateway schema validation, 12 Pytest tests, and automated Git CI/CD on Render.</p>
+                            <div class="proj-tags-wrap">
+                                <span class="tag">PYTHON</span><span class="tag">SCIKIT-LEARN</span><span
+                                    class="tag">FASTAPI</span><span class="tag">PANDAS</span><span
+                                    class="tag">RENDER</span>
+                            </div>
+                            <div class="proj-action-btns" style="flex-wrap:wrap; gap:8px;">
+                                <a href="https://car-price-predictor-hkae.onrender.com/" target="_blank" class="btn alt"
+                                    style="padding:6px 14px; font-size:.75rem; background:var(--yellow); color:#0B0B0B; font-weight:700;">LIVE DEMO ↗</a>
+                                <a href="https://github.com/em-srs/car_price_predictor" target="_blank" class="btn alt"
+                                    style="padding:6px 14px; font-size:.75rem;">GITHUB REPO ↗</a>
+                                <button class="live-preview-btn btn alt"
+                                    data-open-modal="https://car-price-predictor-hkae.onrender.com/"
+                                    data-title="Used Car Price Predictor" data-cold-start="true">
+                                    LIVE PREVIEW 👁
+                                </button>
+                                <button class="btn alt" id="open-ml-case-study"
+                                    style="padding:6px 14px; font-size:.75rem; background:var(--ink); color:var(--paper); font-weight:700;">
+                                    ML SPECS &amp; METRICS 📑
+                                </button>
+                            </div>
+                        </div>
+                        <div class="proj-preview-col">
+                            <div class="proj-preview-wrap" data-live-url="https://car-price-predictor-hkae.onrender.com/"
+                                data-title="Used Car Price Predictor">
+                                <div class="preview-skeleton" style="display:none;">
+                                    <span class="tag"
+                                        style="font-size:.65rem; background:var(--ink); color:var(--paper);">LOADING...</span>
+                                </div>
+                                <img class="preview-img is-loaded" src="assets/imgs/car-price-predictor.png"
+                                    alt="Live preview of Used Car Price Predictor" loading="lazy" />
+                                <div class="preview-fallback" style="display:none;">
+                                    <span class="display" style="font-size:1.1rem; color:var(--pink);">[ML]</span>
+                                    <span style="font-size:.7rem; font-weight:700;">// PREVIEW_UNAVAILABLE</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 02 · CUSTOMBIX -->
+                <div class="proj-card hard-shadow" data-reveal>
+                    <div class="head">
+                        <span class="display" style="font-size:1.2rem;">02 · CUSTOMBIX</span>
                         <div class="head-actions">
                             <a href="https://custombix.vercel.app/" target="_blank" class="tag live-link">LIVE ↗</a>
                         </div>
@@ -224,10 +286,10 @@
                     </div>
                 </div>
 
-                <!-- 02 · DRIVEHUB DEALERSHIP -->
+                <!-- 03 · DRIVEHUB DEALERSHIP -->
                 <div class="proj-card hard-shadow" data-reveal>
                     <div class="head">
-                        <span class="display" style="font-size:1.2rem;">02 · DRIVEHUB DEALERSHIP</span>
+                        <span class="display" style="font-size:1.2rem;">03 · DRIVEHUB DEALERSHIP</span>
                         <div class="head-actions">
                             <a href="https://github.com/em-srs/srs-dealership" target="_blank" class="head-gh-btn"
                                 aria-label="GitHub Repository">
@@ -274,10 +336,10 @@
                     </div>
                 </div>
 
-                <!-- 03 · MEDIFLY -->
+                <!-- 04 · MEDIFLY -->
                 <div class="proj-card hard-shadow" data-reveal>
                     <div class="head">
-                        <span class="display" style="font-size:1.2rem;">03 · MEDIFLY</span>
+                        <span class="display" style="font-size:1.2rem;">04 · MEDIFLY</span>
                         <div class="head-actions">
                             <a href="https://medi-fly.vercel.app/" target="_blank" class="tag live-link">LIVE ↗</a>
                         </div>
@@ -316,10 +378,10 @@
                     </div>
                 </div>
 
-                <!-- 04 · PHOTOGRAPHY PORTFOLIO -->
+                <!-- 05 · PHOTOGRAPHY PORTFOLIO -->
                 <div class="proj-card hard-shadow" data-reveal>
                     <div class="head">
-                        <span class="display" style="font-size:1.2rem;">04 · PHOTOGRAPHY PORTFOLIO</span>
+                        <span class="display" style="font-size:1.2rem;">05 · PHOTOGRAPHY PORTFOLIO</span>
                         <div class="head-actions">
                             <a href="https://github.com/em-srs/srs-shots-portfolio" target="_blank" class="head-gh-btn"
                                 aria-label="GitHub Repository">
@@ -362,10 +424,10 @@
                     </div>
                 </div>
 
-                <!-- 05 · VISIONHUB -->
+                <!-- 06 · VISIONHUB -->
                 <div class="proj-card hard-shadow" data-reveal>
                     <div class="head">
-                        <span class="display" style="font-size:1.2rem;">05 · VISIONHUB</span>
+                        <span class="display" style="font-size:1.2rem;">06 · VISIONHUB</span>
                         <div class="head-actions">
                             <a href="https://github.com/em-srs/Vision-hub" target="_blank" class="head-gh-btn"
                                 aria-label="GitHub Repository">
@@ -421,6 +483,11 @@
                     <tr class="border-b4" style="border-color:var(--hairline);">
                         <td style="padding:12px; border-top:1px solid var(--hairline);">BACKEND</td>
                         <td style="padding:12px; border-top:1px solid var(--hairline);">FastAPI · Node.js · Express</td>
+                        <td style="padding:12px; border-top:1px solid var(--hairline);">[ACTIVE]</td>
+                    </tr>
+                    <tr class="border-b4" style="border-color:var(--hairline);">
+                        <td style="padding:12px; border-top:1px solid var(--hairline);">MACHINE LEARNING</td>
+                        <td style="padding:12px; border-top:1px solid var(--hairline);">Scikit-Learn · Pandas · NumPy · Joblib · Regression Pipelines</td>
                         <td style="padding:12px; border-top:1px solid var(--hairline);">[ACTIVE]</td>
                     </tr>
                     <tr>
@@ -759,6 +826,174 @@
                     <button id="modal-close-btn" class="btn"
                         style="background:var(--pink); color:#FFFFFF; padding:6px 14px; font-size:.75rem;">CLOSE
                         [ESC]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ML Architecture & Technical Case Study Modal -->
+    <div id="ml-case-study-modal" class="modal-backdrop" aria-hidden="true" data-lenis-prevent>
+        <div class="modal-browser-window" data-lenis-prevent style="max-width:980px; height:88vh;">
+            <div class="modal-chrome-header">
+                <div class="modal-dots">
+                    <span class="modal-dot red case-study-close-btn" style="cursor:pointer;" title="Close Modal"></span>
+                    <span class="modal-dot yellow"></span>
+                    <span class="modal-dot green"></span>
+                </div>
+                <div class="modal-url-bar">
+                    <svg viewBox="0 0 24 24" width="12" height="12" style="flex-shrink:0;">
+                        <path fill="currentColor"
+                            d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+                    </svg>
+                    <span>case_study://used-car-price-predictor.ml.architecture</span>
+                </div>
+                <span class="tag" style="background:var(--pink); color:#FFFFFF; font-size:.65rem; font-weight:700;">● ML CASE STUDY</span>
+            </div>
+
+            <div class="modal-body case-study-body" data-lenis-prevent>
+                <!-- Hero Header -->
+                <div class="case-study-hero">
+                    <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:8px;">
+                        <span class="tag" style="background:var(--yellow); color:#0B0B0B; font-weight:700;">END-TO-END REGRESSION PIPELINE</span>
+                        <span class="tag" style="background:var(--wire); color:#FFFFFF;">PYTHON 3.13 · SCIKIT-LEARN · FASTAPI · RENDER</span>
+                    </div>
+                    <h2>USED CAR PRICE PREDICTOR</h2>
+                    <p>An automated, data-driven machine learning system that estimates fair used automobile market valuations in Indian Rupees (₹) based on 8 physical and operational vehicle parameters.</p>
+                    <div class="case-study-links-row">
+                        <a href="https://car-price-predictor-hkae.onrender.com/" target="_blank" class="btn" style="padding:6px 14px; font-size:.75rem;">Open Live App ↗</a>
+                        <a href="https://car-price-predictor-hkae.onrender.com/docs" target="_blank" class="btn alt" style="padding:6px 14px; font-size:.75rem; background:var(--wire); color:#FFFFFF; border-color:var(--ink);">Swagger API Docs ↗</a>
+                        <a href="https://github.com/em-srs/car_price_predictor" target="_blank" class="btn alt" style="padding:6px 14px; font-size:.75rem;">GitHub Repository ↗</a>
+                    </div>
+                </div>
+
+                <!-- 01: Problem Statement & ML Framing -->
+                <div class="case-study-section">
+                    <h3 class="case-study-section-title">01 // Problem Statement &amp; ML Framing</h3>
+                    <div class="case-study-grid-2">
+                        <div class="case-study-card">
+                            <h4>The Problem</h4>
+                            <p>Buying or selling pre-owned vehicles in India is subjective, unstandardized, and opaque. Private buyers risk overpaying due to asymmetric market data, while sellers struggle to establish competitive, market-grounded listing prices without manual appraisal overhead.</p>
+                        </div>
+                        <div class="case-study-card">
+                            <h4>Why Regression?</h4>
+                            <p>Classification identifies discrete category buckets (e.g. affordable vs luxury). Because automobile price is a continuous, uninterrupted monetary quantity (e.g., ₹7,75,405.55), this problem is modeled as supervised <strong>continuous regression</strong>.</p>
+                        </div>
+                    </div>
+                    <div class="case-study-card">
+                        <h4>8 Input Features Analyzed</h4>
+                        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:10px; margin-top:8px; font-size:.8rem;">
+                            <div><strong>• Numerical (3):</strong><br><code>year</code> (1980–2026)<br><code>km_driven</code> (0–1,000,000 km)<br><code>engine_cc</code> (Displacement in cc)</div>
+                            <div><strong>• Categorical (5):</strong><br><code>make</code> (Brand: Maruti, Hyundai...)<br><code>model</code> (Vehicle Model name)<br><code>fuel</code> (Petrol, Diesel, CNG, Electric)</div>
+                            <div><strong>• Operational &amp; Target:</strong><br><code>transmission</code> (Manual, Automatic)<br><code>owner</code> (First, Second, Third, Fourth+)<br><strong>Target (y):</strong> <code>selling_price</code> (INR ₹)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 02: Pipeline & Leakage Prevention -->
+                <div class="case-study-section">
+                    <h3 class="case-study-section-title">02 // Data Cleaning &amp; Leakage-Free Pipeline</h3>
+                    <p style="margin:0; font-size:.83rem; line-height:1.6;">Real-world automotive datasets contain human formatting variations, such as commas (<code>"35,000"</code>) and unit suffixes (<code>"1200 cc"</code>). A custom regex parser sanitizes raw inputs while filtering implausible domain outliers.</p>
+                    <div class="case-study-grid-2">
+                        <div class="case-study-card">
+                            <h4>Preprocessing Pipeline Architecture</h4>
+                            <p>• <strong>Numerical Pipe:</strong> <code>SimpleImputer(strategy="median")</code> fills missing values with the median, providing robustness against extreme price skew.<br>• <strong>Categorical Pipe:</strong> <code>SimpleImputer(strategy="most_frequent")</code> + <code>OneHotEncoder(handle_unknown="ignore")</code> ensures new brands/models encountered in production encode as all-zeros without crashing the web service.</p>
+                        </div>
+                        <div class="case-study-card">
+                            <h4>Data Leakage Elimination</h4>
+                            <p>Calculating imputation medians or one-hot encodings on the full dataset before splitting causes information from unseen test instances to leak into training. By chaining preprocessing and the estimator into a unified scikit-learn <code>Pipeline</code>, transformations are fitted strictly on <code>X_train</code> during <code>pipeline.fit()</code>.</p>
+                        </div>
+                    </div>
+                    <div class="case-study-code-snippet"># Unified scikit-learn Pipeline prevents data leakage
+numeric_pipe = Pipeline([("imputer", SimpleImputer(strategy="median"))])
+categorical_pipe = Pipeline([
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+preprocessor = ColumnTransformer([
+    ("numeric", numeric_pipe, ["year", "km_driven", "engine_cc"]),
+    ("categorical", categorical_pipe, ["make", "model", "fuel", "transmission", "owner"])
+])
+pipeline = Pipeline([("preprocessor", preprocessor), ("model", LinearRegression())])</div>
+                </div>
+
+                <!-- 03: Model Benchmarking & Metrics -->
+                <div class="case-study-section">
+                    <h3 class="case-study-section-title">03 // Model Benchmarking &amp; Metrics</h3>
+                    <p style="margin:0; font-size:.83rem; line-height:1.6;">Two candidate algorithms were evaluated on an 80/20 train-test split (1,108 training rows, 277 hold-out test rows, <code>random_state=42</code>) using Mean Absolute Error (MAE) and Coefficient of Determination (R²).</p>
+                    <div class="case-study-table-wrap">
+                        <table class="case-study-table">
+                            <thead>
+                                <tr>
+                                    <th>CANDIDATE MODEL</th>
+                                    <th>TEST MAE (INR ₹)</th>
+                                    <th>TEST R² SCORE</th>
+                                    <th>INFERENCE SPEED</th>
+                                    <th>SELECTION OUTCOME</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background:rgba(255, 212, 0, 0.15); font-weight:700;">
+                                    <td>Linear Regression</td>
+                                    <td>₹84,198.24</td>
+                                    <td>0.8079 (~80.8% variance)</td>
+                                    <td>&lt;1 ms (Sub-millisecond)</td>
+                                    <td><span class="tag" style="background:#27C93F; color:#0B0B0B; font-size:.65rem; padding:2px 6px;">SELECTED WINNER</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Random Forest Regressor</td>
+                                    <td>₹91,965.21</td>
+                                    <td>0.7628 (~76.3% variance)</td>
+                                    <td>~15 ms (180 Trees)</td>
+                                    <td><span class="tag" style="background:var(--pink); color:#fff; font-size:.65rem; padding:2px 6px;">REJECTED</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="case-study-card">
+                        <h4>Why Linear Regression Outperformed Random Forest</h4>
+                        <p>In this vehicle valuation domain, depreciation correlates strongly and monotonically with age (<code>year</code>) and usage (<code>km_driven</code>). Random Forest slightly overfit the training splits and generalized less smoothly on held-out test points, whereas Linear Regression achieved an MAE approximately <strong>₹7,767 lower</strong>, delivering more consistent real-world valuations.</p>
+                    </div>
+                </div>
+
+                <!-- 04: Backend Architecture & Serving -->
+                <div class="case-study-section">
+                    <h3 class="case-study-section-title">04 // FastAPI Backend &amp; Serving Lifecycle</h3>
+                    <div class="case-study-grid-2">
+                        <div class="case-study-card">
+                            <h4>Pydantic Gateway Validation</h4>
+                            <p>Every inbound prediction payload is validated against strict Pydantic schemas (e.g. <code>year: int = Field(ge=1980, le=2026)</code>, <code>km_driven: float = Field(ge=0)</code>, <code>engine_cc: float = Field(gt=0)</code>). Malformed payloads are intercepted at the API gateway returning HTTP 422 before touching the ML model.</p>
+                        </div>
+                        <div class="case-study-card">
+                            <h4>Single-Load Memory Serialization</h4>
+                            <p>Model weights and transformers are serialized via <code>Joblib</code> to <code>best_model.joblib</code>. FastAPI loads this artifact into memory once at server startup, enabling instantaneous predictions (&lt;50ms latency) without re-instantiating estimators per request.</p>
+                        </div>
+                    </div>
+                    <div class="case-study-card">
+                        <h4>Automated Testing Suite (12 Pytest Tests)</h4>
+                        <p>Full automated regression coverage across <code>tests/test_api.py</code>: verifies health probes, model metadata serialization, HTML UI delivery, interactive Swagger docs, non-negative prediction clamping (<code>max(0.0, price)</code>), alternative vehicle types (Diesel/Automatic), and boundary validation rejection.</p>
+                    </div>
+                </div>
+
+                <!-- 05: Cloud CI/CD Deployment -->
+                <div class="case-study-section">
+                    <h3 class="case-study-section-title">05 // Cloud CI/CD Deployment on Render</h3>
+                    <p style="margin:0; font-size:.83rem; line-height:1.6;">Automated GitOps deployment defined via <code>render.yaml</code> blueprint. On every push to GitHub, Render automatically provisions a Python 3.13 container, installs dependencies, executes <code>python train.py</code> to regenerate model artifacts from raw data, and serves the application via Uvicorn.</p>
+                    <div class="case-study-code-snippet"># render.yaml blueprint
+services:
+  - type: web
+    name: used-car-price-prediction
+    runtime: python
+    buildCommand: pip install -r requirements.txt && python train.py
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health</div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <span style="font-size:.72rem; opacity:0.85;">⚡ End-to-End ML Architecture · Deployed on Render</span>
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <a href="https://car-price-predictor-hkae.onrender.com/" target="_blank" class="btn alt" style="padding:6px 12px; font-size:.75rem;">Open Web App ↗</a>
+                    <button class="btn case-study-close-btn" style="background:var(--pink); color:#FFFFFF; padding:6px 14px; font-size:.75rem;">CLOSE [ESC]</button>
                 </div>
             </div>
         </div>

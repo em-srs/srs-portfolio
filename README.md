@@ -33,41 +33,49 @@ It's not about being pretty. It's about being **BOLD**, **FAST**, and **RELIABLE
 
 | COMPONENT | TECHNOLOGY | STATUS |
 | :--- | :--- | :--- |
-| **LANGUAGES** | `C++` · `Python` · `JavaScript` · `Java` | [ACTIVE] |
-| **BACKEND** | `FastAPI` · `Node.js` · `Express` | [ACTIVE] |
+| **LANGUAGES** | `C++` · `Python 3.13` · `JavaScript` · `Java` | [ACTIVE] |
+| **MACHINE LEARNING** | `Scikit-Learn` · `Pandas` · `NumPy` · `Joblib` · `Regression Pipelines` | [ACTIVE] |
+| **BACKEND** | `FastAPI` · `Node.js` · `Express` · `Uvicorn` | [ACTIVE] |
 | **DATA** | `PostgreSQL` · `Supabase` · `SQLite (WAL)` · `MongoDB` | [ACTIVE] |
 | **FRONTEND** | `HTML5` · `Vanilla CSS` · `Vanilla JS` · `React` | [ACTIVE] |
-| **METHOD** | `Test-Driven Development (TDD)` · `pytest` | [ENFORCED] |
-| **DEPLOY** | `Vercel` · `Render` · `Neon` | [SHIPPED] |
+| **METHOD** | `Test-Driven Development (TDD)` · `pytest (100% Coverage)` | [ENFORCED] |
+| **DEPLOY** | `Render` · `Vercel` · `Neon` | [SHIPPED] |
 | **THEMING** | `Dual-Theme Engine` (Light & Dark CSS Variables) | [ENFORCED] |
 
 ---
 
 ## /// SHIPPED_PROJECTS
 
-### 01. DRIVEHUB DEALERSHIP
+### 01. USED CAR PRICE PREDICTOR (END-TO-END ML WEB APP)
+> End-to-end continuous regression service estimating used automobile valuations in Indian Rupees (₹) across 8 vehicle parameters. Chained Scikit-Learn ColumnTransformer pipeline (median numerical imputation, mode categorical imputation, One-Hot Encoding) strictly preventing data leakage. Linear Regression selected over Random Forest for superior test generalization (MAE: ₹84,198 vs ₹91,965, R²: 0.8079). Served via FastAPI with Pydantic validation, 12 Pytest tests, and automated Git CI/CD on Render.
+> - **Stack**: `Python 3.13` · `Scikit-Learn` · `FastAPI` · `Pandas` · `NumPy` · `Pytest` · `Render`
+> - **Live Demo**: [car-price-predictor-hkae.onrender.com](https://car-price-predictor-hkae.onrender.com/)
+> - **Interactive API Docs**: [car-price-predictor-hkae.onrender.com/docs](https://car-price-predictor-hkae.onrender.com/docs)
+> - **Repository**: [github.com/em-srs/car_price_predictor](https://github.com/em-srs/car_price_predictor)
+
+### 02. DRIVEHUB DEALERSHIP
 > Full-stack car dealership inventory system built strict-TDD from red-green-refactor first. FastAPI backend, PostgreSQL (Neon), React frontend, Pytest suite at 93% coverage, deployed across Render and Vercel.
 > - **Stack**: `FastAPI` · `PostgreSQL (Neon)` · `React` · `TDD`
 > - **Live Demo**: [srs-dealership.vercel.app](https://srs-dealership.vercel.app/)
 > - **Repository**: [github.com/em-srs/srs-dealership](https://github.com/em-srs/srs-dealership)
 
-### 02. MEDIFLY
+### 03. MEDIFLY
 > Five-role pharmacy delivery ecosystem — User, Pharmacy, Pharmacist, Rider, Admin. Migrated from Java/Spring Boot prototype to React + Node/Express + PostgreSQL (Supabase), Clerk auth, Razorpay, and Socket.io tracking.
 > - **Stack**: `React` · `Node/Express` · `PostgreSQL` · `Clerk Auth` · `Razorpay`
 > - **Live Demo**: [medi-fly.vercel.app](https://medi-fly.vercel.app/)
 
-### 03. CUSTOMBIX
+### 04. CUSTOMBIX
 > Aptitude test generator built on IndiaBIX question banks with timed practice and custom exam builder. Node.js/Express scraping pipeline using Cheerio, SQLite in WAL mode, circuit breaker, and worker-thread PDF generation.
 > - **Stack**: `Node.js` · `Express` · `Cheerio` · `Worker Threads` · `SQLite WAL`
 > - **Live Demo**: [custombix.vercel.app](https://custombix.vercel.app/)
 
-### 04. PHOTOGRAPHY PORTFOLIO
+### 05. PHOTOGRAPHY PORTFOLIO
 > Portrait and moonshot photography portfolio, shot primarily across Punjab and Himachal Pradesh.
 > - **Stack**: `Photography` · `Portfolio` · `HTML/CSS/JS`
 > - **Live Demo**: [srs-shots.vercel.app](https://srs-shots.vercel.app/)
 > - **Repository**: [github.com/em-srs/srs-shots-portfolio](https://github.com/em-srs/srs-shots-portfolio)
 
-### 05. VISIONHUB
+### 06. VISIONHUB
 > MERN-stack video streaming platform covering upload, playback, and full-stack state management across the MongoDB/Express/React/Node pipeline.
 > - **Stack**: `MongoDB` · `Express` · `React` · `Node.js`
 > - **Repository**: [github.com/em-srs/Vision-hub](https://github.com/em-srs/Vision-hub)
