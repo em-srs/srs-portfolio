@@ -74,15 +74,11 @@ body {
     background: var(--paper);
     color: var(--ink);
     font-family: 'JetBrains Mono', monospace;
-    cursor: default;
+    cursor: none;
 }
 
-button, a, input[type="submit"], [role="button"], .btn, .tag.live-link, .modal-dot, .theme-btn {
-    cursor: pointer !important;
-}
-
-input, textarea {
-    cursor: text !important;
+button, a, input, textarea, select, [role="button"], .btn, .tag.live-link, .modal-dot, .theme-btn {
+    cursor: none !important;
 }
 
 ::selection {
@@ -116,9 +112,44 @@ a {
     text-decoration: none;
 }
 
-/* ---------- cursor disabled for zero-latency native hardware mouse ---------- */
+/* ---------- neo-brutalist square bright red/pink cursor (GPU accelerated) ---------- */
 #cursor {
-    display: none !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    background: var(--pink);
+    border: 2px solid var(--ink);
+    box-shadow: 0 0 0 2px var(--paper);
+    pointer-events: none;
+    z-index: 999999;
+    will-change: transform;
+    transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+    transition: width .12s cubic-bezier(0.2, 0.8, 0.2, 1),
+                height .12s cubic-bezier(0.2, 0.8, 0.2, 1),
+                background-color .12s ease,
+                border-color .12s ease;
+}
+
+#cursor.hover {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 212, 0, 0.35);
+    border-color: var(--ink);
+    box-shadow: 0 0 0 2px var(--paper);
+    border-radius: 2px;
+    mix-blend-mode: normal;
+}
+
+@media (hover: none), (max-width: 768px) {
+    #cursor {
+        display: none !important;
+    }
+
+    body, button, a, input, textarea {
+        cursor: auto !important;
+    }
 }
 
 /* ---------- utility ---------- */

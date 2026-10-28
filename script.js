@@ -147,7 +147,35 @@ if (darkBtn) {
     });
 }
 
-// ---- native hardware cursor is used for zero-latency response ----
+// ---- neo-brutalist square cursor (ultra-smooth RAF 60/120fps tracking) ----
+const cursor = document.getElementById('cursor');
+if (cursor && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let mouseX = -100;
+    let mouseY = -100;
+    let rafPending = false;
+
+    function renderCursor() {
+        cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+        rafPending = false;
+    }
+
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (!rafPending) {
+            rafPending = true;
+            requestAnimationFrame(renderCursor);
+        }
+    }, { passive: true });
+
+    document.addEventListener('mouseover', (e) => {
+        if (e.target && e.target.closest('a, button, input, textarea, select, [role="button"], #lens-slideshow, .modal-interact-overlay, .proj-preview-wrap, .tag.live-link, .head-gh-btn, .theme-btn')) {
+            cursor.classList.add('hover');
+        } else {
+            cursor.classList.remove('hover');
+        }
+    }, { passive: true });
+}
 
 // ---- reveal on scroll ----
 const io = new IntersectionObserver((entries) => {
