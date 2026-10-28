@@ -54,14 +54,19 @@ html.lenis, html.lenis body {
     pointer-events: none;
 }
 
-* {
-    transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
+*, *::before, *::after {
     box-sizing: border-box;
 }
 
+/* Scoped theme transition only for major containers to eliminate layout lag */
+body, nav, .proj-card, .btn, .tag, section, footer, .modal-browser-window, .stat-box {
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+
 @media (prefers-reduced-motion: reduce) {
-    * {
+    *, *::before, *::after {
         transition: none !important;
+        animation: none !important;
     }
 }
 
@@ -69,7 +74,15 @@ body {
     background: var(--paper);
     color: var(--ink);
     font-family: 'JetBrains Mono', monospace;
-    cursor: none;
+    cursor: default;
+}
+
+button, a, input[type="submit"], [role="button"], .btn, .tag.live-link, .modal-dot, .theme-btn {
+    cursor: pointer !important;
+}
+
+input, textarea {
+    cursor: text !important;
 }
 
 ::selection {
@@ -103,43 +116,9 @@ a {
     text-decoration: none;
 }
 
-/* ---------- custom cursor ---------- */
+/* ---------- cursor disabled for zero-latency native hardware mouse ---------- */
 #cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 14px;
-    height: 14px;
-    background: var(--pink);
-    border: 2px solid var(--ink);
-    box-shadow: 0 0 0 2px var(--paper);
-    pointer-events: none;
-    z-index: 999999;
-    transform: translate(-50%, -50%);
-    transition: width .15s, height .15s, background .15s, border-radius .15s;
-}
-
-#cursor.hover {
-    width: 52px;
-    height: 52px;
-    background: rgba(255, 212, 0, 0.35);
-    border-color: var(--ink);
-    box-shadow: 0 0 0 2px var(--paper);
-    border-radius: 2px;
-    mix-blend-mode: normal;
-}
-
-@media (hover:none), (max-width: 768px) {
-    #cursor {
-        display: none !important;
-    }
-
-    body {
-        cursor: auto !important;
-    }
-    button, a, input, textarea {
-        cursor: pointer !important;
-    }
+    display: none !important;
 }
 
 /* ---------- utility ---------- */

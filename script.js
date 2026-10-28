@@ -3,10 +3,11 @@ let lenis = null;
 
 if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     lenis = new Lenis({
-        duration: 1.2,
+        duration: 0.5,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
-        touchMultiplier: 1.5,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.0,
         infinite: false,
     });
 
@@ -28,7 +29,7 @@ if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion:
             e.preventDefault();
             lenis.scrollTo(targetEl, {
                 offset: -20,
-                duration: 1.2,
+                duration: 0.6,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
             });
         }
@@ -146,21 +147,7 @@ if (darkBtn) {
     });
 }
 
-// ---- custom cursor ----
-const cursor = document.getElementById('cursor');
-if (cursor && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    window.addEventListener('mousemove', e => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
-    document.addEventListener('mouseover', e => {
-        if (e.target.closest('a, button, input, textarea, #lens-slideshow, .modal-interact-overlay, [role="button"]')) {
-            cursor.classList.add('hover');
-        } else {
-            cursor.classList.remove('hover');
-        }
-    });
-}
+// ---- native hardware cursor is used for zero-latency response ----
 
 // ---- reveal on scroll ----
 const io = new IntersectionObserver((entries) => {
