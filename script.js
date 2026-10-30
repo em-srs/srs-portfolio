@@ -600,7 +600,7 @@ function initLiveProjectPreviews() {
         const skeleton = wrap.querySelector('.preview-skeleton');
         const fallback = wrap.querySelector('.preview-fallback');
 
-        if (liveUrl && img) {
+        if (liveUrl && img && (!img.getAttribute('src') || img.getAttribute('src') === '')) {
             const version = wrap.dataset.v || wrap.dataset.version || '';
             const targetUrl = version ? (liveUrl.includes('?') ? `${liveUrl}&v=${version}` : `${liveUrl}?v=${version}`) : liveUrl;
             const primaryUrl = `https://api.microlink.io/?url=${encodeURIComponent(targetUrl)}&screenshot=true&meta=false&embed=screenshot.url&prerender=true&waitForTimeout=3000`;
@@ -857,5 +857,60 @@ document.addEventListener('DOMContentLoaded', initMLCaseStudyModal);
 if (document.readyState !== 'loading') {
     initMLCaseStudyModal();
 }
+
+// ---- WebMCP agent interactivity registration ----
+(function initWebMCP() {
+    if (typeof navigator !== 'undefined' && navigator.modelContext && typeof navigator.modelContext.registerTool === 'function') {
+        try {
+            navigator.modelContext.registerTool({
+                name: 'navigateToSection',
+                description: 'Scroll smoothly to any section of Sunny Kumar\'s portfolio',
+                parameters: {
+                    type: 'object',
+                    properties: {
+                        sectionId: {
+                            type: 'string',
+                            enum: ['work', 'stack', 'stats', 'faq', 'lens', 'contact'],
+                            description: 'The ID of the target section to display'
+                        }
+                    },
+                    required: ['sectionId']
+                },
+                execute: async ({ sectionId }) => {
+                    const el = document.getElementById(sectionId);
+                    if (el) {
+                        if (lenis) {
+                            lenis.scrollTo(el, { offset: -20, duration: 0.6 });
+                        } else {
+                            el.scrollIntoView({ behavior: 'smooth' });
+                        }
+                        return { success: true, message: `Navigated to ${sectionId}` };
+                    }
+                    return { success: false, message: `Section #${sectionId} not found` };
+                }
+            });
+
+            navigator.modelContext.registerTool({
+                name: 'getEngineerProfile',
+                description: 'Retrieve summary profile, skills, and credentials for Sunny Kumar',
+                parameters: { type: 'object', properties: {} },
+                execute: async () => {
+                    return {
+                        name: 'Sunny Kumar',
+                        role: 'Backend & Full-Stack Engineer',
+                        education: 'B.Tech CSE (2023–2027), CEC-CGC Mohali, IKGPTU',
+                        specialization: ['FastAPI', 'Python', 'Node.js', 'PostgreSQL', 'Scikit-Learn', 'REST APIs', 'TDD'],
+                        github: 'https://github.com/em-srs',
+                        linkedin: 'https://linkedin.com/in/em-srs',
+                        status: 'Open to SDE Roles and Internships'
+                    };
+                }
+            });
+        } catch (err) {
+            // Graceful fallback
+        }
+    }
+})();
+
 
 

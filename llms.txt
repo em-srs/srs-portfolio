@@ -1,0 +1,50 @@
+# Sunny Kumar — Portfolio & Engineering Specifications
+> Backend & Full-Stack Engineer specializing in FastAPI, Python, PostgreSQL, Node.js, and Machine Learning pipelines.
+
+## Identity & Background
+- **Name**: Sunny Kumar (handles: `em-srs`, `me_srs`, `sRs`)
+- **Role**: Backend & Full-Stack Engineer
+- **Status**: Open to Internships and Full-Time Software Development Engineer (SDE) positions
+- **Education**: B.Tech in Computer Science and Engineering (2023–2027), Chandigarh Engineering College (CEC-CGC Mohali), affiliated with IKGPTU, Punjab, India.
+- **Location**: Mohali, Punjab, India
+
+## Technical Stack
+- **Languages**: Python, C++, JavaScript (ES6+), SQL, HTML5, CSS3
+- **Backend & APIs**: FastAPI, Node.js, Express.js, REST APIs, Pydantic, Worker Threads
+- **Machine Learning & Data**: Scikit-Learn (Pipelines, ColumnTransformer), Pandas, NumPy, Joblib, Continuous Regression Modeling
+- **Databases & ORMs**: PostgreSQL, Neon DB, SQLite (WAL mode), Supabase, MongoDB
+- **Testing & Quality**: Pytest (TDD / red-green-refactor, 93% test coverage), Unit Testing
+- **Deployment & Cloud**: Render, Vercel, Supabase, Git CI/CD
+
+## Featured Projects
+1. **DriveHub Dealership** (https://srs-dealership.vercel.app/):
+   - Strict Test-Driven Development (TDD) full-stack car dealership inventory platform.
+   - FastAPI backend with Neon PostgreSQL, Pytest suite with 93% code coverage, React frontend.
+   - GitHub: https://github.com/em-srs/srs-dealership
+
+2. **Used Car Price Predictor** (https://car-price-predictor-hkae.onrender.com/):
+   - End-to-end continuous regression ML system estimating used car valuations in INR (₹) across 8 parameters.
+   - Leakage-free Scikit-Learn preprocessing pipeline (median/mode imputation, One-Hot Encoding).
+   - Linear Regression selected over Random Forest (Test MAE: ₹84,198 vs ₹91,965, R²: 0.8079).
+   - Served with FastAPI, Pydantic gateway schema validation, 12 Pytest tests, automated Git CI/CD on Render.
+   - GitHub: https://github.com/em-srs/car_price_predictor
+
+3. **Custombix** (https://custombix.vercel.app/):
+   - Timed aptitude exam generator built on IndiaBIX question banks.
+   - Node.js & Express scraping pipeline using Cheerio, SQLite in WAL mode, worker thread PDF generation, and circuit breaker patterns.
+
+4. **MediFly** (https://medi-fly.vercel.app/):
+   - 5-role pharmacy delivery ecosystem (User, Pharmacy, Pharmacist, Rider, Admin).
+   - React frontend, Node.js/Express backend, PostgreSQL (Supabase), Clerk authentication, Razorpay payments, Socket.io tracking.
+
+5. **Through the Lens** (https://srs-shots.vercel.app/):
+   - Portrait, landscape, and astrophotography portfolio showcasing visual composition.
+   - GitHub: https://github.com/em-srs/srs-shots-portfolio
+
+## Coordinates & Links
+- **Website**: https://www.em-srs.tech/
+- **GitHub**: https://github.com/em-srs
+- **LinkedIn**: https://linkedin.com/in/em-srs
+- **LeetCode**: https://leetcode.com/u/me_srs/
+- **Email**: sunnyprfrvr@gmail.com
+
