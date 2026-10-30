@@ -1548,24 +1548,24 @@ textarea:focus {
 /* ============ FAQ SECTION (NEO-BRUTALIST) ============ */
 .faq-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-    align-items: start;
-    gap: 22px;
+    grid-template-columns: 1fr;
+    gap: 18px;
     margin: 0;
     padding: 0;
 }
 
 .faq-card {
     background: var(--paper);
-    border: var(--line) solid var(--ink);
-    box-shadow: 6px 6px 0 var(--ink);
+    border: 2px solid var(--ink);
+    border-radius: 12px;
     min-width: 0;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color .2s ease;
+    overflow: hidden;
+    transition: border-color 0.15s ease, background-color .2s ease;
 }
 
-.faq-card:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0 var(--ink);
+.faq-card:hover,
+.faq-card:focus-within {
+    border-color: var(--pink);
 }
 
 .faq-card dt {
@@ -1578,8 +1578,8 @@ textarea:focus {
 
 .faq-question {
     width: 100%;
-    min-height: 100px;
-    padding: 20px 18px;
+    min-height: 64px;
+    padding: 14px 18px;
     border: 0;
     background: transparent;
     text-align: left;
@@ -1666,22 +1666,16 @@ textarea:focus {
 @media (max-width: 600px) {
     .faq-grid {
         grid-template-columns: 1fr;
-        gap: 16px;
-    }
-
-    .faq-card {
-        box-shadow: 4px 4px 0 var(--ink);
+        gap: 14px;
     }
 
     .faq-question {
         font-size: 0.95rem;
-        min-height: 82px;
-        padding: 16px 14px;
+        min-height: 62px;
+        padding: 12px 14px;
     }
 
     .faq-card.is-open .faq-answer {
         padding: 16px 14px 18px;
     }
 }
-
-
