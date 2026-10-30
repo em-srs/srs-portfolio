@@ -858,6 +858,106 @@ if (document.readyState !== 'loading') {
     initMLCaseStudyModal();
 }
 
+// ---- single-open FAQ accordion ----
+(function initFaqAccordion() {
+    const faqSection = document.getElementById('faq');
+    if (!faqSection) return;
+
+    const buttons = faqSection.querySelectorAll('.faq-question');
+    let activeCard = null;
+    let requestedCard = null;
+    let isTransitioning = false;
+
+    function waitForFaqTransition(answer) {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return Promise.resolve();
+        }
+
+        return new Promise(resolve => {
+            let timeoutId;
+            const finish = () => {
+                window.clearTimeout(timeoutId);
+                answer.removeEventListener('transitionend', onTransitionEnd);
+                resolve();
+            };
+            const onTransitionEnd = event => {
+                if (event.target === answer && event.propertyName === 'max-height') {
+                    finish();
+                }
+            };
+
+            answer.addEventListener('transitionend', onTransitionEnd);
+            timeoutId = window.setTimeout(finish, 450);
+        });
+    }
+
+    async function openFaqCard(card) {
+        const button = card.querySelector('.faq-question');
+        const answer = card.querySelector('.faq-answer');
+        if (!button || !answer) return;
+
+        answer.hidden = false;
+        answer.style.maxHeight = '0px';
+        answer.offsetHeight;
+        card.classList.add('is-open');
+        button.setAttribute('aria-expanded', 'true');
+        answer.style.maxHeight = `${answer.scrollHeight}px`;
+        await waitForFaqTransition(answer);
+        answer.style.maxHeight = 'none';
+    }
+
+    async function closeFaqCard(card) {
+        const button = card.querySelector('.faq-question');
+        const answer = card.querySelector('.faq-answer');
+        if (!button || !answer) return;
+
+        answer.style.maxHeight = `${answer.scrollHeight}px`;
+        answer.offsetHeight;
+        card.classList.remove('is-open');
+        button.setAttribute('aria-expanded', 'false');
+        answer.style.maxHeight = '0px';
+        await waitForFaqTransition(answer);
+        answer.hidden = true;
+        answer.style.maxHeight = '';
+    }
+
+    async function syncFaqSelection() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        try {
+            while (activeCard !== requestedCard) {
+                if (activeCard) {
+                    await closeFaqCard(activeCard);
+                    activeCard = null;
+                    continue;
+                }
+
+                if (requestedCard) {
+                    const nextCard = requestedCard;
+                    await openFaqCard(nextCard);
+                    activeCard = nextCard;
+                }
+            }
+        } finally {
+            isTransitioning = false;
+            if (activeCard !== requestedCard) {
+                void syncFaqSelection();
+            }
+        }
+    }
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const card = button.closest('.faq-card');
+            if (!card) return;
+
+            requestedCard = requestedCard === card ? null : card;
+            void syncFaqSelection();
+        });
+    });
+})();
+
 // ---- WebMCP agent interactivity registration ----
 (function initWebMCP() {
     if (typeof navigator !== 'undefined' && navigator.modelContext && typeof navigator.modelContext.registerTool === 'function') {
@@ -911,6 +1011,5 @@ if (document.readyState !== 'loading') {
         }
     }
 })();
-
 
 
