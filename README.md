@@ -1,4 +1,7 @@
-# SUNNY.exe // PORTFOLIO_V2
+# SUNNY.exe // PORTFOLIO_V2 — Sunny Kumar (em-srs / sunnyraj su)
+
+> **Official Portfolio**: [https://www.em-srs.tech/](https://www.em-srs.tech/)  
+> **Identity & Aliases**: Sunny Kumar · `emsrs` · `sunnyraj su` · `sunny raj su` · `sunny kumar srs` · `srs su` · `em-srs` · `sRs.exe`
 
 ```
    _____ __  ___   ___  __  __   ____  __  ____  ___ ___ ___    ____  

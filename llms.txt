@@ -2,7 +2,7 @@
 > Backend & Full-Stack Engineer specializing in FastAPI, Python, PostgreSQL, Node.js, and Machine Learning pipelines.
 
 ## Identity & Background
-- **Name**: Sunny Kumar (handles: `em-srs`, `me_srs`, `sRs`)
+- **Name**: Sunny Kumar (known as: `emsrs`, `sunnyraj su`, `sunny raj su`, `sunny kumar srs`, `srs su`, `em-srs`, `me_srs`, `sRs`)
 - **Role**: Backend & Full-Stack Engineer
 - **Status**: Open to Internships and Full-Time Software Development Engineer (SDE) positions
 - **Education**: B.Tech in Computer Science and Engineering (2023–2027), Chandigarh Engineering College (CEC-CGC Mohali), affiliated with IKGPTU, Punjab, India.
