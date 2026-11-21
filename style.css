@@ -1383,8 +1383,8 @@ textarea:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #000000;
-    color: #F2F0E8;
+    background: #FFFFFF;
+    color: #0B0B0B;
     transition: transform 0.75s cubic-bezier(0.87, 0, 0.13, 1);
     will-change: transform;
     pointer-events: all;
@@ -1397,18 +1397,7 @@ textarea:focus {
     color: #F2F0E8;
 }
 
-.preloader-warp {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background: transparent;
-}
-
 .preloader-content {
-    position: relative;
-    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;

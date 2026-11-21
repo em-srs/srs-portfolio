@@ -43,94 +43,8 @@ if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion:
     const fillEl = document.getElementById('preloader-progress-fill');
     const langCodeEl = document.getElementById('preloader-lang-code');
     const percentEl = document.getElementById('preloader-percent');
-    const warpCanvas = document.getElementById('preloader-warp');
 
     if (!preloader || !textEl) return;
-
-    let warpAnimationId = 0;
-    let warpResizeObserver = null;
-
-    if (warpCanvas) {
-        const ctx = warpCanvas.getContext('2d');
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        let width = 0;
-        let height = 0;
-        let stars = [];
-
-        const resetStar = (star, farDepth = false) => {
-            star.x = (Math.random() - 0.5) * width * 2;
-            star.y = (Math.random() - 0.5) * height * 2;
-            star.z = farDepth ? width : Math.random() * width;
-            star.prevZ = star.z;
-        };
-
-        const resizeWarp = () => {
-            const rect = preloader.getBoundingClientRect();
-            const dpr = Math.min(window.devicePixelRatio || 1, 2);
-            width = rect.width;
-            height = rect.height;
-            warpCanvas.width = Math.round(width * dpr);
-            warpCanvas.height = Math.round(height * dpr);
-            warpCanvas.style.width = `${width}px`;
-            warpCanvas.style.height = `${height}px`;
-
-            if (ctx) ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-            const starCount = width < 700 ? 360 : 700;
-            stars = Array.from({ length: starCount }, () => {
-                const star = { x: 0, y: 0, z: 0, prevZ: 0 };
-                resetStar(star, true);
-                return star;
-            });
-        };
-
-        const renderWarp = () => {
-            if (!ctx) return;
-
-            ctx.clearRect(0, 0, width, height);
-            const cx = width / 2;
-            const cy = height / 2;
-            const focalLength = 250;
-            const speed = reduceMotion ? 8 : 25;
-
-            for (const star of stars) {
-                star.prevZ = star.z;
-                star.z -= speed;
-
-                if (star.z <= 1) {
-                    resetStar(star, true);
-                }
-
-                const sx = (star.x / star.z) * focalLength + cx;
-                const sy = (star.y / star.z) * focalLength + cy;
-                const prevSx = (star.x / star.prevZ) * focalLength + cx;
-                const prevSy = (star.y / star.prevZ) * focalLength + cy;
-
-                if (sx >= 0 && sx <= width && sy >= 0 && sy <= height) {
-                    const depthAlpha = Math.min(1, Math.max(0.12, 1 - star.z / width));
-                    ctx.beginPath();
-                    ctx.moveTo(prevSx, prevSy);
-                    ctx.lineTo(sx, sy);
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${depthAlpha})`;
-                    ctx.lineWidth = (1 - star.z / width) * 2.5 + 0.5;
-                    ctx.lineCap = 'round';
-                    ctx.stroke();
-                }
-            }
-
-            if (!preloader.classList.contains('is-done') && !reduceMotion) {
-                warpAnimationId = requestAnimationFrame(renderWarp);
-            }
-        };
-
-        resizeWarp();
-        warpResizeObserver = new ResizeObserver(resizeWarp);
-        warpResizeObserver.observe(preloader);
-
-        if (ctx) {
-            renderWarp();
-        }
-    }
 
     if (lenis) lenis.stop();
     document.body.style.overflow = 'hidden';
@@ -150,7 +64,7 @@ if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion:
     ];
 
     let index = 0;
-    const intervalTime = 400;
+    const intervalTime = 160;
     const totalCount = greetings.length;
 
     // Apply initial greeting styling
@@ -181,8 +95,6 @@ if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion:
         } else {
             clearInterval(interval);
             setTimeout(() => {
-                if (warpAnimationId) cancelAnimationFrame(warpAnimationId);
-                if (warpResizeObserver) warpResizeObserver.disconnect();
                 preloader.classList.add('is-done');
                 document.body.style.overflow = '';
                 if (lenis) lenis.start();
@@ -1099,3 +1011,5 @@ if (document.readyState !== 'loading') {
         }
     }
 })();
+
+
