@@ -150,7 +150,7 @@ if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion:
     ];
 
     let index = 0;
-    const intervalTime = 160;
+    const intervalTime = 400;
     const totalCount = greetings.length;
 
     // Apply initial greeting styling
@@ -169,6 +169,10 @@ if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion:
         if (index < greetings.length) {
             const current = greetings[index];
 
+            textEl.classList.remove('swap-anim');
+            void textEl.offsetWidth; // Force reflow for pop animation
+            textEl.classList.add('swap-anim');
+
             textEl.textContent = current.text;
             textEl.style.fontFamily = current.font;
             textEl.style.color = current.color;
@@ -176,29 +180,21 @@ if (typeof Lenis !== 'undefined' && !window.matchMedia('(prefers-reduced-motion:
             if (langCodeEl) langCodeEl.textContent = current.lang;
         } else {
             clearInterval(interval);
-            setTimeout(finishPreloader, 50);
+            setTimeout(() => {
+                if (warpAnimationId) cancelAnimationFrame(warpAnimationId);
+                if (warpResizeObserver) warpResizeObserver.disconnect();
+                preloader.classList.add('is-done');
+                document.body.style.overflow = '';
+                if (lenis) lenis.start();
+
+                setTimeout(() => {
+                    if (preloader.parentNode) {
+                        preloader.parentNode.removeChild(preloader);
+                    }
+                }, 800);
+            }, 180);
         }
     }, intervalTime);
-
-    let preloaderFinished = false;
-    function finishPreloader() {
-        if (preloaderFinished) return;
-        preloaderFinished = true;
-        clearInterval(interval);
-        if (warpAnimationId) cancelAnimationFrame(warpAnimationId);
-        if (warpResizeObserver) warpResizeObserver.disconnect();
-        preloader.classList.add('is-done');
-        document.body.style.overflow = '';
-        if (lenis) lenis.start();
-
-        setTimeout(() => {
-            if (preloader.parentNode) {
-                preloader.parentNode.removeChild(preloader);
-            }
-        }, 240);
-    }
-
-    setTimeout(finishPreloader, 1760);
 })();
 
 // ---- dark mode ----
